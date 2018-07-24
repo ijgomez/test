@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.example.test</groupId>
+	<artifactId>test-andromda</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>${application.name}</name>
+	<modules>
+		<module>mda</module>
+		<module>common</module>
+		<module>core</module>
+		<module>web</module>
+	</modules>
+	<properties>
+		<!-- Info Project -->
+		<application.id>test-andromda</application.id>
+		<application.package>org.example.test</application.package>
+		<application.name>test-andromda</application.name>
+		<application.version>1.0</application.version>
+		
+		<!-- Configuration Compilation -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jvm.version>1.8</jvm.version>
+		
+		<!-- Framework version -->
+		<andromda.version>3.2</andromda.version>
+		<org.springframework.version>4.2.3.RELEASE</org.springframework.version>
+		<org.slf4j.version>1.7.7</org.slf4j.version>
+		<org.apache.axis.version>1.4</org.apache.axis.version>
+		<org.hibernate.version>3.6.0.Final</org.hibernate.version>
+	</properties>
+	<prerequisites>
+		<maven>2.2.1</maven>
+	</prerequisites>
+	<profiles>
+		<profile>
+			<id>oracle</id>
+			<properties>
+				<andromda.profile>oracle</andromda.profile>
+			</properties>
+		</profile>
+		<profile>
+			<id>postgresql</id>
+			<properties>
+				<andromda.profile>postgresql</andromda.profile>
+			</properties>
+		</profile>
+		<profile>
+			<id>hsqldb</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<andromda.profile>hsqldb</andromda.profile>
+			</properties>
+		</profile>
+	</profiles>
+	<dependencyManagement>
+		<dependencies>
+			<!-- Commons Libraries -->
+	 		<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version>3.1</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- Test Framework Libraries -->
+	        <dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>3.8.1</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

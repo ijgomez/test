@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<project name="test-andromda-flex" default="dist">
+
+	<taskdef resource="flexTasks.tasks" classpath="${FLEX_SDK_HOME}/ant/lib/flexTasks.jar"/>
+		
+	<property name="FLEX_HOME" location="${FLEX_SDK_HOME}" />
+	<property name="BUILD_HOME" location="target/generated-flex" />
+	
+	<target name="prepare">
+		<echo message="FLEX_SDK_HOME: ${FLEX_SDK_HOME}"/>
+		<echo message="FLEX_APP_HOME: ${FLEX_APP_HOME}"/>
+
+		<sequential>
+			<condition property="is.validifile">
+				<not>	
+					<available file="${FLEX_APP_HOME}"/>
+				</not>
+			</condition>
+		</sequential>
+		<fail if="is.validifile" message="File  ::: ${FLEX_APP_HOME} is not valid it does not exist , plese correct and submit again "/>
+	</target>
+
+	<target name="clean" depends="prepare">
+		<delete dir="${BUILD_HOME}" />
+		<mkdir dir="${BUILD_HOME}" />
+	</target>
+
+	<target name="compileSWC" depends="clean" description="compile library flex">
+	
+	</target>
+
+	<target name="compileSWF" depends="compileSWC" description="compile flex app">
+		<mxmlc file="${FLEX_APP_HOME}/src/Application.mxml" output="${BUILD_HOME}/Application.swf" accessible="false" debug="false" locale="en_US,es_ES">
+		
+		</mxmlc>
+	</target>
+
+	<target name="html-wrapper" depends="compileSWF" description="html wrapper">
+		<html-wrapper 
+            title="Welcome to My Flex App" 
+            file="index.html" 
+            height="300" 
+            width="400" 
+            application="app" 
+            swf="Application" 
+            history="true" 
+            output="${BUILD_HOME}"/> 
+	</target>
+
+	<target name="dist" depends="html-wrapper" description="distribution flex">
+
+	</target>
+
+</project>
+
+

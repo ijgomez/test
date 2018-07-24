@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<mappings name="WebMerge">
+	<mapping>
+		<from><![CDATA[<!-- context-param merge-point -->]]></from>
+		<to>
+			<![CDATA[ 
+				
+	        ]]>
+		</to>
+	</mapping>
+	<mapping>
+		<from><![CDATA[<!-- filter merge-point -->]]></from>
+		<to>
+			<![CDATA[
+				
+            ]]>
+		</to>
+	</mapping>
+	<mapping>
+		<from><![CDATA[<!-- filter-mapping merge-point -->]]></from>
+		<to>
+			<![CDATA[
+			
+            ]]>
+		</to>
+	</mapping>
+	<mapping>
+		<from><![CDATA[<!-- listener merge-point -->]]></from>
+		<to>
+			<![CDATA[
+				
+            ]]>
+		</to>
+	</mapping>
+	<mapping>
+		<from><![CDATA[<!-- error-page merge-point -->]]></from>
+		<to>
+			<![CDATA[
+			
+            ]]>
+		</to>
+	</mapping>
+	<mapping>
+		<from><![CDATA[<!-- servlet merge-point -->]]></from>
+		<to>
+			<![CDATA[
+			
+			]]>
+		</to>
+	</mapping>
+	<mapping>
+		<from><![CDATA[<!-- servlet-mapping merge-point -->]]></from>
+		<to>
+			<![CDATA[
+				
+            ]]>
+		</to>
+	</mapping>
+	<mapping>
+		<from><![CDATA[<!-- welcome-file merge-point -->]]></from>
+		<to>
+			<![CDATA[
+			
+            ]]>
+		</to>
+	</mapping>
+	<mapping>
+		<from><![CDATA[<!-- security-constraint merge-point -->]]></from>
+		<to>
+			<![CDATA[
+			
+            ]]>
+		</to>
+	</mapping>
+	<mapping>
+		<from><![CDATA[<!-- security-role merge-point -->]]></from>
+		<to>
+			<![CDATA[
+			
+            ]]>
+		</to>
+	</mapping>
+	<mapping>
+		<from><![CDATA[<!-- global-forwards merge-point -->]]></from>
+		<to>
+			<![CDATA[
+			
+            ]]>
+		</to>
+	</mapping>
+	<mapping>
+		<from><![CDATA[<!-- mime-mapping merge-point -->]]></from>
+		<to>
+			<![CDATA[
+			
+            ]]>
+		</to>
+	</mapping>
+	<mapping>
+		<from><![CDATA[# custom-messages merge-point]]></from>
+		<to>
+			<![CDATA[
+			
+            ]]>
+		</to>
+	</mapping>
+</mappings>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+			import mx.controls.Alert;
+			import org.example.test.andromda.model.TraceCriteria;
+			import mx.rpc.events.ResultEvent;
+
+			
+			
+			[Bindable]
+            public var dProvider: ArrayCollection = new ArrayCollection();
+
+			private function filter(): void {
+				var criteria:TraceCriteria = new TraceCriteria();
+				
+				criteria.message = nameF.text;
+				
+				ro.findByCriteria(criteria);
+			}
+
+			private function result(e:ResultEvent):void {
+				dg.dataProvider = e.result;
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:RemoteObject id="ro" destination="traceService">
+		<mx:method name="findByCriteria" result="result(event)"/>
+	</mx:RemoteObject>
+
+	<mx:Panel layout="absolute" title="Tareas" verticalAlign="middle" horizontalAlign="center" left="10" right="10" top="10" bottom="10">
+		<mx:Label x="10" y="10" text="Filtro:"/>
+		<mx:TextInput id="nameF" y="8" right="83" left="55" enter="filter()"/>
+		<mx:Button id="filterButton" label="Buscar" right="10" top="8" click="filter()"/>
+		<mx:DataGrid id="dg" left="10" right="10" top="36" bottom="10">
+			<mx:columns>
+				<mx:DataGridColumn headerText="Column 1" dataField="id"/>
+				<mx:DataGridColumn headerText="Column 2" dataField="dateTime"/>
+				<mx:DataGridColumn headerText="Column 3" dataField="type"/>
+				<mx:DataGridColumn headerText="Column 4" dataField="message"/>
+			</mx:columns>
+		</mx:DataGrid>
+	</mx:Panel>
+</mx:Application>

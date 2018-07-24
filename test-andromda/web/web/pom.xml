@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.example.test</groupId>
+		<artifactId>test-andromda-web</artifactId>
+		<version>1.0</version>
+	</parent>
+	<artifactId>test-andromda-web-web</artifactId>
+	<name>${application.name} Web Webapp</name>
+	<packaging>war</packaging>
+	<properties>
+		<maven.compiler.source>${jvm.version}</maven.compiler.source>
+    	<maven.compiler.target>${jvm.version}</maven.compiler.target>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<webResources>
+						<resource>
+						  <!-- this is relative to the pom.xml directory -->
+						  <directory>${project.build.directory}/../../flex/client/target/generated-flex</directory>
+						  <targetPath>app</targetPath>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>test-andromda-web-flex-adapter</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- J2EE Libraries -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+		<!-- Spring Framework Libraries -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		
+		<!-- Test Framework Libraries -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+</project>

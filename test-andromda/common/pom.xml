@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.example.test</groupId>
+		<artifactId>test-andromda</artifactId>
+		<version>1.0</version>
+	</parent>
+	<artifactId>test-andromda-common</artifactId>
+	<name>${application.name} Common</name>
+	<packaging>jar</packaging>
+	<properties>
+		<maven.compiler.source>${jvm.version}</maven.compiler.source>
+    	<maven.compiler.target>${jvm.version}</maven.compiler.target>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.andromda.maven.plugins</groupId>
+				<artifactId>andromda-multi-source-plugin</artifactId>
+				<version>${andromda.version}</version>
+				<executions>
+                        <execution>
+                            <goals>
+                                <goal>add-source</goal>
+                            </goals>
+                            <configuration>
+                                <sourceDirectories>
+                                    <directory>target/src</directory>
+                                </sourceDirectories>
+                            </configuration>
+                        </execution>
+                    </executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<!-- Commons Libraries -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+			<version>1.7.0</version>
+        </dependency>
+    </dependencies>
+</project>

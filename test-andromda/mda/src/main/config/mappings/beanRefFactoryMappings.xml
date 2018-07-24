@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<mappings name="spring">
+	<mapping>
+		<from><![CDATA[<!-- beanRefFactory merge-point -->]]></from>
+		<to>
+			<![CDATA[ 
+
+			]]>
+		</to>
+	</mapping>
+	
+	<mapping>
+		<from><![CDATA[<!-- applicationContext merge-point -->]]></from>
+		<to>
+			<![CDATA[ 
+				<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+					<property name="location" value="classpath:application.properties"/>
+				</bean>	
+				
+			]]>
+		</to>
+	</mapping>
+	
+	<mapping>
+		<from><![CDATA[<!-- applicationContext merge-point llamadaExcelService -->]]></from>
+        <to>
+	        <![CDATA[
+				
+	        ]]>
+        </to>
+		
+	</mapping>
+
+</mappings>

@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.example.test</groupId>
+		<artifactId>test-andromda-web-flex</artifactId>
+		<version>1.0</version>
+	</parent>
+	<artifactId>test-andromda-web-flex-client</artifactId>
+	<name>${application.name} Web Flex Client</name>
+	<packaging>pom</packaging>
+	<properties>
+		<!-- Flex SDK Options -->
+		<flex.app.home>${basedir}/../../../../test-andromda-flex</flex.app.home>
+
+		<!-- Framework version -->
+		<flex.sdk.version>3.6.0</flex.sdk.version>
+
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<configuration>
+							<tasks>
+								<property name="FLEX_SDK_HOME" value="${flex.sdk.home}"/>
+								<property name="FLEX_APP_HOME" value="${flex.app.home}" />
+								<ant antfile="build.xml" inheritRefs="true">
+									<target name="dist" />
+								</ant>
+
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>windows</id>
+			<activation>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<flex.sdk.home>C:/Program Files (x86)/Adobe/Flex Builder 3/sdks/3.6.0</flex.sdk.home>
+			</properties>
+		</profile>
+		<profile>
+			<id>mac</id>
+			<activation>
+				<os>
+					<family>mac</family>
+				</os>
+			</activation>
+			<properties>
+				<flex.sdk.home>/Applications/springsource/flex/sdk/3.6a</flex.sdk.home>
+			</properties>
+		</profile>
+	</profiles>
+</project>

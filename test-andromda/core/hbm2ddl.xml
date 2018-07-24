@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE xml>
+<project name="hbm2ddl" default="schemaexportTarget">
+
+	<!-- Generate DDL files for schema creation. -->
+	<target name="schemaexportTarget"  description="export Database schema">
+
+		 <taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask" classpathref="maven.dependency.classpath"/>
+		 
+		 <hibernatetool destdir="target">
+			<classpath refid="maven.compile.classpath"/>
+
+			<configuration propertyfile="../mda/src/main/config/profiles/${maven.andromda.profile}/andromda.properties">
+				<fileset dir="target/src">
+				   <include name="**/*.hbm.xml"/>
+				   <exclude name="**/*Test.hbm.xml"/>
+				</fileset>
+			</configuration>
+			
+			<!-- Write all CREATE statements to a file. -->
+            <hbm2ddl drop="false" create="true" export="false" outputfilename="schema-create-${maven.andromda.profile}.ddl" delimiter=";" format="true"/>
+			
+			<!-- Write all DROP statements to a different file. -->
+            <hbm2ddl drop="true" create="false" export="false" outputfilename="schema-drop-${maven.andromda.profile}.ddl" delimiter=";" format="true"/>
+		 </hibernatetool>
+						
+	</target>
+
+</project>
+
+
