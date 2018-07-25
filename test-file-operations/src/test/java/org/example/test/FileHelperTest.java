@@ -24,5 +24,12 @@ public class FileHelperTest {
 		FileHelper.bzip2("src/test/resources/input2.pdf", "target/output2.bz2");
 		
 	}
+	
+	@Test
+	public void testTransformXML2CSV() {
+		
+		FileHelper.transformXML2CSV("src/test/xml/data.xml", "src/test/xsl/data.xsl", "target/data.csv");
+
+	}
 
 }

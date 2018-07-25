@@ -12,8 +12,24 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+
 import org.apache.commons.codec.binary.Base64;
 import org.apache.tools.bzip2.CBZip2OutputStream;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 public final class FileHelper {
 
@@ -135,7 +151,7 @@ public final class FileHelper {
 		return bzipName;
 	}
 	
-	public synchronized String encriptacion(String texto) {
+	public static String encriptacion(String texto) {
 		MessageDigest md = null;
 		
 		try {
@@ -151,6 +167,57 @@ public final class FileHelper {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public static void transformXML2CSV(String ficheroXMLPathname, String ficheroXSLPathname, String ficheroXSVPathname) {
+		File ficheroXML, ficheroXSL, ficheroCSV;
+		
+		ficheroXML = new File(ficheroXMLPathname);
+		
+		ficheroXSL = new File(ficheroXSLPathname);
+		
+		ficheroCSV = new File(ficheroXSVPathname);
+		
+		transformXML2CSV(ficheroXML, ficheroXSL, ficheroCSV);
+	}
+	
+	public static void transformXML2CSV(File ficheroXML, File ficheroXSL, File ficheroCSV) {
+		DocumentBuilderFactory documentBuilderFactory;
+		DocumentBuilder documentBuilder;
+		Document xmlDocument;
+		TransformerFactory transformerFactory;
+		Transformer transformer;
+		
+		try {
+			
+			documentBuilderFactory = DocumentBuilderFactory.newInstance();
+			documentBuilder = documentBuilderFactory.newDocumentBuilder();
+			
+			xmlDocument = documentBuilder.parse(ficheroXML);
+
+			StreamSource stylesource = new StreamSource(ficheroXSL);
+			
+			transformerFactory = TransformerFactory.newInstance();
+			transformer = transformerFactory.newTransformer(stylesource);
+			
+			Source source = new DOMSource(xmlDocument);
+			Result target = new StreamResult(ficheroCSV);
+			
+			transformer.transform(source, target);
+			
+		} catch (TransformerConfigurationException | ParserConfigurationException | TransformerFactoryConfigurationError e) {
+			e.printStackTrace();
+			
+		} catch (SAXException e) {
+			e.printStackTrace();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			
+		} catch (TransformerException e) {
+			e.printStackTrace();
+			
 		}
 	}
 		
