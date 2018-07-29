@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>test-jws</title>
+		<script type="text/javascript" src="https://java.com/js/dtjava.js"></script>
+		<script type="text/javascript">
+			function reportError(app, r) {
+	            //ovewrite behavior for unsupported browser
+	            var a = app.placeholder;
+	            if (a != null && r.isUnsupportedBrowser()) {
+	                var p = document.createElement('div');
+	                p.id = "splash";
+	                p.style.width  = app.width;
+	                p.style.height = app.height;
+	                p.style.background="red";
+	                p.appendChild(
+	                  document.createTextNode("This browser is not supported."));
+	 
+	                //clear embedded application placeholder
+	                while(a.hasChildNodes()) a.removeChild(a.firstChild);
+	 
+	                //show custom message
+	                a.appendChild(p);
+	            } else {
+	                //use default handlers otherwise
+	                var def = new dtjava.Callbacks();
+	                return def.onDeployError(app, r);
+	            }
+	        }
+		
+			function execute() {
+				dtjava.launch({
+					id: "myApp",
+					url: "jnlp/launch.jnlp",
+					toolkit: "swing",
+					params: {
+						mode: "streetview",
+						zip: 2332
+					}
+				}, {
+					jvm: "1.8.0+",
+					jvmargs: "-Dapp.property=somevalue -Xmx1024m"
+				},
+                {
+                    onDeployError: reportError
+                }
+				);
+			}
+			//dtjava.addOnloadCallback(execute);
+			
+		</script>
+	</head>
+	<body>
+		<div id="place"></div>
+		<a href="jnlp/launch.jnlp" onclick="execute(); return false;">Launch</a> 
+	</body>
+</html>
