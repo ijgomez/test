@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper" />
+	<!-- Custom Services -->
+	<service name="Servicio" provider="java:RPC" style="wrapped" use="literal">
+		<parameter name="className" value="org.example.test.ws.server.ServicioImpl" />
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="scope" value="session" />
+	</service>
+	<transport name="http">
+		<requestFlow>
+			<handler type="URLMapper" />
+			<handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler" />
+		</requestFlow>
+	</transport>
+</deployment>
