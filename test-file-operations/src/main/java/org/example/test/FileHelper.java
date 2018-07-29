@@ -12,6 +12,10 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -28,6 +32,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.tools.bzip2.CBZip2OutputStream;
+import org.example.test.domain.Customer;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -220,5 +225,34 @@ public final class FileHelper {
 			
 		}
 	}
+
+	public static void marshal(Customer customer, String pathname) throws JAXBException {
+
+		File file = new File(pathname);
+
+		System.out.println(file.getAbsolutePath());
+
+		JAXBContext jaxbContext = JAXBContext.newInstance(customer.getClass());
+		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+		// output pretty printed
+		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+		jaxbMarshaller.marshal(customer, file);
+		jaxbMarshaller.marshal(customer, System.out);
+
+	}
+
+	public static void unmarshal(String pathname) throws JAXBException {
+
+		File file = new File(pathname);
+		JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
+
+		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+		Customer customer = (Customer) jaxbUnmarshaller.unmarshal(file);
+		System.out.println(customer);
+
+	}
+	
 		
 }

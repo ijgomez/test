@@ -1,5 +1,6 @@
 package org.example.test;
 
+import org.example.test.domain.Customer;
 import org.junit.Test;
 
 public class FileHelperTest {
@@ -30,6 +31,25 @@ public class FileHelperTest {
 		
 		FileHelper.transformXML2CSV("src/test/xml/data.xml", "src/test/xsl/data.xsl", "target/data.csv");
 
+	}
+	
+	@Test
+	public void testMarshal() throws Exception {
+		Customer customer;
+		
+		customer = new Customer();
+		customer.setAge(99);
+		customer.setId(1);
+		customer.setName("usuario");
+		
+		
+		FileHelper.marshal(customer, "target/file.xml");
+
+	}
+
+	@Test
+	public void testUnmarshal() throws Exception {
+		FileHelper.unmarshal("src/test/resources/file.xml");
 	}
 
 }
