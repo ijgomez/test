@@ -19,4 +19,10 @@ Workspace that groups different projects with framework and API tests of the JVM
 - test-server-echo : Simple Echo Server.
 - test-server-echo-nio : Simple Echo Server, using Java NIO API.  
 - test-server-http : Simple HTTP Server.
+- test-spring-aop :
+- test-spring-hibernate :
+- test-spring-jpa :
+- test-spring-quartz :
+- test-spring-rmi :
+- test-spring-sqllite :
 - test-web-ext4 : Sample project of a J2EE application with a user interface with Ext JS 4.0.

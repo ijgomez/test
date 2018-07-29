@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+
+	<context:annotation-config/>
+
+	<context:property-placeholder location="classpath:application.properties"/>
+
+	<!-- Cargar Propiedades como del sistema -->
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="java.lang.System"/>
+				<property name="targetMethod" value="getProperties"/>
+			</bean>
+		</property>
+		<property name="targetMethod" value="putAll"/>
+		<property name="arguments">
+			<util:properties>
+				<prop key="my.key">myvalue</prop>
+            	<prop key="my.key2">myvalue2</prop>
+            	<prop key="my.key3">myvalue3</prop>
+			</util:properties>
+		</property>
+	</bean>
+
+	<context:component-scan base-package="org.example.test"/>
+
+	
+</beans>

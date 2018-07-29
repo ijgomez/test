@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="schedulerName" value="SCHEDULER"/>
+		<property name="quartzProperties">
+			<props>
+				<prop key="org.quartz.scheduler.skipUpdateCheck">true</prop>
+			</props>
+		</property>
+		<property name="triggers">
+			<list>
+				<ref bean="medidasPeriodicasTrigger"/>
+				<ref bean="medidasPedientesTrigger"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="medidasPeriodicasTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="cronExpression" value="0/10 * * * * ?"/>
+		<property name="jobDetail" ref="medidasPeriodicasInvokingBean"/>
+	</bean>
+	
+	<bean id="medidasPedientesTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="cronExpression" value="5/10 * * * * ?"/>
+		<property name="jobDetail" ref="medidasPedientesInvokingBean"/>
+	</bean>
+	
+	<bean id="medidasPeriodicasInvokingBean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="interlocutorService"/>
+		<property name="targetMethod" value="medidasPeriodicas"/>
+		<property name="concurrent" value="faLse"/>
+	</bean>
+	
+	<bean id="medidasPedientesInvokingBean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="interlocutorService"/>
+		<property name="targetMethod" value="medidasPedientes"/>
+		<property name="concurrent" value="faLse"/>
+	</bean>
+	
+	<bean id="interlocutorService" class="org.example.test.InterlocutorService" init-method="init"/>
+
+</beans>
