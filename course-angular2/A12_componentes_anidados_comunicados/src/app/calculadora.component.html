@@ -1,0 +1,18 @@
+<h2>Calculadora numero {{ num + 1 }}</h2>
+
+<p>
+    A: <input type="text" [(ngModel)]="calc.txta" (keyup)="calc.resultado = undefined"/><br/>
+    B: <input type="text" [(ngModel)]="calc.txtb" (keyup)="calc.resultado = undefined"/><br/>
+
+    <select [(ngModel)]="calc.operacion" (change)="calc.resultado = undefined">
+        <option *ngFor="let op of calc.operaciones" [value]="op.valor">{{op.texto}}</option>
+    </select>
+    <button (click)="calcular()">Calcular</button>
+</p>
+<p *ngIf="calc.resultado !== undefined">
+    <span *ngIf="!isNaN(calc.resultado)" class="ok">Resultado de: {{calc.txta}} {{calc.operacion}} {{calc.txtb}} == {{calc.resultado}}</span>
+    <span *ngIf="isNaN(calc.resultado)" class="err">Formato de datos incorrectos</span>
+</p>
+
+<hr/>
+

@@ -1,0 +1,14 @@
+<h1>Enlace Atributos</h1>
+
+<div class='marcoFoto'>
+    <img [src]="'img/' + foto1 + '.png'" alt="" class="foto"/>
+</div>
+<div class='marcoFoto'>
+    <img [src]="'img/' + foto2 + '.png'" alt="" class="foto"/>
+</div>
+<div class='marcoFoto'>
+    <img [src]="'img/' + foto3 + '.png'" alt="" class="foto"/>
+</div>
+<p><button (click)="jugar()">Jugar</button></p>
+<p>Intentos: {{veces}}</p>
+<h2 *ngIf="esPremio()">Premio</h2>

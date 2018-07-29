@@ -1,0 +1,15 @@
+<div class="panel">
+    <h2>Insertar</h2>
+    <label for="">DNI</label>
+    <input type="text" [(ngModel)]="nuevo.dni" /><br/>
+    <label for="">Nombre</label>
+    <input type="text"  [(ngModel)]="nuevo.nombre"/><br/>
+    <label for="">Apellidos</label>
+    <input type="text"  [(ngModel)]="nuevo.apellidos"/><br/>
+    <label for="">Saldo</label>
+    <input type="text"  [(ngModel)]="nuevo.saldo"/><br/>
+    <p class="botones">
+        <button (click)="insertar()">Insertar</button>
+    </p>
+    <pre>{{nuevo|json}}</pre>
+</div>

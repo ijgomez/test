@@ -1,0 +1,18 @@
+<table class="datos">
+    <thead><tr>
+        <th>DNI</th><th>Nombre</th><th>Apellidos</th><th>Saldo</th><th>acciones</th>
+    </tr></thead>
+    <tbody>
+        <tr *ngFor="let persona of personas" 
+                (dblclick)="verDetalle(persona)">
+            <td class="numero">{{persona.dni}}</td>
+            <td>{{persona.nombre}}</td>
+            <td>{{persona.apellidos}}</td>
+            <td class="numero">{{persona.saldo|currency:'EUR':true:'1.2-3'}}</td>
+            <td style="text-align:center;">
+                <button (click)="borrar(persona)">&times;</button>
+                <button [routerLink]="'/detalle/'+persona.dni" >Detalle</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

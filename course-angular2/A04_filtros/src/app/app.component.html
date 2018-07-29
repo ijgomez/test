@@ -1,0 +1,25 @@
+<h1>Hola {{propietario|uppercase}} </h1>
+<p>La fecha actual es {{ahora() | date:'dd/MM/yyyy HH:mm'}}<p>
+<p>La fecha actual es {{ahora() | date:'dd/MM/yyyy HH:mm:ss Z'}}<p>
+<p>La fecha actual es {{ahora() | date: "EEEE, d 'de' MMMM 'de' yyyy"}}<p>
+<p>La fecha actual es {{ahora() | date: "hh:mm:ss"}}<p>
+<p>La fecha actual es {{ahora() | date: "fullDate"}}<p>
+<p>Numero de Clientes son {{personas.length}}</p>
+
+<table class="datos">
+    <thead>
+        <tr>
+            <th>DNI</th> <th>Nombre</th> <th>Apellidos</th> <th>Saldos</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let persona of personas | filtrar: 'ez'">
+            <th>{{persona.dni}}</th>
+            <th>{{persona.nombre}}</th>
+            <th>{{persona.apellidos}}</th>
+            <th>{{persona.saldo | currency:'EUR':true:'1.2-2'}}</th>
+        </tr>
+    </tbody>
+</table>
+<p>{{personas[0] | json}}</p>
+<p>Cinco al cubo: {{5 | elevado:3}}</p>

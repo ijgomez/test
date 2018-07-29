@@ -1,0 +1,9 @@
+<h1>Hello {{propietario}} </h1>
+<p>La hora actual es {{hora()}}<p>
+<p>Numero de Clientes son {{personas.length}}</p>
+<ul>
+    <li *ngFor="let persona of personas">
+        <span style="color: darkslategray" *ngIf="persona.saldo >= 400">{{persona.nombre}} {{persona.apellidos}} {{persona.saldo}} EUR</span>
+        <span style="color: crimson" *ngIf="400 > persona.saldo">{{persona.nombre}} {{persona.apellidos}} {{persona.saldo}} EUR</span>
+    </li>
+</ul>

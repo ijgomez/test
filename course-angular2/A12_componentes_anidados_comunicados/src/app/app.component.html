@@ -1,0 +1,8 @@
+
+<h1>Calculadoras * 2</h1>
+
+<calculadora pos="0" (resultadoNuevo)="calcularTotal($event)"></calculadora>
+<hr/>
+<calculadora pos="1" [valoresInciales]="{txta:2, txtb:3, operacion:'x'}" (resultadoNuevo)="calcularTotal($event)"></calculadora>
+<hr/>
+<h3>TOTAL: {{ total }}</h3>

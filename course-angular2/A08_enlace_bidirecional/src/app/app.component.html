@@ -1,0 +1,16 @@
+<h1>Enlace Doble</h1>
+
+<p>
+    Nombre: <input type="text" [(ngModel)]="nombre"/><br/>
+    Apellidos: <input type="text" [(ngModel)]="apellidos"/><br/>
+    <input type="checkbox" [(ngModel)]="mostrar"/>
+    <select [(ngModel)]="provincia">
+            <option value="11">Cadiz</option>
+            <option value="28">Madrid</option>
+            <option value="29">Malaga</option>
+            <option value="46">Valencia</option>
+    </select>
+</p>
+<p *ngIf="mostrar"><span>{{nombre}} {{apellidos}}</span></p>
+<hr/>
+<p>Codigod e la provincia seleccionada: {{provincia}}</p>

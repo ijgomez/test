@@ -1,0 +1,1 @@
+npm install karma jasmine-core karma-jasmine karma-firefox-launcher karma-spec-reporter --save-dev

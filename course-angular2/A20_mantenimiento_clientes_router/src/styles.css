@@ -1,0 +1,40 @@
+*{box-sizing:border-box;}
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+.ok, .err {font-weight: bold; font-family: Arial;
+    color:white; padding: 3px 7px;}
+.ok {background-color: green;}
+.err {background-color: lightpink;}
+table.datos{border-collapse: collapse;margin:10px auto;width:600px;
+  font-size:14px;font-family:Arial;}
+table.datos td, table.datos th{border-bottom:1px solid black; 
+    border-top:1px solid black;padding:3px 7px;}
+table.datos tbody tr:hover{background-color:silver;}
+/* table.datos tbody tr:nth-child(2n) {background-color:beige;} */
+table.datos td.numero{text-align:right;}
+div.panel{margin: 5px auto;border:1px solid black;width:500px;
+      padding: 25px;}
+div.panel p.botones{text-align:right;}
+/* ---------- VALIDACION DE FORMULARIOS ----------*/
+/*form.ng-valid > div {background-color: greenyellow;}
+input.ng-invalid.ng-dirty{border:2px solid pink;}
+input.ng-pristine{border:2px solid deepskyblue;}
+input.ng-valid{border:2px solid green;}
+input.ng-invalid.ng-dirty + span{background-color:indianred;
+  color:white;font-weight:bold;padding:2px 10px;}
+*/
+/* ------- Estilos para Router -------*/
+a.activo{background-color:lightsalmon;}
+
+
+
+
+
+
+
+
+
+

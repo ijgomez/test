@@ -1,0 +1,21 @@
+<h1>Enlaces de Plantilla</h1>
+
+Texto: <input #texto type="text"/><br/>
+
+El texto introducido es: {{texto.value}}<br/>
+
+<button (click)="incrementar();">Incrementar</button>
+
+<div style="text-align: center;">   
+    <video #reproductor (timeupdate)="cambioTiempo($event)" src="http://yt-dash-mse-test.commondatastorage.googleapis.com/media/car-20120827-85.mp4"></video>
+    <br/>
+    <button (click)="reproductor.play();">Empezar</button>
+    <br/><span>{{tiempo}}</span>
+    <br/>
+    <button (click)="parar();">Parar</button>
+    <br/><span>{{(reproductor.currentTime/reproductor.duration) | percent:'1.0-0'}}</span>
+    <br/>
+    <progress [value]="reproductor.currentTime" [max]="reproductor.duration || 100"></progress>
+    <br/>
+    <input type="range" min="0" [value]="reproductor.currentTime" [max]="reproductor.duration" (change)="mover($event)">
+</div>

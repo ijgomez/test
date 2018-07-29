@@ -1,0 +1,16 @@
+<h1>Enlace Atributos</h1>
+
+<div class='marcoFoto'>
+    <img [src]="'img/' + foto() + '.png'" alt="" class="foto"/>
+</div>
+<p><input type="text" [value]="saludo" disabled="disabled"></p>
+
+<p><input type="text" value="{{saludo}}" disabled="disabled"></p>
+
+<div class='marcoFoto'>
+    <img [src]="foto1" alt="" class="foto"/>
+</div>
+
+<div class='marcoFoto'>
+    <img src="{{foto1}}" alt="" class="foto"/>
+</div>

@@ -1,0 +1,44 @@
+<form #frm="ngForm" novalidate="novalidate" (ngSubmit)="insertar()">
+<div class="panel">
+    <h2>Insertar</h2>
+    <label for="">DNI</label>
+    <input type="text" [(ngModel)]="nuevo.dni" name="dni"
+            required #dni="ngModel" />
+    <span *ngIf="dni.invalid && dni.dirty">
+        El dni es obligatorio.
+    </span>
+    <br/>
+    <label for="">Nombre</label>
+    <input type="text"  [(ngModel)]="nuevo.nombre" 
+                name="nombre" required #nombre="ngModel"/><br/>
+    <label for="">Apellidos</label>
+    <input type="text"  [(ngModel)]="nuevo.apellidos" 
+        name="apellidos" required minlength="2" #apellidos="ngModel"/>
+    <span *ngIf="apellidos.invalid && apellidos.dirty">
+        <span *ngIf="apellidos.errors.required">
+            Los apellidos son obligatorios.
+        </span>
+        <span *ngIf="apellidos.errors.minlength">
+            Los apellidos deben tener 2 o más caracteres.
+        </span>
+    </span>
+    <br/>
+    <label for="">Saldo</label>
+    <input type="number"  [(ngModel)]="nuevo.saldo"
+         name="saldo" required />
+     <span *ngIf="frm.controls.saldo?.invalid && frm.controls.saldo?.dirty">
+        <span *ngIf="frm.form.controls.saldo?.errors.required">
+            El saldo es obligatorio.
+        </span>
+        <span *ngIf="frm.form.controls.saldo?.errors.number">
+            El saldo debe ser un número.
+        </span>
+    </span>     
+    <br/>
+    <p class="botones">
+        <button type="submit" [disabled]="!frm.valid">
+                Insertar</button>
+    </p>
+    <pre>{{frm.value|json}}</pre>
+</div>
+</form>

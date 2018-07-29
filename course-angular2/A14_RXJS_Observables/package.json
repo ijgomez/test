@@ -1,0 +1,14 @@
+{
+  "name": "a02",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rxjs": "^5.0.1"
+  }
+}

@@ -1,0 +1,30 @@
+<h1>Mantenimiento Clientes</h1>
+<div class="panel">
+    <h2>Insertar</h2>
+    <label for="">DNI</label><input type="number" [(ngModel)]="nuevo.dni"/>
+    <label for="">Nombre</label><input type="text" [(ngModel)]="nuevo.nombre"/>
+    <label for="">Apellidos</label><input type="text" [(ngModel)]="nuevo.apellidos"/>
+    <label for="">Saldo</label><input type="number" [(ngModel)]="nuevo.saldo"/>
+    <br/><span>{{nuevo|json}}</span>
+    <p class="botones"><button (click)="insertar($event)">Insertar</button></p>
+</div>
+<table class="datos">
+    <thead>
+        <tr>
+            <th>DNI</th> <th>Nombre</th> <th>Apellidos</th> <th>Saldo</th> <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let persona of personas">
+            <td>{{persona.dni}}</td>
+            <td>{{persona.nombre}}</td>
+            <td>{{persona.apellidos}}</td>
+            <td>{{persona.saldo|currency:'EUR':true:'1.2-2'}}</td>
+            <td><button (click)="borrar(persona)">&times;</button></td>
+        </tr>
+    </tbody>
+</table>
+<p class="ok" *ngIf="mensaje"> {{ mensaje }} </p>
+<div class="procesando" *ngIf="procesando">
+    
+</div>
