@@ -10,6 +10,7 @@ Workspace that groups different projects with framework and API tests of the JVM
 - test-helloworld : Hello World in Java
 - test-log4jdbc : Sample project of how to use the log4jdbc framework.
 - test-memory-outOfMemory : How to detect the memory function in a Java application.
-- test-performance : Project with several options to optimize the performance of a Java application.
+- test-p6spy : Sample project of how to use the p6spy framework.
 - test-performance-cache-simple : Implementation of a simple cache of data in memory.
+- test-performance : Project with several options to optimize the performance of a Java application.
 - test-web-ext4 : Sample project of a J2EE application with a user interface with Ext JS 4.
