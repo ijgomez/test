@@ -1,0 +1,45 @@
+<%@ include file="/pages/commons/taglibs.jsp"%>
+
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/datatables/jquery.dataTables.js"></script>
+<script type="text/javascript" class="init">
+var dataSet = [
+               ['name-1','position-','office-','age-','start date', 'salary-'],
+               ['name-2','position-','office-','age-','start date', 'salary-']
+           ];
+
+	$(document).ready(function() {
+		$('#example').dataTable({
+			"ajax" : "${pageContext.request.contextPath}/reports/list",
+			
+		});
+	} );
+
+</script>
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datatables/jquery.dataTables.css" media="all">
+
+<table id="example" class="display" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Position</th>
+			<th>Office</th>
+			<th>Age</th>
+			<th>Start date</th>
+			<th>Salary</th>
+		</tr>
+	</thead>
+
+	<tfoot>
+		<tr>
+			<th>Name</th>
+			<th>Position</th>
+			<th>Office</th>
+			<th>Age</th>
+			<th>Start date</th>
+			<th>Salary</th>
+		</tr>
+	</tfoot>
+
+</table>
