@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+	<id>installer-unix-pro</id>
+	<formats>
+		<format>tar</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>./lib</outputDirectory>
+			<scope>runtime</scope>
+			<fileMode>0640</fileMode>
+			<directoryMode>0750</directoryMode>
+		</dependencySet>
+	</dependencySets>
+	<fileSets>
+		<fileSet>
+			<directory>${project.basedir}</directory>
+			<outputDirectory>./</outputDirectory>
+			<includes>
+				<include>README*</include>
+				<include>LICENSE*</include>
+				<include>NOTICE*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.basedir}/src/main/cmd</directory>
+			<outputDirectory>./cmd</outputDirectory>
+			<lineEnding>unix</lineEnding>
+			<includes>
+				<include>*.sh</include>
+			</includes>
+			<fileMode>0750</fileMode>
+			<directoryMode>0750</directoryMode>
+		</fileSet>
+		<fileSet>
+        	<directory>${project.basedir}/src/main/config</directory>
+        	<outputDirectory>./conf</outputDirectory>
+        	<filtered>true</filtered>
+    	</fileSet>
+		<!-- <fileSet> <directory>src/main/config/pro</directory> <outputDirectory>${instalation.path.base}/cmd</outputDirectory> 
+			<lineEnding>unix</lineEnding> <includes> <include>*.properties</include> 
+			</includes> <fileMode>0640</fileMode> <directoryMode>0750</directoryMode> 
+			</fileSet> -->
+	</fileSets>
+</assembly>

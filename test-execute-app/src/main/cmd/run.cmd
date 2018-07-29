@@ -1,0 +1,1 @@
+start javaw -jar ../lib/test-execute-0.0.1-SNAPSHOT.jar
