@@ -16,4 +16,5 @@ Workspace that groups different projects with framework and API tests of the JVM
 - test-ria-jws: Sample project of RIA application using JWS an J2EE.
 - test-rmi : Sample project of RMI API.
 - test-server : 
+- test-server-http : Simple HTTP Server
 - test-web-ext4 : Sample project of a J2EE application with a user interface with Ext JS 4.
