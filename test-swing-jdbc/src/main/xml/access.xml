@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<connectionData>
+    <driverName>sun.jdbc.odbc.JdbcOdbcDriver</driverName>
+    <url>jdbc:odbc:DRIVER=Microsoft Access Driver (*.mdb, *.accdb);C:\\Temp\\database.mdb</url>
+    <username></username>
+    <password></password>
+</connectionData>

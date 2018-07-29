@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<connectionData>
+    <driverName>oracle.jdbc.driver.OracleDriver</driverName>
+    <url>jdbc:oracle:oci:@[ALIAS_RED]</url>
+    <username>[username]</username>
+    <password>[password]</password>
+</connectionData>

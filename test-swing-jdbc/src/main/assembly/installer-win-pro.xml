@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<assembly>
+	<id>installer-win-pro</id>
+	<formats>
+		<!-- <format>tar</format> -->
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>${instalation.path.base}/lib</outputDirectory>
+			<scope>runtime</scope>
+			<fileMode>0640</fileMode>
+		</dependencySet>
+	</dependencySets>
+	<fileSets>
+		<!-- Configuration Files -->
+		<fileSet>
+			<directory>src/main/config/pro</directory>
+			<outputDirectory>${instalation.path.base}/config</outputDirectory>
+			<lineEnding>dos</lineEnding>
+			<includes>
+				<include>*.properties</include>
+			</includes>
+			<fileMode>0640</fileMode>
+		</fileSet>
+		<!-- Configuration Enviorement -->
+		<fileSet>
+			<directory>src/main/cmd</directory>
+			<outputDirectory>${instalation.path.base}/cmd</outputDirectory>
+			<lineEnding>dos</lineEnding>
+			<includes>
+				<include>*.conf.cmd</include>
+			</includes>
+			<fileMode>0640</fileMode>
+		</fileSet>
+		<!-- Configuration Connections -->
+		<fileSet>
+			<directory>src/main/xml</directory>
+			<outputDirectory>${instalation.path.base}/xml</outputDirectory>
+			<lineEnding>dos</lineEnding>
+			<includes>
+				<include>*.xml</include>
+			</includes>
+			<fileMode>0640</fileMode>
+		</fileSet>
+		<!-- Script Run -->
+		<fileSet>
+			<directory>src/main/cmd</directory>
+			<outputDirectory>${instalation.path.base}/</outputDirectory>
+			<lineEnding>dos</lineEnding>
+			<includes>
+				<include>run.cmd</include>
+			</includes>
+			<fileMode>0750</fileMode>
+		</fileSet>
+		<!-- Driver directory -->
+		<fileSet>
+			<outputDirectory>${instalation.path.base}/driver</outputDirectory>
+			<excludes>
+				<exclude>**/*</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+</assembly>
