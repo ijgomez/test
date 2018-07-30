@@ -1,0 +1,38 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	font-family: vedana;
+	font-size: 10px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid #333333;
+}
+
+th {
+	border-bottom: 1px solid #333333;
+	text-align: center;
+	background-color: #666666;
+	color: #ffffff;
+}
+
+td {
+	border: solid 1px #333333;
+	white-space: nowrap;
+	text-align: left;	
+	width: 100px;
+}
+
+#capaExterior {
+	position: relative;
+}
+
+#capaInterior {
+	overflow: auto;
+}
+
+#capaInterior td {
+	white-space: nowrap;
+}
