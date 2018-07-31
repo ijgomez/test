@@ -1,0 +1,7 @@
+/target/
+/.project
+/.springBeans
+/.tern-project
+**/.DS_Store
+/.classpath
+/.settings/

@@ -1,0 +1,10 @@
+body {
+	margin: 0px;
+	font-family: Verdana, Tahoma, Helvetica, Arial;
+	color: #333333;
+}
+
+.error {
+	color: red;
+	font-weight: bold;
+}
