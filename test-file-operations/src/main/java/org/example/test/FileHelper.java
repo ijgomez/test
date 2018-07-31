@@ -31,6 +31,11 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.compress.compressors.CompressorException;
+import org.apache.commons.compress.compressors.CompressorInputStream;
+import org.apache.commons.compress.compressors.CompressorOutputStream;
+import org.apache.commons.compress.compressors.CompressorStreamFactory;
+import org.apache.commons.compress.utils.IOUtils;
 import org.apache.tools.bzip2.CBZip2OutputStream;
 import org.example.test.domain.Customer;
 import org.w3c.dom.Document;
@@ -254,5 +259,20 @@ public final class FileHelper {
 
 	}
 	
+	public static void compressBz2(String fileName) throws IOException, CompressorException {
+		final FileOutputStream out = new FileOutputStream(fileName + ".bz2");
+
+		CompressorOutputStream cos = new CompressorStreamFactory().createCompressorOutputStream(CompressorStreamFactory.BZIP2, out);
+		IOUtils.copy(new FileInputStream(fileName), cos);
+		cos.close();
+	}
+
+	public static void uncompressBz2(String fileName) throws IOException, CompressorException {
+		final InputStream is = new FileInputStream(fileName);
+
+		CompressorInputStream in = new CompressorStreamFactory().createCompressorInputStream(CompressorStreamFactory.BZIP2, is);
+		IOUtils.copy(in, new FileOutputStream(fileName.replaceAll(".bz2", "")));
+		in.close();
+	}
 		
 }
