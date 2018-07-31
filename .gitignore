@@ -144,6 +144,28 @@ local.properties
 # Annotation Processing
 .apt_generated
 
+################################# Flex #################################
+
+# Build and Release Folders
+bin/
+bin-debug/
+bin-release/
+.actionScriptProperties
+
+# only for a non-library project
+.flexProperties
+
+# only for library project
+.flexLibProperties
+
+
+# Other files and folders
+.settings/
+.project/
+
+.FlexUnitSettings
+.externalToolBuilders
+.model
 
 ################################# Node #################################
 # Logs
