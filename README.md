@@ -4,6 +4,7 @@ Workspace that groups different projects with framework and API tests:
 - course-angular2 : Angular 2.0 Course
 - test-andromda : Sample project of how to use the AndroMDA framework to make a J2EE application with Adobe Flex as user interface.
 - test-andromda-flex : Sample project of how to use Adobe Flex to make a user interface.
+- test-angular-electron: Sample project of Angular Framwork + ElectronJS
 - test-annotations :
 - test-comm-ftp :
 - test-comm-http :
