@@ -20,6 +20,7 @@ Workspace that groups different projects with framework and API tests:
 - test-execute-sqlscript : Sample project of how to execute sql script from a Java.
 - test-express-server :
 - test-file-operations : Sample project with many operations over files.
+- test-file-x509 :
 - test-gulp :
 - test-helloworld : Hello World in Java.
 - test-jmx :
