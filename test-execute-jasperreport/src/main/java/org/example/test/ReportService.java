@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -24,6 +25,16 @@ public class ReportService {
 		
 		LOGGER.info("Compile report...");
 		JasperReport report = JasperCompileManager.compileReport(reportTemplate);
+		
+		LOGGER.info("Report Name: " + report.getName());
+		
+		LOGGER.info("Settings report params...");
+		LOGGER.info("Parameters:");
+		for (JRParameter parameter : report.getParameters()) {
+			if (!parameter.isSystemDefined()) {
+				LOGGER.info("P: " + parameter.getName() + " (" + parameter.isForPrompting() + ") " + parameter.getValueClass());
+			}
+		}
 
 		LOGGER.info("Execute report...");
 		JasperPrint print = JasperFillManager.fillReport(report, parameters, connection);
