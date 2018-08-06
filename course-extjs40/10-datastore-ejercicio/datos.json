@@ -1,0 +1,51 @@
+{
+	'data': [
+		{
+			'id': 1,
+			'cliente': {
+				'id': 1,
+				'nombre': 'Victor' 
+			},
+			'productos': [
+				{
+					'id': 1,
+					'nombre': 'Bombilla',
+					'descricpion': 'Bajo consumo'
+				},
+				{
+					'id': 2,
+					'nombre': 'Teclado',
+					'descricpion': 'Qwerty'
+				},
+				{
+					'id': 3,
+					'nombre': 'raton',
+					'descricpion': 'optico'
+				}
+			]
+		},
+		{
+			'id': 2,
+			'cliente': {
+				'id': 1,
+				'nombre': 'Victor' 
+			},
+			'productos': [
+				{
+					'id': 1,
+					'nombre': 'Bombilla',
+					'descricpion': 'Bajo consumo'
+				},
+				{
+					'id': 4,
+					'nombre': 'Monitor',
+					'descricpion': 'Led'
+				}
+			]
+		}
+	],
+	'meta': {
+		'msg':'Este es el mensaje que llega desde el servidor',
+		'success': true
+	}
+}

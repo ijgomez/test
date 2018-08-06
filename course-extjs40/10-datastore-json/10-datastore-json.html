@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type"content="text/html;charset=UTF-8"><title>Ext.Panel</title>
+	<link rel="stylesheet" type="text/css" href="../extjs/resources/css/ext-all.css" />
+	<script type="text/javascript" src="../extjs/ext-all-debug.js"></script>
+	<script type="text/javascript">
+	
+		Ext.define('User', {
+		    extend: 'Ext.data.Model',
+		    fields: [
+		        {name: 'id',    type: 'int'},
+		        {name: 'name',  type: 'string'},
+		        {name: 'phone', type: 'string', mapping: 'phoneNumber'}
+		    ]
+		});
+	
+		Ext.onReady(function() {
+			var store = Ext.create('Ext.data.Store', {
+				model : 'User',
+				proxy : {
+					url: 'users.json',
+					type : 'ajax',
+					reader : {
+						type : 'json',
+						root : 'data',
+						idProperty : 'id',
+						successProperty : 'meta.success'
+					}
+				}
+			});
+			
+			store.load({
+			    scope: this,
+			    callback: function(records, operation, success) {
+			    	alert(store.first().get('name'));
+			    }
+			});
+		});
+	</script>
+</head>
+<body>
+</body>
+</html>

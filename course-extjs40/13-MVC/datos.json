@@ -1,0 +1,18 @@
+{
+	'data': [
+		{
+			'id': 1,
+			'titulo': 'El Quijote',
+			'autor': 'Cervantes'
+		},
+		{
+			'id': 2,
+			'titulo': 'Los Pilares de la Tierra',
+			'autor': 'Ken Follet'
+		}
+	],
+	'meta': {
+		'msg':'Este es el mensaje que llega desde el servidor',
+		'success': true
+	}
+}
