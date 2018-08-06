@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.example.test</groupId>
-	<artifactId>test-web-ds</artifactId>
+	<artifactId>test-web-spring-ds</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 	<properties>
