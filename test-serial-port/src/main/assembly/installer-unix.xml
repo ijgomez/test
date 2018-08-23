@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+	<id>installer-unix</id>
+	<formats>
+		<format>tar</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>lib</outputDirectory>
+			<scope>runtime</scope>
+			<fileMode>0640</fileMode>
+			<directoryMode>0750</directoryMode>
+		</dependencySet>
+	</dependencySets>
+	<fileSets>
+		<!-- Scripts de Ejecucion -->
+		<fileSet>
+			<directory>src/main/cmd</directory>
+			<!-- <outputDirectory>cmd</outputDirectory> -->
+			<outputDirectory>.</outputDirectory>
+			<lineEnding>unix</lineEnding>
+			<includes>
+				<include>*.sh</include>
+			</includes>
+			<fileMode>0750</fileMode>
+			<directoryMode>0750</directoryMode>
+		</fileSet>
+	</fileSets>
+</assembly>
