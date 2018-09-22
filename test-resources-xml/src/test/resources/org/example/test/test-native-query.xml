@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<querys>
+	<query id="query_test1">
+		<![CDATA[
+			SELECT SYSDATE FROM DUAL
+		]]>
+	</query>
+	<query id="query_test2" system="env">
+		<![CDATA[
+			SELECT TIMESTAMP FROM DUAL
+		]]>
+	</query>
+</querys>
