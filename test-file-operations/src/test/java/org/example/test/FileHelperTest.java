@@ -2,6 +2,7 @@ package org.example.test;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
 import java.util.function.Function;
 
 import org.example.test.domain.Customer;
@@ -82,14 +83,22 @@ public class FileHelperTest {
 			String[] p;
 			Measure measure;
 			
-			measure = new Measure();
 			p = line.split(";");
 			
-			//TODO Parser line
+			measure = new Measure();
+			measure.setDeviceId(p[0]);
+			measure.setType(p[1]);
+			measure.setKey(p[2]);
+			measure.setValue(p[3]);
 			
 			return measure;
 		};
-		FileHelper.readCSV("src/test/csv/data.csv", mapper);
+		List<Measure> result = FileHelper.readCSV("src/test/csv/data.csv", mapper);
+		
+		for (Measure measure : result) {
+			System.out.println("Measure " + measure.getDeviceId() + ", " + measure.getType() + ", " + measure.getValue());
+		}
+		assertTrue(true);
 	}
 
 }
