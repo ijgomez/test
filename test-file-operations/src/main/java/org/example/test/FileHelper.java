@@ -1,6 +1,7 @@
 package org.example.test;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,8 +10,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -38,6 +44,7 @@ import org.apache.commons.compress.compressors.CompressorStreamFactory;
 import org.apache.commons.compress.utils.IOUtils;
 import org.apache.tools.bzip2.CBZip2OutputStream;
 import org.example.test.domain.Customer;
+import org.example.test.domain.Measure;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -273,6 +280,14 @@ public final class FileHelper {
 		CompressorInputStream in = new CompressorStreamFactory().createCompressorInputStream(CompressorStreamFactory.BZIP2, is);
 		IOUtils.copy(in, new FileOutputStream(fileName.replaceAll(".bz2", "")));
 		in.close();
+	}
+	
+	public static List<Measure> readCSV(String path, Function<String, Measure> mapper) throws FileNotFoundException, IOException {
+		List<Measure> result;
+		try (BufferedReader br = Files.newBufferedReader(Paths.get(path))) {
+			result = br.lines().map(mapper).collect(Collectors.toList());
+		}
+		return result;
 	}
 		
 }

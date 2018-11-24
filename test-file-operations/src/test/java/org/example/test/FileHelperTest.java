@@ -2,7 +2,10 @@ package org.example.test;
 
 import static org.junit.Assert.*;
 
+import java.util.function.Function;
+
 import org.example.test.domain.Customer;
+import org.example.test.domain.Measure;
 import org.junit.Test;
 
 public class FileHelperTest {
@@ -71,6 +74,22 @@ public class FileHelperTest {
 		System.out.println("..OK.");
 		assertTrue(true);
 
+	}
+	
+	@Test
+	public void testReadCSV() throws Exception {
+		Function<String, Measure> mapper = (line) -> {
+			String[] p;
+			Measure measure;
+			
+			measure = new Measure();
+			p = line.split(";");
+			
+			//TODO Parser line
+			
+			return measure;
+		};
+		FileHelper.readCSV("src/test/csv/data.csv", mapper);
 	}
 
 }
