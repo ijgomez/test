@@ -12,7 +12,7 @@
 		<maven.test.skip>true</maven.test.skip>
 
 		<!-- framework versions -->
-		<org.springframework.version>4.0.6.RELEASE</org.springframework.version>
+		<org.springframework.version>4.3.20.RELEASE</org.springframework.version>
 		<org.codehaus.jackson.version>1.9.12</org.codehaus.jackson.version>
 	</properties>
 	<dependencies>
