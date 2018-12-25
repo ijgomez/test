@@ -1,13 +1,13 @@
 version: '2'
 services:
   eurekaserver:
-    image: 'ijgomez/eurekaserverdocker'
+    image: 'ijgomez/course-docker-eureka-server'
     expose:
       - "8761"
     ports:
       - '8761:8761'
   microservice:
-    image: 'ijgomez/microdockereureka'
+    image: 'ijgomez/course-docker-microservice'
     links:
       - eurekaserver
     expose:
