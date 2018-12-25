@@ -42,3 +42,18 @@ $ set COMPOSE_CONVERT_WINDOWS_PATHS=1
 $ docker-compose -f docker-compose.yml up -d --scale microservice=3
 $ curl http://localhost/test
 ```
+
+.
+```sh
+$ docker run -p 8761:8761 ijgomez/course-docker-eureka-server
+```
+
+.
+```sh
+$ docker run -p 8761:8761 -h eurekaserver ijgomez/course-docker-eureka-server
+```
+
+.
+```sh
+$ docker run -p 8080:8080 --link <container_id> ijgomez/course-docker-microservice
+```
