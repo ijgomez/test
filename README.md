@@ -1,10 +1,8 @@
 # test repository
 
 Workspace that groups different projects with framework and API tests:
-- course-angular2 : Angular 2.0 Course
 - test-andromda : Sample project of how to use the AndroMDA framework to make a J2EE application with Adobe Flex as user interface.
 - test-andromda-flex : Sample project of how to use Adobe Flex to make a user interface.
-- test-angular-electron: Sample project of Angular Framwork + ElectronJS
 - test-annotations :
 - test-comm-ftp :
 - test-comm-http :
@@ -21,7 +19,6 @@ Workspace that groups different projects with framework and API tests:
 - test-express-server :
 - test-file-operations : Sample project with many operations over files.
 - test-file-x509 :
-- test-gulp :
 - test-helloworld : Hello World in Java.
 - test-jmx :
 - test-log4jdbc : Sample project of how to use the log4jdbc framework.
@@ -29,7 +26,6 @@ Workspace that groups different projects with framework and API tests:
 - test-memory :
 - test-memory-outOfMemory : Sample project of how to detect the low memory in a Java application.
 - test-mvel :
-- test-nodejs :
 - test-p6spy : Sample project of how to use the p6spy framework.
 - test-performance : Project with several options to optimize the performance of a Java application.
 - test-performance-cache-simple : Implementation of a simple cache of data in memory.
