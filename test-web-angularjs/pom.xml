@@ -14,7 +14,7 @@
 		<!-- Frameworks -->
 		<org.springframework.version>4.1.0.RELEASE</org.springframework.version>
 		<org.slf4j.version>1.7.7</org.slf4j.version>
-		<com.fasterxml.jackson.core.version>2.4.2</com.fasterxml.jackson.core.version>
+		<com.fasterxml.jackson.core.version>2.9.9</com.fasterxml.jackson.core.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -58,9 +58,8 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j.version}</version>
 		</dependency>
-
 		
-
+		<!-- JSON -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
@@ -94,6 +93,8 @@
 			<artifactId>jstl-api</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		<!-- Driver Database -->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
