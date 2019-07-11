@@ -46,10 +46,11 @@ public class TaskManagerController {
 	 @RequestMapping(value="/tasks/insert/{taskName}/{taskDesc}/{taskPriority}/{taskStatus}",method = RequestMethod.POST,headers="Accept=application/json")
 	 public List<Task> addTask(@PathVariable String taskName,@PathVariable String taskDesc,@PathVariable String taskPriority,@PathVariable String taskStatus) throws ParseException {	
 		Task task = new Task();
-		task.setTaskName(taskName);
-		task.setTaskDescription(taskDesc);
-		task.setTaskPriority(taskPriority);
-		task.setTaskStatus(taskStatus);
+		task.setName(taskName);
+		task.setDescription(taskDesc);
+		task.setPriority(taskPriority);
+		task.setStatus(taskStatus);
+		
 		taskmanagerservice.addTask(task);
 		return taskmanagerservice.getAllTasks();
 		 

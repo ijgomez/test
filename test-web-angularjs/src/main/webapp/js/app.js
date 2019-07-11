@@ -14,38 +14,38 @@ taskManagerModule.controller('taskManagerController', function ($scope,$http) {
     	success(function(data) {
 	        $scope.tasks = data;
 	        for(var i=0;i<$scope.tasks.length;i++){
-	            if($scope.tasks[i].taskStatus=='COMPLETED'){
-	           	 $scope.selection.push($scope.tasks[i].taskId);
+	            if($scope.tasks[i].status=='COMPLETED'){
+	           	 $scope.selection.push($scope.tasks[i].id);
 	        }
 	        }
     });
 	
 	//add a new task
 	$scope.addTask = function addTask() {
-		if($scope.taskName=="" || $scope.taskDesc=="" || $scope.taskPriority == "" || $scope.taskStatus == ""){
+		if($scope.name=="" || $scope.description=="" || $scope.priority == "" || $scope.status == ""){
 			alert("Insufficient Data! Please provide values for task name, description, priortiy and status");
 		}
 		else{
-		 $http.post(urlBase + '/tasks/insert/' +$scope.taskName+'/'+$scope.taskDesc+'/'+$scope.taskPriority+'/'+$scope.taskStatus).
+		 $http.post(urlBase + '/tasks/insert/' +$scope.name+'/'+$scope.description+'/'+$scope.priority+'/'+$scope.status).
 		  success(function(data) {
 			 alert("Task added");
 			 $scope.tasks = data;	
-			 $scope.taskName="";
-			 $scope.taskDesc="";
-			 $scope.taskPriority="";
-			 $scope.taskStatus="";
+			 $scope.name="";
+			 $scope.description="";
+			 $scope.priority="";
+			 $scope.status="";
 			 $scope.toggle='!toggle';			 
 		    });
 		}
 	};
 		
 	// toggle selection for a given task by task id
-	  $scope.toggleSelection = function toggleSelection(taskId) {
-	    var idx = $scope.selection.indexOf(taskId);
+	  $scope.toggleSelection = function toggleSelection(id) {
+	    var idx = $scope.selection.indexOf(id);
 
 	    // is currently selected
 	    if (idx > -1) {
-	      $http.post(urlBase + '/tasks/' +taskId+'/ACTIVE').
+	      $http.post(urlBase + '/tasks/' +id+'/ACTIVE').
 		  success(function(data) {
 			 alert("Task unmarked");
 			 $scope.tasks = data;		       
@@ -55,12 +55,12 @@ taskManagerModule.controller('taskManagerController', function ($scope,$http) {
 
 	    // is newly selected
 	    else {
-	      $http.post(urlBase + '/tasks/' +taskId+'/COMPLETED').
+	      $http.post(urlBase + '/tasks/' +id+'/COMPLETED').
 		  success(function(data) {
 			 alert("Task marked completed");
 			 $scope.tasks = data;
 		    });
-	      $scope.selection.push(taskId);
+	      $scope.selection.push(id);
 	    }
 	  };
 	  

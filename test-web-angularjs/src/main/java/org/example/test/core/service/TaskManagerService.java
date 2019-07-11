@@ -28,7 +28,7 @@ public class TaskManagerService {
 		Optional<Task> o = this.taskRepository.findById(taskId);
 		if (o.isPresent()) {
 			Task task = o.get();
-			task.setTask_archived(true);
+			task.setArchived(true);
 			
 			this.taskRepository.save(task);
 		}
@@ -42,7 +42,7 @@ public class TaskManagerService {
 		Optional<Task> o = this.taskRepository.findById(taskId);
 		if (o.isPresent()) {
 			Task task = o.get();
-			task.setTaskStatus(status);
+			task.setStatus(status);
 			
 			this.taskRepository.save(task);
 		}

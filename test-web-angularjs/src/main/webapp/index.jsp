@@ -28,29 +28,29 @@
 		</div>
 		<div class="panel-body">
 			<div class="task" ng-repeat="task in tasks">
-				<span ng-if="task.taskPriority=='HIGH'" class="priority priority-red">
-					{{task.taskPriority}}
+				<span ng-if="task.priority=='HIGH'" class="priority priority-red">
+					{{task.priority}}
 				</span>
-				<span ng-if="task.taskPriority=='MEDIUM'" class="priority priority-yellow">
-					{{task.taskPriority}}
+				<span ng-if="task.priority=='MEDIUM'" class="priority priority-yellow">
+					{{task.priority}}
 				</span>
-				<span ng-if="task.taskPriority=='LOW'" class="priority priority-green">
-					{{task.taskPriority}}
+				<span ng-if="task.priority=='LOW'" class="priority priority-green">
+					{{task.priority}}
 				</span>
 				<div class="action-checkbox">
-					<input id="{{task.taskId}}" type="checkbox" value="{{task.taskId}}" ng-checked="selection.indexOf(task.taskId) > -1" ng-click="toggleSelection(task.taskId)" />
-	  				<label for="{{task.taskId}}"></label>		
+					<input id="{{task.id}}" type="checkbox" value="{{task.id}}" ng-checked="selection.indexOf(task.id) > -1" ng-click="toggleSelection(task.id)" />
+	  				<label for="{{task.id}}"></label>		
 				</div>
-				<div ng-if="task.taskStatus=='COMPLETED'">				
+				<div ng-if="task.status=='COMPLETED'">				
 					<a href="#" class="checkedClass">
-						{{task.taskName}}
-					<span class="action-status">{{task.taskStatus}}</span>
+						{{task.name}}
+					<span class="action-status">{{task.status}}</span>
 					</a>
 				</div>
-				<div ng-if="task.taskStatus=='ACTIVE'">				
+				<div ng-if="task.status=='ACTIVE'">				
 					<a href="#" class="uncheckedClass">
-						{{task.taskName}}
-						<span class="action-status">{{task.taskStatus}}</span>
+						{{task.name}}
+						<span class="action-status">{{task.status}}</span>
 					</a>
 				</div>
 			</div>
@@ -69,16 +69,16 @@
 				<table class="add-task">
 					<tr>
 						<td>Task Name:</td>
-						<td><input type="text" ng-model="taskName"/></td>
+						<td><input type="text" ng-model="name"/></td>
 					</tr>
 					<tr>
 						<td>Task Description:</td>
-						<td><input type="text" ng-model="taskDesc"/></td>
+						<td><input type="text" ng-model="description"/></td>
 					</tr>
 					<tr>
 						<td>Task Status:</td>
 						<td>
-							<select ng-model="taskStatus" ng-options="status as status for status in statuses">
+							<select ng-model="status" ng-options="status as status for status in statuses">
 								<option value="">-- Select --</option>						
 						     	</select>
 						</td>
@@ -86,7 +86,7 @@
 					<tr>
 						<td>Task Priority:</td>
 						<td>
-							<select ng-model="taskPriority" ng-options="priority as priority for priority in priorities">
+							<select ng-model="priority" ng-options="priority as priority for priority in priorities">
 								<option value="">-- Select --</option>
 							</select>
 						</td>
