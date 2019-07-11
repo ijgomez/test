@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 public class TaskManagerController {
 	
@@ -28,7 +26,7 @@ public class TaskManagerController {
 	 
 	 
 	 @RequestMapping(value="/tasks/archive/{taskIds}",method = RequestMethod.POST,headers="Accept=application/json")
-	 public List<Task> archiveAllTasks(@PathVariable int[] taskIds) {	
+	 public List<Task> archiveAllTasks(@PathVariable long[] taskIds) {	
 		 for(int i=0;i<taskIds.length;i++){
 			 taskmanagerservice.archiveTask(taskIds[i]);	
 			 

@@ -16,9 +16,7 @@
 <body>
 
 <div ng-controller="taskManagerController">
-<h2 class="page-title">Task Manager using Spring MVC 4 Rest &amp; AngularJS</h2>
-<h4 class="page-title">Demo &amp; Tutorial by <a href="">Priyadarshini</a></h4>
-<a href="http://www.programming-free.com/2014/06/crud-springmvc-restful-webservices-angularjs.html" class="button-red" style="text-align:center;width:70px;margin-left:45%;margin-right:40%">Tutorial</a>	
+
 	<div id="task-panel" class="fadein fadeout showpanel panel"  ng-show="toggle">	
 		<div class="panel-heading">
 			<i class="panel-title-icon fa fa-tasks"></i>
