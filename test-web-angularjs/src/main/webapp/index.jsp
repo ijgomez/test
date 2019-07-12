@@ -6,10 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>AngularJS Task Manager</title>
 <link href='./css/style.css' rel="stylesheet" type="text/css"></link>
-<link href='./css/css/font-awesome.css' rel="stylesheet" type="text/css"></link>
+<link href='webjars/font-awesome/4.0.3/css/font-awesome.min.css' rel="stylesheet" type="text/css"></link>
+
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<script data-require="angular.js@*" data-semver="1.2.13" src="http://code.angularjs.org/1.2.13/angular.js"></script>
-<script data-require="angular-animate@*" data-semver="1.2.13" src="http://code.angularjs.org/1.2.13/angular-animate.js"></script>
+<script data-require="angular.js@*" data-semver="1.2.13" src="webjars/angularjs/1.2.13/angular.min.js"></script>
+<script data-require="angular-animate@*" data-semver="1.2.13" src="webjars/angularjs/1.2.13/angular-animate.min.js"></script>
+
 <script type="text/javascript" src="./js/app.js"></script>
 </head>
 <body>
