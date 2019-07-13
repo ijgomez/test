@@ -3,61 +3,31 @@ package org.example.test.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
+import lombok.Data;
 
 
-@JsonAutoDetect
 @Entity
-@Table(name="CONTACT")
+@Data
 public class Contact {
 	
 	@Id
-	@GeneratedValue
-	@Column(name="CONTACT_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contact_seq")
+	@SequenceGenerator(name = "contact_seq", sequenceName = "contact_seq", allocationSize = 1)
 	private int id;
 	
-	@Column(name="CONTACT_NAME", nullable=false)
+	@Column(nullable=false)
 	private String name;
 	
-	@Column(name="CONTACT_PHONE", nullable=false)
+	@Column(nullable=false)
 	private String phone;
 	
-	@Column(name="CONTACT_EMAIL", nullable=false)
+	@Column(nullable=false)
 	private String email;
 	
-	public int getId() {
-		return id;
-	}
 	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getPhone() {
-		return phone;
-	}
-	
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	
 }

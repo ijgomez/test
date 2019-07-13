@@ -3,8 +3,8 @@ package org.example.test.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.example.test.dao.ContactDAO;
 import org.example.test.model.Contact;
+import org.example.test.model.ContactDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ContactService {
 	
-	private ContactDAO contactDAO;
+	private ContactDao contactDAO;
 
 	@Transactional(readOnly=true)
 	public List<Contact> getContactList(int start, int limit){
@@ -52,7 +52,7 @@ public class ContactService {
 	}
 
 	@Autowired
-	public void setContactDAO(ContactDAO contactDAO) {
+	public void setContactDAO(ContactDao contactDAO) {
 		this.contactDAO = contactDAO;
 	}
 	
