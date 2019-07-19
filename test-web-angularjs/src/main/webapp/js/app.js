@@ -1,8 +1,9 @@
 var taskManagerModule = angular.module('taskManagerApp', ['ngAnimate']);
 
-taskManagerModule.controller('taskManagerController', function ($scope,$http) {
+taskManagerModule.controller('taskManagerController', function ($scope,$http,$location) {
 	
-	var urlBase="http://localhost:8080/test-web-angularjs";
+	//var urlBase="http://localhost:8080/test-web-angularjs";
+	var urlBase = $location.$$absUrl;
 	$scope.toggle=true;
 	$scope.selection = [];
 	$scope.statuses=['ACTIVE','COMPLETED'];
@@ -10,7 +11,7 @@ taskManagerModule.controller('taskManagerController', function ($scope,$http) {
 	$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 	
 	//get all tasks and display initially
-	$http.get(urlBase+'/tasks').
+	$http.get(urlBase + 'tasks').
     	success(function(data) {
 	        $scope.tasks = data;
 	        for(var i=0;i<$scope.tasks.length;i++){
@@ -26,7 +27,7 @@ taskManagerModule.controller('taskManagerController', function ($scope,$http) {
 			alert("Insufficient Data! Please provide values for task name, description, priortiy and status");
 		}
 		else{
-		 $http.post(urlBase + '/tasks/insert/' +$scope.name+'/'+$scope.description+'/'+$scope.priority+'/'+$scope.status).
+		 $http.post(urlBase + 'tasks/insert/' +$scope.name+'/'+$scope.description+'/'+$scope.priority+'/'+$scope.status).
 		  success(function(data) {
 			 alert("Task added");
 			 $scope.tasks = data;	
@@ -45,7 +46,7 @@ taskManagerModule.controller('taskManagerController', function ($scope,$http) {
 
 	    // is currently selected
 	    if (idx > -1) {
-	      $http.post(urlBase + '/tasks/' +id+'/ACTIVE').
+	      $http.post(urlBase + 'tasks/' +id+'/ACTIVE').
 		  success(function(data) {
 			 alert("Task unmarked");
 			 $scope.tasks = data;		       
@@ -55,7 +56,7 @@ taskManagerModule.controller('taskManagerController', function ($scope,$http) {
 
 	    // is newly selected
 	    else {
-	      $http.post(urlBase + '/tasks/' +id+'/COMPLETED').
+	      $http.post(urlBase + 'tasks/' +id+'/COMPLETED').
 		  success(function(data) {
 			 alert("Task marked completed");
 			 $scope.tasks = data;
@@ -67,7 +68,7 @@ taskManagerModule.controller('taskManagerController', function ($scope,$http) {
 	
 	// Archive Completed Tasks
 	  $scope.archiveTasks = function archiveTasks() {
-		  $http.post(urlBase + '/tasks/archive/' + $scope.selection).
+		  $http.post(urlBase + 'tasks/archive/' + $scope.selection).
 		  success(function(data) {
 			  $scope.tasks = data;
 		       alert("Successfully Archived");
