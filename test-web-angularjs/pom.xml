@@ -15,7 +15,8 @@
 		<!-- Frameworks -->
 		<org.springframework.version>5.1.7.RELEASE</org.springframework.version>
 		<org.slf4j.version>1.7.7</org.slf4j.version>
-		<com.fasterxml.jackson.core.version>2.9.9</com.fasterxml.jackson.core.version>
+		<org.hibernate.version>5.2.9.Final</org.hibernate.version>
+		<com.fasterxml.jackson.core.version>2.9.9.1</com.fasterxml.jackson.core.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -31,7 +32,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.2.9.Final</version>
+			<version>${org.hibernate.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>
