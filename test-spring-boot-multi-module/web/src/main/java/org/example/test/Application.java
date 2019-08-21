@@ -2,9 +2,11 @@ package org.example.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication(scanBasePackages = "org.example.test")
+@RestController
 public class Application {
 
 	private final MyService myService;
@@ -13,16 +15,13 @@ public class Application {
         this.myService = myService;
     }
 
+    @GetMapping("/")
     public String home() {
         return myService.message();
     }
 	
 	public static void main(String[] args) {
-		ConfigurableApplicationContext applicationContext = SpringApplication.run(Application.class, args);
-		
-		MyService service = applicationContext.getBean(MyService.class);
-		
-		System.out.println(service.message());
+		SpringApplication.run(Application.class, args);
 	}
 
 }
