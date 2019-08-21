@@ -8,8 +8,10 @@
 	<name>test-spring-boot-multi-module</name>
 	<description>Spring Boot Multi. Module</description>
 	<packaging>pom</packaging>
-	
-
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+	</properties>
 	<modules>
 		<module>core</module>
 		<module>app</module>

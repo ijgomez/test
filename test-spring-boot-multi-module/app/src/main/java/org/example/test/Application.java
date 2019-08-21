@@ -1,5 +1,6 @@
 package org.example.test;
 
+import org.example.test.services.IndexService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -7,22 +8,16 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication(scanBasePackages = "org.example.test")
 public class Application {
 
-	private final MyService myService;
+    public Application() {
 
-    public Application(MyService myService) {
-        this.myService = myService;
     }
 
-    public String home() {
-        return myService.message();
-    }
-	
 	public static void main(String[] args) {
 		ConfigurableApplicationContext applicationContext = SpringApplication.run(Application.class, args);
 		
-		MyService service = applicationContext.getBean(MyService.class);
+		IndexService indexService = applicationContext.getBean(IndexService.class);
 		
-		System.out.println(service.message());
+		System.out.println(indexService.getRepository());
 	}
 
 }
