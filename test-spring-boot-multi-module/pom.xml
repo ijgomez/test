@@ -16,5 +16,6 @@
 		<module>core</module>
 		<module>app</module>
 		<module>web</module>
+		<module>webmvc</module>
 	</modules>
 </project>
