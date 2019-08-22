@@ -15,6 +15,7 @@
 	<modules>
 		<module>core</module>
 		<module>app</module>
+		<module>swing</module>
 		<module>web</module>
 		<module>webmvc</module>
 	</modules>
