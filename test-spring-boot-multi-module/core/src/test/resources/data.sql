@@ -1,0 +1,1 @@
+insert into Index (id, file_name) values (1, 'data.sql');

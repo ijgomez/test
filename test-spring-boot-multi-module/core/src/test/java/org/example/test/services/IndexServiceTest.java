@@ -33,6 +33,7 @@ public class IndexServiceTest {
 
 		assertNotNull(data);
 		assertThat(data).isNotNull();
+		assertThat(data.size()).isEqualTo(1);
 	}
 
 }
