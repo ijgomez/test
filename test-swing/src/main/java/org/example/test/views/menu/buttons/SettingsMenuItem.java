@@ -3,9 +3,9 @@ package org.example.test.views.menu.buttons;
 import java.awt.Cursor;
 
 import org.example.test.views.components.ApplicationModelListener;
+import org.example.test.views.components.events.ApplicationEvent;
+import org.example.test.views.components.events.OpenSettingsDialogEvent;
 import org.example.test.views.components.menubar.buttons.AppMenuItem;
-import org.example.test.views.events.ApplicationEvent;
-import org.example.test.views.events.OpenSettingsDialogEvent;
 
 public class SettingsMenuItem extends AppMenuItem implements ApplicationModelListener {
 

@@ -4,18 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import javax.swing.filechooser.FileSystemView;
 
 import org.example.test.domain.Mock;
 import org.example.test.views.components.ApplicationConstants;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
+import org.example.test.views.components.events.ChangeViewEvent;
+import org.example.test.views.components.events.CloseApplicationEvent;
+import org.example.test.views.components.events.OpenFileEvent;
+import org.example.test.views.components.events.SaveFileEvent;
 import org.example.test.views.components.frames.AppFrame;
-import org.example.test.views.events.ChangeViewEvent;
-import org.example.test.views.events.CloseApplicationEvent;
 import org.example.test.views.factories.ContainerViewFactory;
 import org.example.test.views.factories.ModalDialogFactory;
 import org.example.test.views.menu.ApplicationMenuBar;
@@ -107,6 +110,8 @@ public class ApplicationFrame extends AppFrame implements ApplicationModelListen
 	protected void registerEvents() {
 		super.register(CloseApplicationEvent.class, (e) -> confirmExitAction());
 		super.register(ChangeViewEvent.class, (e) -> changeView(((ChangeViewEvent) e).getClassEntity()));
+		super.register(OpenFileEvent.class, (e) -> openFileDialog());
+		super.register(SaveFileEvent.class, (e) -> saveFileDialog());
 	}
 	
 	@Override
@@ -121,6 +126,34 @@ public class ApplicationFrame extends AppFrame implements ApplicationModelListen
 	private void changeView(Class<?> classEntity) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private void openFileDialog() {
+		JFileChooser jfc;
+		
+		jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+//		jfc.setDialogTitle("Choose a directory to save your file: ");
+//		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		if (jfc.showOpenDialog(getParent()) == JFileChooser.APPROVE_OPTION) {
+			System.out.println(jfc.getSelectedFile().getAbsolutePath());
+		}
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private void saveFileDialog() {
+		JFileChooser jfc;
+		
+		jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+//		jfc.setDialogTitle("Choose a directory to save your file: ");
+//		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		if (jfc.showSaveDialog(getParent()) == JFileChooser.APPROVE_OPTION) {
+			System.out.println(jfc.getSelectedFile().getAbsolutePath());
+		}
+		// TODO Auto-generated method stub
+
 	}
 
 }

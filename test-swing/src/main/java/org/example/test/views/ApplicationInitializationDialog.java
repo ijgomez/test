@@ -19,7 +19,7 @@ import org.apache.commons.lang3.SystemUtils;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelImpl;
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.helper.SleepHelper;
+import org.example.test.views.components.helpers.SleepHelper;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -54,7 +54,7 @@ public class ApplicationInitializationDialog extends JDialog {
 			@Override
 			public void windowOpened(WindowEvent e) {
 				log.debug("Start initialization application process...");
-				new Thread(executeInitializationApplication(), "initThread").start();
+				new Thread(() -> executeInitializationApplication(), "initThread").start();
 			}
 			
 		});
@@ -68,43 +68,42 @@ public class ApplicationInitializationDialog extends JDialog {
 		return panel;
 	}
 	
-	protected Runnable executeInitializationApplication() {
-		return () -> {
-			
-			// Show environment settings.
-			log.info("Operative System: {} ({}) {}", SystemUtils.OS_NAME, SystemUtils.OS_ARCH, SystemUtils.OS_VERSION); 
-			log.info("Java Version: {}", SystemUtils.JAVA_RUNTIME_VERSION); 
-			log.info("Id. Application: {}", ManagementFactory.getRuntimeMXBean().getName()); 
-			log.info("Locale: {}", Locale.getDefault());
-			log.info("Time Zone: {} ({})", TimeZone.getDefault().getDisplayName(), TimeZone.getDefault().getID());
+	private void executeInitializationApplication() {
+		// Show environment settings.
+		log.info("Operative System: {} ({}) {}", SystemUtils.OS_NAME, SystemUtils.OS_ARCH, SystemUtils.OS_VERSION); 
+		log.info("Java Version: {}", SystemUtils.JAVA_RUNTIME_VERSION); 
+		log.info("Id. Application: {}", ManagementFactory.getRuntimeMXBean().getName()); 
+		log.info("Locale: {}", Locale.getDefault());
+		log.info("Time Zone: {} ({})", TimeZone.getDefault().getDisplayName(), TimeZone.getDefault().getID());
+	
+		log.info("User Name: {}", SystemUtils.USER_NAME); 
+		log.info("User Time Zone: {}", SystemUtils.USER_TIMEZONE); 
+		log.info("User Language: {}", SystemUtils.USER_LANGUAGE); 
+		log.info("User Country: {}", SystemUtils.USER_COUNTRY); 
+		log.info("User Dir: {}", SystemUtils.USER_DIR); 
+		log.info("User Home: {}", SystemUtils.USER_HOME);
 		
-			log.info("User Name: {}", SystemUtils.USER_NAME); 
-			log.info("User Time Zone: {}", SystemUtils.USER_TIMEZONE); 
-			log.info("User Language: {}", SystemUtils.USER_LANGUAGE); 
-			log.info("User Country: {}", SystemUtils.USER_COUNTRY); 
-			log.info("User Dir: {}", SystemUtils.USER_DIR); 
-			log.info("User Home: {}", SystemUtils.USER_HOME);
-			
-			// Initialization Application.
-			log.info("Arguments: {}", Arrays.toString(arguments));
-			
-			// TODO Initialization Application Model.
-			model = new ApplicationModelImpl();
-			SleepHelper.sleep(1000L);
-			
-			// TODO Initialization Application Listeners.
-			((ApplicationModelListener) getParent()).setModel(model);
-			SleepHelper.sleep(1000L);
-			
-			// Configuration Shutdown Hook.
-			Runtime.getRuntime().addShutdownHook(new Thread(() -> executeShutdownHook()));
-			SleepHelper.sleep(1000L);
-			
-			log.info("...application loaded.");
+		// Initialization Application.
+		log.info("Arguments: {}", Arrays.toString(arguments));
+		
+		// Initialization Application Model.
+		model = new ApplicationModelImpl();
+		SleepHelper.sleep(1000L);
+		
+		// Initialization Application Listeners.
+		((ApplicationModelListener) getParent()).setModel(model);
+		SleepHelper.sleep(1000L);
+		
+		// TOOD Initialization Logical Business.
+		
+		// Configuration Shutdown Hook.
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> executeShutdownHook()));
+		SleepHelper.sleep(1000L);
+		
+		log.info("...application loaded.");
 
-			getOwner().repaint();
-			dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-		};
+		getOwner().repaint();
+		dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 	}
 
 	private void executeShutdownHook() {

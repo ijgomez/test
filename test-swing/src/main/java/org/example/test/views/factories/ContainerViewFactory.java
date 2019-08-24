@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.example.test.domain.Mock;
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.exceptions.ApplicationViewException;
+import org.example.test.views.components.exceptions.ApplicationViewException;
 import org.example.test.views.mock.MockContainerPanel;
 
 import lombok.extern.slf4j.Slf4j;

@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
-import org.example.test.views.helper.LocaleHelper;
+import org.example.test.views.components.helpers.LocaleHelper;
 
 public class ModalDialogFactory {
 	

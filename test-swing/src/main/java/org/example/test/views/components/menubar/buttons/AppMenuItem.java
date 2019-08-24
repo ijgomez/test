@@ -6,7 +6,7 @@ import javax.swing.JMenuItem;
 
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.helper.LocaleHelper;
+import org.example.test.views.components.helpers.LocaleHelper;
 
 public abstract class AppMenuItem extends JMenuItem implements ApplicationModelListener {
 

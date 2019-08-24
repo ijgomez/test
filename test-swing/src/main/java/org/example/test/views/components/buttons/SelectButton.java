@@ -1,8 +1,8 @@
 package org.example.test.views.components.buttons;
 
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.events.ApplicationEvent;
-import org.example.test.views.events.SelectFileEvent;
+import org.example.test.views.components.events.ApplicationEvent;
+import org.example.test.views.components.events.SelectFileEvent;
 
 public class SelectButton extends AppButton implements ApplicationModelListener {
 

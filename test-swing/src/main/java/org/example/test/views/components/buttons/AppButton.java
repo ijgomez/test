@@ -7,7 +7,7 @@ import javax.swing.JButton;
 
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.helper.LocaleHelper;
+import org.example.test.views.components.helpers.LocaleHelper;
 
 public abstract class AppButton extends JButton implements ApplicationModelListener {
 

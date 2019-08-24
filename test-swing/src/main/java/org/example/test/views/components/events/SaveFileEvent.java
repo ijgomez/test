@@ -1,4 +1,4 @@
-package org.example.test.views.events;
+package org.example.test.views.components.events;
 
 public class SaveFileEvent extends ApplicationEvent {
 

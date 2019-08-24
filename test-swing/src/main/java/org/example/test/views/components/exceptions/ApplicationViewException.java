@@ -1,4 +1,4 @@
-package org.example.test.views.exceptions;
+package org.example.test.views.components.exceptions;
 
 public class ApplicationViewException extends RuntimeException {
 

@@ -3,9 +3,9 @@ package org.example.test.views.mock;
 import javax.swing.JLabel;
 
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.components.panels.AppPanel;
+import org.example.test.views.components.panels.AppContainerView;
 
-public class MockContainerPanel extends AppPanel implements ApplicationModelListener {
+public class MockContainerPanel extends AppContainerView implements ApplicationModelListener {
 
 	private static final long serialVersionUID = 6744713898858449289L;
 

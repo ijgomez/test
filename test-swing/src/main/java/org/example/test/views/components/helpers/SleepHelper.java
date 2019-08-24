@@ -1,4 +1,4 @@
-package org.example.test.views.helper;
+package org.example.test.views.components.helpers;
 
 public class SleepHelper {
 

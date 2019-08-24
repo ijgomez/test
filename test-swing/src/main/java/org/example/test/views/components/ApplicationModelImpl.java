@@ -3,7 +3,7 @@ package org.example.test.views.components;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.example.test.views.events.ApplicationEvent;
+import org.example.test.views.components.events.ApplicationEvent;
 
 import lombok.extern.slf4j.Slf4j;
 

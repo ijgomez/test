@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.events.ApplicationEvent;
-import org.example.test.views.helper.LocaleHelper;
+import org.example.test.views.components.events.ApplicationEvent;
+import org.example.test.views.components.helpers.LocaleHelper;
 
 public abstract class AppFrame extends JFrame implements ApplicationModelListener {
 
