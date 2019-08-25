@@ -1,6 +1,7 @@
 package org.example.test.views.components;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.example.test.views.components.events.ApplicationEvent;
@@ -13,7 +14,7 @@ public class ApplicationModelImpl implements ApplicationModel {
 	private List<ApplicationModelListener> listeners;
 	
 	public ApplicationModelImpl() {
-		listeners = new ArrayList<ApplicationModelListener>();
+		listeners = Collections.synchronizedList(new ArrayList<>());
 	}
 
 	@Override

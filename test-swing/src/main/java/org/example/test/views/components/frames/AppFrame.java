@@ -10,7 +10,10 @@ import javax.swing.JFrame;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.events.ApplicationEvent;
+import org.example.test.views.components.events.ChangeViewEvent;
+import org.example.test.views.components.events.CloseApplicationEvent;
 import org.example.test.views.components.helpers.LocaleHelper;
+import org.example.test.views.factories.ModalDialogFactory;
 
 public abstract class AppFrame extends JFrame implements ApplicationModelListener {
 
@@ -24,13 +27,21 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 	
 	protected abstract void initializateGUI();
 	
-	protected abstract void registerEvents();
+	protected abstract void handlerRegisterEvents();
 	
 	public AppFrame() {
 		this.initializateGUI();
 		this.registerEvents();
 	}
 	
+	protected void registerEvents() {
+		register(CloseApplicationEvent.class, (e) -> confirmExitAction());
+		register(ChangeViewEvent.class, (e) -> changeView(((ChangeViewEvent) e).getClassEntity()));
+		this.handlerRegisterEvents();
+	}
+	
+	protected abstract void changeView(Class<?> classEntity);
+
 	@Override
 	public void setModel(ApplicationModel model) {
 		assert (model != null) : "parameter 'model' cannot be null!";
@@ -53,6 +64,15 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 
 	protected void register(Class<?> key, Consumer<ApplicationEvent> value) {
 		this.handlers.put(key, value);
+	}
+	
+	protected void confirmExitAction() {
+		if (ModalDialogFactory.showConfirmExitDialog(this)) {
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			dispose();
+		} else {
+			setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		}
 	}
 	
 }

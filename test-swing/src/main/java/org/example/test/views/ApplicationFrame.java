@@ -4,23 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileSystemView;
 
-import org.example.test.domain.Mock;
 import org.example.test.views.components.ApplicationConstants;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.components.events.ChangeViewEvent;
-import org.example.test.views.components.events.CloseApplicationEvent;
 import org.example.test.views.components.events.OpenFileEvent;
 import org.example.test.views.components.events.SaveFileEvent;
 import org.example.test.views.components.frames.AppFrame;
+import org.example.test.views.components.menubar.AppMenuBar;
+import org.example.test.views.components.toolbar.AppToolBar;
 import org.example.test.views.factories.ContainerViewFactory;
-import org.example.test.views.factories.ModalDialogFactory;
 import org.example.test.views.menu.ApplicationMenuBar;
 import org.example.test.views.toolbar.ApplicationToolBar;
 
@@ -32,9 +30,9 @@ public class ApplicationFrame extends AppFrame implements ApplicationModelListen
 
 	private ApplicationInitializationDialog initializationDialog;
 	
-	private ApplicationMenuBar menuBar;
+	private AppMenuBar menuBar;
 	
-	private ApplicationToolBar toolBar;
+	private AppToolBar toolBar;
 	
 	private JComponent container;
 	
@@ -52,7 +50,7 @@ public class ApplicationFrame extends AppFrame implements ApplicationModelListen
 		
 		this.toolBar = new ApplicationToolBar();
 		
-		this.container = (JComponent) ContainerViewFactory.getInstance().getContainerView(Mock.class);
+		this.container = (JComponent) ContainerViewFactory.getInstance().getContainerView(null);
 		
 		this.status = new ApplicationStatus();
 		
@@ -97,19 +95,10 @@ public class ApplicationFrame extends AppFrame implements ApplicationModelListen
 		initializationDialog.toFront();
 	}
 
-	private void confirmExitAction() {
-		if (ModalDialogFactory.showConfirmExitDialog(this)) {
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			dispose();
-		} else {
-			setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		}
-	}
+	
 	
 	@Override
-	protected void registerEvents() {
-		super.register(CloseApplicationEvent.class, (e) -> confirmExitAction());
-		super.register(ChangeViewEvent.class, (e) -> changeView(((ChangeViewEvent) e).getClassEntity()));
+	protected void handlerRegisterEvents() {
 		super.register(OpenFileEvent.class, (e) -> openFileDialog());
 		super.register(SaveFileEvent.class, (e) -> saveFileDialog());
 	}
@@ -123,7 +112,7 @@ public class ApplicationFrame extends AppFrame implements ApplicationModelListen
 		this.status.setModel(model);
 	}
 
-	private void changeView(Class<?> classEntity) {
+	protected void changeView(Class<?> classEntity) {
 		// TODO Auto-generated method stub
 		
 	}
