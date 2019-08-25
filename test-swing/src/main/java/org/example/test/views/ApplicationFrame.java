@@ -43,7 +43,7 @@ public class ApplicationFrame extends AppFrame implements ApplicationModelListen
 		this.arguments = args;
 	}
 
-	protected void initializateGUI() {
+	protected void handlerInitializateGUI() {
 		JScrollPane scrollPane;
 		
 		this.menuBar = new ApplicationMenuBar();

@@ -25,7 +25,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 	
 	private Map<Class<?>, Consumer<ApplicationEvent>> handlers = new HashMap<Class<?>, Consumer<ApplicationEvent>>();
 	
-	protected abstract void initializateGUI();
+	protected abstract void handlerInitializateGUI();
 	
 	protected abstract void handlerRegisterEvents();
 	
@@ -34,7 +34,12 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 		this.registerEvents();
 	}
 	
-	protected void registerEvents() {
+	private void initializateGUI() {
+		// TODO Auto-generated method stub
+		this.handlerInitializateGUI();
+	}
+	
+	private void registerEvents() {
 		register(CloseApplicationEvent.class, (e) -> confirmExitAction());
 		register(ChangeViewEvent.class, (e) -> changeView(((ChangeViewEvent) e).getClassEntity()));
 		this.handlerRegisterEvents();
