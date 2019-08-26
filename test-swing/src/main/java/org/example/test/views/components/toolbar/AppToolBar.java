@@ -2,6 +2,7 @@ package org.example.test.views.components.toolbar;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
@@ -59,7 +60,7 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 		this.handlers.put(key, value);
 	}
 	
-	public ApplicationViewConfiguration getViewConfiguration() {
-		return viewConfiguration;
+	public Optional<ApplicationViewConfiguration> getViewConfiguration() {
+		return Optional.ofNullable(viewConfiguration);
 	}
 }

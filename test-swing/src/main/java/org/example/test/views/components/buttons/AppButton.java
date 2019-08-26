@@ -39,7 +39,7 @@ public abstract class AppButton extends JButton implements ApplicationModelListe
 	@Override
 	public void setModel(ApplicationModel model) {
 		assert (model != null) : "parameter 'model' cannot be null!";
-		
+
 		if (model != null) {
 			this.model = model;
 			this.model.register(this);

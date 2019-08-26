@@ -17,18 +17,22 @@ public class ApplicationToolBar extends AppToolBar implements ApplicationModelLi
 	}
 	
 	protected void initializateGUI() {
-		ApplicationViewConfiguration viewConfiguration;
 		JButton button1, button2, button3, button4, button5;
 		
-		viewConfiguration = super.getViewConfiguration();
-		if (viewConfiguration != null && viewConfiguration.getContainerViews() != null) {
-			viewConfiguration.getContainerViews().forEach((c) -> {
-				// TODO Auto-generated method stub
-//				AppButton button;
-//				button = new ChangeViewButton<>(c.getTitleTextKey(), c.getToolTipTextKey(), c.getClassView());
-//				super.add(button);				
-			});
-		}
+		super.getViewConfiguration().ifPresent((vc) -> {
+			if (vc != null && vc.getContainerViews() != null) {
+				vc.getContainerViews().forEach((c) -> {
+					// TODO Auto-generated method stub
+//					AppButton button;
+//					button = new ChangeViewButton<>(c.getTitleTextKey(), c.getToolTipTextKey(), c.getClassView());
+//					super.add(button);				
+				});
+			}
+		});
+		
+		
+		
+		
 		
 		button1 = new JButton("Entity 1");
 		button2 = new JButton("Entity 2");
