@@ -18,8 +18,8 @@ public class ApplicationFrame extends AppFrame implements ApplicationModelListen
 
 	private String[] arguments;
 
-	public ApplicationFrame(String... args) {
-		super();
+	public ApplicationFrame(ApplicationViewConfiguration viewConfiguration, String... args) {
+		super(viewConfiguration);
 		this.arguments = args;
 	}
 
@@ -30,7 +30,7 @@ public class ApplicationFrame extends AppFrame implements ApplicationModelListen
 	}
 	
 	protected AppToolBar buildToolBar() {
-		return new ApplicationToolBar();
+		return new ApplicationToolBar(getViewConfiguration());
 	}
 	
 	protected ApplicationStatus buildStatusBar() {

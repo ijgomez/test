@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 
 import org.example.test.views.ApplicationInitializationDialog;
 import org.example.test.views.ApplicationStatus;
+import org.example.test.views.ApplicationViewConfiguration;
 import org.example.test.views.components.ApplicationConstants;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
@@ -35,6 +36,8 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 	
 	protected ApplicationModel model;
 	
+	private ApplicationViewConfiguration viewConfiguration;
+	
 	private Map<Class<?>, Consumer<ApplicationEvent>> handlers = new HashMap<Class<?>, Consumer<ApplicationEvent>>();
 	
 	private ApplicationInitializationDialog initializationDialog;
@@ -50,7 +53,8 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 	/**
 	 * New Instance
 	 */
-	public AppFrame() {
+	public AppFrame(ApplicationViewConfiguration viewConfiguration) {
+		this.viewConfiguration = viewConfiguration;
 		this.initializateGUI();
 		this.registerEvents();
 	}
@@ -166,4 +170,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 		
 	}
 	
+	public ApplicationViewConfiguration getViewConfiguration() {
+		return viewConfiguration;
+	}
 }

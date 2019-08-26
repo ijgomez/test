@@ -3,6 +3,7 @@ package org.example.test.views.toolbar;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import org.example.test.views.ApplicationViewConfiguration;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.toolbar.AppToolBar;
@@ -11,8 +12,23 @@ public class ApplicationToolBar extends AppToolBar implements ApplicationModelLi
 
 	private static final long serialVersionUID = -95062186306252920L;
 
+	public ApplicationToolBar(ApplicationViewConfiguration viewConfiguration) {
+		super(viewConfiguration);
+	}
+	
 	protected void initializateGUI() {
+		ApplicationViewConfiguration viewConfiguration;
 		JButton button1, button2, button3, button4, button5;
+		
+		viewConfiguration = super.getViewConfiguration();
+		if (viewConfiguration != null && viewConfiguration.getContainerViews() != null) {
+			viewConfiguration.getContainerViews().forEach((c) -> {
+				// TODO Auto-generated method stub
+//				AppButton button;
+//				button = new ChangeViewButton<>(c.getTitleTextKey(), c.getToolTipTextKey(), c.getClassView());
+//				super.add(button);				
+			});
+		}
 		
 		button1 = new JButton("Entity 1");
 		button2 = new JButton("Entity 2");

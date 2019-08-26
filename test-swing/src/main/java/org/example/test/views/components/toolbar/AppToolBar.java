@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 
 import javax.swing.JToolBar;
 
+import org.example.test.views.ApplicationViewConfiguration;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.events.ApplicationEvent;
@@ -20,9 +21,12 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 	
 	protected ApplicationModel model;
 	
+	private ApplicationViewConfiguration viewConfiguration;
+	
 	private Map<Class<?>, Consumer<ApplicationEvent>> handlers = new HashMap<Class<?>, Consumer<ApplicationEvent>>();
 	
-	public AppToolBar() {
+	public AppToolBar(ApplicationViewConfiguration viewConfiguration) {
+		this.viewConfiguration = viewConfiguration;
 		this.initializateGUI();
 		this.registerEvents();
 	}
@@ -53,5 +57,9 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 	
 	protected void register(Class<?> key, Consumer<ApplicationEvent> value) {
 		this.handlers.put(key, value);
+	}
+	
+	public ApplicationViewConfiguration getViewConfiguration() {
+		return viewConfiguration;
 	}
 }

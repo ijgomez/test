@@ -46,9 +46,12 @@ public class Application {
 	        }
 			
 			try {
-				Constructor<ApplicationFrame> constructor = className.getConstructor(String[].class);
+				ApplicationViewConfiguration viewConfiguration = new ApplicationViewConfiguration();
+				viewConfiguration.load();
 				
-				ApplicationFrame frame = constructor.newInstance((Object)args);
+				Constructor<ApplicationFrame> constructor = className.getConstructor(ApplicationViewConfiguration.class, String[].class);
+				
+				ApplicationFrame frame = constructor.newInstance(viewConfiguration, (Object)args);
 				frame.setVisible(true);
 				frame.setExtendedState(Frame.MAXIMIZED_BOTH);
 				frame.toFront();
