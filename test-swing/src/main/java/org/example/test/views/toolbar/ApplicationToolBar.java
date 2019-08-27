@@ -1,16 +1,25 @@
 package org.example.test.views.toolbar;
 
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import org.example.test.views.ApplicationViewConfiguration;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
+import org.example.test.views.components.buttons.AppButton;
+import org.example.test.views.components.buttons.ChangeViewButton;
 import org.example.test.views.components.toolbar.AppToolBar;
 
 public class ApplicationToolBar extends AppToolBar implements ApplicationModelListener {
 
 	private static final long serialVersionUID = -95062186306252920L;
+	
+	private List<AppButton> buttons = new ArrayList<AppButton>();
 
 	public ApplicationToolBar(ApplicationViewConfiguration viewConfiguration) {
 		super(viewConfiguration);
@@ -23,9 +32,9 @@ public class ApplicationToolBar extends AppToolBar implements ApplicationModelLi
 			if (vc != null && vc.getContainerViews() != null) {
 				vc.getContainerViews().forEach((c) -> {
 					// TODO Auto-generated method stub
-//					AppButton button;
-//					button = new ChangeViewButton<>(c.getTitleTextKey(), c.getToolTipTextKey(), c.getClassView());
-//					super.add(button);				
+					AppButton button;
+					button = new ChangeViewButton<>(c.getTitleTextKey(), c.getToolTipTextKey(), c.getClassEntity());
+					super.add(button);				
 				});
 			}
 		});
@@ -58,8 +67,12 @@ public class ApplicationToolBar extends AppToolBar implements ApplicationModelLi
 	@Override
 	public void setModel(ApplicationModel model) {
 		super.setModel(model);
-		// TODO Auto-generated method stub
 		
+		for (Component component : super.getComponents()) {
+			if (component instanceof ApplicationModelListener) {
+				((ApplicationModelListener) component).setModel(model);
+			}
+		}
 	}
 
 }

@@ -22,6 +22,8 @@ public abstract class AppButton extends JButton implements ApplicationModelListe
 	private String toolTipTextKey;
 
 	public AppButton(String titleTextKey, String toolTipTextKey) {
+		this.titleTextKey = titleTextKey;
+		this.toolTipTextKey = toolTipTextKey;
 		this.initializateGUI();
 	}
 	

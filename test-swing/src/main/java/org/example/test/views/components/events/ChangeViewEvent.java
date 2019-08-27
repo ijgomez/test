@@ -1,5 +1,8 @@
 package org.example.test.views.components.events;
 
+import lombok.ToString;
+
+@ToString
 public class ChangeViewEvent extends ApplicationEvent {
 
 	private Class<?> classEntity;

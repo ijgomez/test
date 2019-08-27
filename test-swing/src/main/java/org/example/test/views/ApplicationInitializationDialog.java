@@ -1,6 +1,7 @@
 package org.example.test.views;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.WindowAdapter;
@@ -10,6 +11,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -64,6 +66,7 @@ public class ApplicationInitializationDialog extends JDialog {
 		JPanel panel;
 		
 		panel = new JPanel();
+		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true));
 		// TODO Auto-generated method stub
 		return panel;
 	}
