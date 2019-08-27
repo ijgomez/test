@@ -32,7 +32,7 @@ public class ApplicationModelImpl implements ApplicationModel {
 	@Override
 	public void notify(ApplicationEvent event) {
 		log.trace("Notify event {} in {} listeners.", event, listeners.size());
-		listeners.forEach((o) -> o.listener(event));
+		(new ArrayList<>(listeners)).forEach((o) -> o.listener(event));
 	}
 
 }
