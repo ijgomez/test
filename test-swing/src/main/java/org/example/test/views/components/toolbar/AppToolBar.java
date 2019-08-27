@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 import javax.swing.JToolBar;
 
@@ -29,12 +30,12 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 	public AppToolBar(ApplicationViewConfiguration viewConfiguration) {
 		this.viewConfiguration = viewConfiguration;
 		this.initializateGUI();
-		this.registerEvents();
+		this.registerEventListeners();
 	}
 	
 	protected abstract void initializateGUI();
 
-	protected abstract void registerEvents();
+	protected abstract void registerEventListeners();
 	
 	@Override
 	public void setModel(ApplicationModel model) {
@@ -47,6 +48,11 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 			this.model.unregister(this);
 			this.model = model;
 		}
+		Stream.of(super.getComponents()).forEach((c) -> {
+			if (c instanceof ApplicationModelListener) {
+				((ApplicationModelListener) c).setModel(model);
+			}
+		});
 	}
 	
 	@Override
@@ -56,7 +62,7 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 		}
 	}
 	
-	protected void register(Class<?> key, Consumer<ApplicationEvent> value) {
+	protected void addEventListener(Class<?> key, Consumer<ApplicationEvent> value) {
 		this.handlers.put(key, value);
 	}
 	

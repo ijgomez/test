@@ -15,6 +15,10 @@ public class ChangeViewButton<E> extends AppButton implements ApplicationModelLi
 		this.classView = classView;
 	}
 	
+	public Class<E> getClassView() {
+		return classView;
+	}
+	
 	@Override
 	protected void handlerInitializateGUI() {
 		super.addActionListener((e) -> model.notify(new ChangeViewEvent(classView)));

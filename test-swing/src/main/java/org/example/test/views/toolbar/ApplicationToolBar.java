@@ -1,26 +1,24 @@
 package org.example.test.views.toolbar;
 
-import java.awt.Component;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import org.example.test.views.ApplicationViewConfiguration;
-import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.buttons.AppButton;
 import org.example.test.views.components.buttons.ChangeViewButton;
+import org.example.test.views.components.events.ChangeViewEvent;
 import org.example.test.views.components.toolbar.AppToolBar;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ApplicationToolBar extends AppToolBar implements ApplicationModelListener {
 
 	private static final long serialVersionUID = -95062186306252920L;
 	
-	private List<AppButton> buttons = new ArrayList<AppButton>();
-
 	public ApplicationToolBar(ApplicationViewConfiguration viewConfiguration) {
 		super(viewConfiguration);
 	}
@@ -31,10 +29,16 @@ public class ApplicationToolBar extends AppToolBar implements ApplicationModelLi
 		super.getViewConfiguration().ifPresent((vc) -> {
 			if (vc != null && vc.getContainerViews() != null) {
 				vc.getContainerViews().forEach((c) -> {
-					// TODO Auto-generated method stub
-					AppButton button;
-					button = new ChangeViewButton<>(c.getTitleTextKey(), c.getToolTipTextKey(), c.getClassEntity());
-					super.add(button);				
+					if (c.getClassElement().equals(JButton.class)) {
+						// TODO Auto-generated method stub
+						AppButton button;
+						button = new ChangeViewButton<>(c.getTitleTextKey(), c.getToolTipTextKey(), c.getClassContainer());
+						button.setSelected(c.isSelected());
+						super.add(button);		
+					} else if (c.getClassElement().equals(Separator.class)) {
+						super.add(new Separator());
+					}
+							
 				});
 			}
 		});
@@ -59,20 +63,25 @@ public class ApplicationToolBar extends AppToolBar implements ApplicationModelLi
 	}
 	
 	@Override
-	protected void registerEvents() {
+	protected void registerEventListeners() {
+		super.addEventListener(ChangeViewEvent.class, (e) -> selectedButtonAction(((ChangeViewEvent) e)));
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void setModel(ApplicationModel model) {
-		super.setModel(model);
+	private void selectedButtonAction(ChangeViewEvent e) {
 		
-		for (Component component : super.getComponents()) {
-			if (component instanceof ApplicationModelListener) {
-				((ApplicationModelListener) component).setModel(model);
+		Stream.of(super.getComponents()).forEach((c) -> {
+			if (c instanceof ChangeViewButton) {
+				ChangeViewButton<?> changeViewButton = (ChangeViewButton<?>) c;
+				if (changeViewButton.getClassView().equals(e.getClassEntity())) {
+					changeViewButton.setEnabled(true);
+					log.trace("enable {}", changeViewButton);
+				}
 			}
-		}
+		});
 	}
 
+	
+	
 }

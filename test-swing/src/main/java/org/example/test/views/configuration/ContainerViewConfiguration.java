@@ -7,6 +7,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class ContainerViewConfiguration {
 
+	private Class<?> classElement;
+	
 	private String titleTextKey;
 	
 	private String toolTipTextKey;
@@ -14,5 +16,7 @@ public class ContainerViewConfiguration {
 	private Class<?> classEntity;
 	
 	private Class<?> classContainer;
+	
+	private boolean selected;
 
 }

@@ -28,6 +28,9 @@ import org.example.test.views.components.toolbar.AppToolBar;
 import org.example.test.views.factories.ContainerViewFactory;
 import org.example.test.views.factories.ModalDialogFactory;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public abstract class AppFrame extends JFrame implements ApplicationModelListener, ApplicationConstants {
 
 	private static final long serialVersionUID = 5279263641839891108L;
@@ -166,6 +169,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 	}
 	
 	private void changeView(Class<?> classEntity) {
+		log.trace("{}", classEntity);
 		// TODO Auto-generated method stub
 		
 	}
