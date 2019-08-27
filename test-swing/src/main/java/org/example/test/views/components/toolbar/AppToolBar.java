@@ -39,8 +39,6 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 	
 	@Override
 	public void setModel(ApplicationModel model) {
-		assert (model != null) : "parameter 'model' cannot be null!";
-		
 		if (model != null) {
 			this.model = model;
 			this.model.register(this);

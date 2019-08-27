@@ -53,6 +53,8 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 	
 	private ApplicationStatus status;
 	
+	private JScrollPane scrollPane;
+	
 	/**
 	 * New Instance
 	 */
@@ -63,7 +65,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 	}
 
 	private void initializateGUI() {
-		JScrollPane scrollPane;
+		
 		
 		this.menuBar = buildMenuBar();
 		
@@ -125,8 +127,6 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 
 	@Override
 	public void setModel(ApplicationModel model) {
-		assert (model != null) : "parameter 'model' cannot be null!";
-		
 		if (model != null) {
 			this.model = model;
 			this.model.register(this);
@@ -171,6 +171,32 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 	private void changeView(Class<?> classEntity) {
 		log.trace("{}", classEntity);
 		// TODO Auto-generated method stub
+		try {
+			((ApplicationModelListener) this.container).setModel(null);
+			super.remove(this.scrollPane);
+			this.container = (JComponent) classEntity.newInstance();
+			((ApplicationModelListener) this.container).setModel(this.model);
+			
+			scrollPane.setViewportView(this.container);
+			super.add(this.scrollPane, BorderLayout.CENTER);
+			super.revalidate();
+			super.repaint();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		((ConsoleModelListener) this.containerView).setModel(null);
+//		this.mainPanel.remove(this.scrollPane);
+//		this.containerView = this.handlerSelectionChanged(object);
+//		((ConsoleModelListener) this.containerView).setModel(this.consoleModel);
+//		
+//		this.containerView.setPreferredSize(CONTAINER_DEFAULT_DIMENSION);
+//		this.scrollPane.setViewportView(this.containerView);
+//		
+//		this.mainPanel.add(this.scrollPane, BorderLayout.CENTER);
+//		this.mainPanel.revalidate();
+//		this.mainPanel.repaint();
 		
 	}
 	
