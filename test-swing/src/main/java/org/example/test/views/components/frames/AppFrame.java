@@ -61,7 +61,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 	public AppFrame(ApplicationViewConfiguration viewConfiguration) {
 		this.viewConfiguration = viewConfiguration;
 		this.initializateGUI();
-		this.registerEvents();
+		this.registerEventListeners();
 	}
 
 	private void initializateGUI() {
@@ -130,6 +130,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 		if (model != null) {
 			this.model = model;
 			this.model.register(this);
+			this.updateView();
 		} else {
 			this.model.unregister(this);
 			this.model = model;
@@ -139,6 +140,9 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 		((ApplicationModelListener) this.container).setModel(model);
 		this.status.setModel(model);
 	}
+	
+	@Override
+	public abstract void updateView();
 	
 	@Override
 	public void listener(ApplicationEvent event) { 
@@ -151,13 +155,13 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 		this.handlers.put(key, value);
 	}
 	
-	private void registerEvents() {
+	private void registerEventListeners() {
 		register(CloseApplicationEvent.class, (e) -> confirmExitAction());
 		register(ChangeViewEvent.class, (e) -> changeView(((ChangeViewEvent) e).getClassEntity()));
-		this.handlerRegisterEvents();
+		this.handlerRegisterEventListeners();
 	}
 	
-	protected abstract void handlerRegisterEvents();
+	protected abstract void handlerRegisterEventListeners();
 
 	private void confirmExitAction() {
 		if (ModalDialogFactory.showConfirmExitDialog(this)) {

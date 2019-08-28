@@ -21,4 +21,6 @@ public class CloseMenuItem extends AppMenuItem implements ApplicationModelListen
 	@Override
 	public void listener(ApplicationEvent event) { }
 
+	@Override
+	public void updateView() { }
 }

@@ -21,4 +21,6 @@ public class SettingsMenuItem extends AppMenuItem implements ApplicationModelLis
 	@Override
 	public void listener(ApplicationEvent event) { }
 
+	@Override
+	public void updateView() { }
 }

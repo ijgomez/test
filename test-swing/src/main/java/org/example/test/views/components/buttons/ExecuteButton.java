@@ -20,4 +20,6 @@ public class ExecuteButton extends AppButton implements ApplicationModelListener
 	@Override
 	public void listener(ApplicationEvent event) { }
 
+	@Override
+	public void updateView() { }
 }

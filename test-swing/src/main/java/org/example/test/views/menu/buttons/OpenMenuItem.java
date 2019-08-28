@@ -21,4 +21,6 @@ public class OpenMenuItem extends AppMenuItem implements ApplicationModelListene
 	@Override
 	public void listener(ApplicationEvent event) { }
 
+	@Override
+	public void updateView() { }
 }

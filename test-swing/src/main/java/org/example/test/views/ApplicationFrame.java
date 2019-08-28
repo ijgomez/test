@@ -44,9 +44,15 @@ public class ApplicationFrame extends AppFrame implements ApplicationModelListen
 	}
 
 	@Override
-	protected void handlerRegisterEvents() {
+	protected void handlerRegisterEventListeners() {
 		super.register(OpenFileEvent.class, (e) -> openFileDialog());
 		super.register(SaveFileEvent.class, (e) -> saveFileDialog());
+	}
+	
+	@Override
+	public void updateView() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void openFileDialog() {

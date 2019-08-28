@@ -24,23 +24,27 @@ public abstract class AppPanel extends JPanel implements ApplicationModelListene
 	
 	public AppPanel() {
 		this.initializateGUI();
-		this.registerEvents();
+		this.registerEventListeners();
 	}
 
 	protected abstract void initializateGUI();
 	
-	protected abstract void registerEvents();
+	protected abstract void registerEventListeners();
 	
 	@Override
 	public void setModel(ApplicationModel model) {
 		if (model != null) {
 			this.model = model;
 			this.model.register(this);
+			this.updateView();
 		} else {
 			this.model.unregister(this);
 			this.model = model;
 		}
 	}
+	
+	@Override
+	public abstract void updateView();
 	
 	@Override
 	public void listener(ApplicationEvent event) { 
@@ -49,7 +53,7 @@ public abstract class AppPanel extends JPanel implements ApplicationModelListene
 		}
 	}
 	
-	protected void register(Class<?> key, Consumer<ApplicationEvent> value) {
+	protected void addEventListener(Class<?> key, Consumer<ApplicationEvent> value) {
 		this.handlers.put(key, value);
 	}
 }

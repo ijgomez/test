@@ -26,5 +26,8 @@ public class ChangeViewButton<E> extends AppButton implements ApplicationModelLi
 	
 	@Override
 	public void listener(ApplicationEvent event) { }
+	
+	@Override
+	public void updateView() { }
 
 }

@@ -8,4 +8,6 @@ public interface ApplicationModelListener {
 	
 	public void listener(ApplicationEvent event);
 	
+	public void updateView();
+	
 }

@@ -43,10 +43,14 @@ public abstract class AppButton extends JButton implements ApplicationModelListe
 		if (model != null) {
 			this.model = model;
 			this.model.register(this);
+			this.updateView();
 		} else {
 			this.model.unregister(this);
 			this.model = model;
 		}
 	}
+	
+	@Override
+	public abstract void updateView();
 
 }

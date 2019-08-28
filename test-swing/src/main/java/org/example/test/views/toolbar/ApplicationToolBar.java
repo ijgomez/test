@@ -68,9 +68,14 @@ public class ApplicationToolBar extends AppToolBar implements ApplicationModelLi
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void updateView() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	private void selectedButtonAction(ChangeViewEvent e) {
-		
 		Stream.of(super.getComponents()).forEach((c) -> {
 			if (c instanceof ChangeViewButton) {
 				ChangeViewButton<?> changeViewButton = (ChangeViewButton<?>) c;
@@ -81,7 +86,5 @@ public class ApplicationToolBar extends AppToolBar implements ApplicationModelLi
 			}
 		});
 	}
-
-	
 	
 }

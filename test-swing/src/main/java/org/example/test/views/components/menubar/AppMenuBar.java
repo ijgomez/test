@@ -24,23 +24,27 @@ public abstract class AppMenuBar extends JMenuBar implements ApplicationModelLis
 
 	public AppMenuBar() {
 		this.initializateGUI();
-		this.registerEvents();
+		this.registerEventListeners();
 	}
 	
 	protected abstract void initializateGUI();
 	
-	protected abstract void registerEvents();
+	protected abstract void registerEventListeners();
 	
 	@Override
 	public void setModel(ApplicationModel model) {
 		if (model != null) {
 			this.model = model;
 			this.model.register(this);
+			this.updateView();
 		} else {
 			this.model.unregister(this);
 			this.model = model;
 		}
 	}
+	
+	@Override
+	public abstract void updateView();
 
 	@Override
 	public void listener(ApplicationEvent event) { 

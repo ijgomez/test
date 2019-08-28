@@ -16,9 +16,14 @@ public class TreeContainerView extends AppPanel implements ApplicationModelListe
 	}
 
 	@Override
-	protected void registerEvents() {
+	protected void registerEventListeners() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
+	public void updateView() {
+		// TODO Auto-generated method stub
+		
+	}
 }

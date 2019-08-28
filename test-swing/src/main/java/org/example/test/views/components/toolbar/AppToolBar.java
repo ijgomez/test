@@ -42,6 +42,7 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 		if (model != null) {
 			this.model = model;
 			this.model.register(this);
+			this.updateView();
 		} else {
 			this.model.unregister(this);
 			this.model = model;
@@ -52,6 +53,9 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 			}
 		});
 	}
+	
+	@Override
+	public abstract void updateView();
 	
 	@Override
 	public void listener(ApplicationEvent event) { 

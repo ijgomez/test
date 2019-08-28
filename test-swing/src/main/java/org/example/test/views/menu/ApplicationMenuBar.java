@@ -61,7 +61,7 @@ public class ApplicationMenuBar extends AppMenuBar implements ApplicationModelLi
 	}
 	
 	@Override
-	protected void registerEvents() {
+	protected void registerEventListeners() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -73,6 +73,12 @@ public class ApplicationMenuBar extends AppMenuBar implements ApplicationModelLi
 		this.saveMenuItem.setModel(model);
 		this.closeMenuItem.setModel(model);
 		this.settingsMenuItem.setModel(model);
+	}
+	
+	@Override
+	public void updateView() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
