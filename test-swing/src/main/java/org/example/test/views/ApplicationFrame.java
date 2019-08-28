@@ -13,7 +13,7 @@ import org.example.test.views.components.toolbar.AppToolBar;
 import org.example.test.views.menu.ApplicationMenuBar;
 import org.example.test.views.toolbar.ApplicationToolBar;
 
-@ApplicationViewScan(packages = {"org.example.test"})
+@ApplicationViewScan(packages = {"org.example.test.demo"})
 public class ApplicationFrame extends AppFrame implements ApplicationModelListener {
 
 	private static final long serialVersionUID = 4661793292792888017L;

@@ -13,10 +13,10 @@ public class ContainerViewConfiguration {
 	
 	private String toolTipTextKey;
 	
-	private Class<?> classEntity;
-	
 	private Class<?> classContainer;
 	
 	private boolean selected;
+	
+	private int order;
 
 }

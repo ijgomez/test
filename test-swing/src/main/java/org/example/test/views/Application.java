@@ -56,7 +56,7 @@ public class Application {
 
 	private static void setLookAndFeelApplication() {
 		try {
-			if (SystemUtils.IS_OS_MAC) {
+			if (SystemUtils.IS_OS_MAC_OSX) {
 				// set the brushed metal look and feel, if desired
 				System.setProperty("apple.awt.brushMetalLook", "true");
 				  
