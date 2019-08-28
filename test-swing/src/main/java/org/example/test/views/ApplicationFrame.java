@@ -3,6 +3,7 @@ package org.example.test.views;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
+import org.example.test.views.annotations.ApplicationViewScan;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.events.OpenFileEvent;
 import org.example.test.views.components.events.SaveFileEvent;
@@ -12,6 +13,7 @@ import org.example.test.views.components.toolbar.AppToolBar;
 import org.example.test.views.menu.ApplicationMenuBar;
 import org.example.test.views.toolbar.ApplicationToolBar;
 
+@ApplicationViewScan(packages = {"org.example.test"})
 public class ApplicationFrame extends AppFrame implements ApplicationModelListener {
 
 	private static final long serialVersionUID = 4661793292792888017L;

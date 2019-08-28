@@ -27,8 +27,8 @@ public class ApplicationViewConfiguration {
 		this.containerViewConfigurations.add(new ContainerViewConfiguration(JToolBar.Separator.class, null, null, null, null, false));
 	}
 	
-	public void load() {
-		log.debug("Loading view configuration...");
+	public void load(String[] packages) {
+		log.debug("Loading view configuration from annotated class...");
 		// TODO Auto-generated method stub
 	}
 
