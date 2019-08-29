@@ -11,18 +11,19 @@ import javax.swing.UIManager;
 
 import org.apache.commons.lang3.SystemUtils;
 import org.example.test.views.annotations.ApplicationViewScan;
+import org.example.test.views.components.frames.AppFrame;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Application {
 
-	public static void run(Class<ApplicationFrame> className, String... args) {
+	public static void run(Class<?> className, String... args) {
 		
 		SwingUtilities.invokeLater(() -> {
-			ApplicationFrame frame;
+			AppFrame frame;
 			ApplicationViewConfiguration viewConfiguration;
-			Constructor<ApplicationFrame> constructor;
+			Constructor<?> constructor;
 			String[] packages = null;
 			
 			try {
@@ -40,7 +41,7 @@ public class Application {
 				
 				constructor = className.getConstructor(ApplicationViewConfiguration.class, String[].class);
 				
-				frame = constructor.newInstance(viewConfiguration, (Object)args);
+				frame = (AppFrame) constructor.newInstance(viewConfiguration, (Object)args);
 				frame.setVisible(true);
 				frame.setExtendedState(Frame.MAXIMIZED_BOTH);
 				frame.toFront();
