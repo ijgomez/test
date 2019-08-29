@@ -12,6 +12,7 @@ import org.example.test.views.annotations.AnnotationsHelper;
 import org.example.test.views.annotations.ApplicationContainerViewConfig;
 import org.example.test.views.components.exceptions.ApplicationViewException;
 import org.example.test.views.configuration.ContainerViewConfiguration;
+import org.example.test.views.factories.ContainerViewFactory;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,10 +42,17 @@ public class ApplicationViewConfiguration {
 					if (annotation != null) {
 						ApplicationContainerViewConfig ac = (ApplicationContainerViewConfig)annotation;
 						this.containerViewConfigurations.add(new ContainerViewConfiguration(JButton.class, ac.titleTextKey(), ac.toolTipTextKey(), c, ac.selected(), ac.order()));
+						if (ac.selected()) {
+							ContainerViewFactory.getInstance().setDefaultContainerView(c);
+						}
 					}
 					
 				});
 			}
+			
+			//Sort by order
+			containerViewConfigurations.sort((ContainerViewConfiguration c1, ContainerViewConfiguration c2) -> c1.getOrder() - c2.getOrder());
+			
 			// TODO Auto-generated method stub
 			
 		} catch (Exception e) {

@@ -6,7 +6,7 @@ import org.example.test.views.annotations.ApplicationContainerViewConfig;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.panels.AppPanel;
 
-@ApplicationContainerViewConfig(titleTextKey = "toolbar.button.demo.2.text", toolTipTextKey = "toolbar.button.demo.2.tool.tip", order = 2, selected = false)
+@ApplicationContainerViewConfig(titleTextKey = "toolbar.button.demo.2.text", toolTipTextKey = "toolbar.button.demo.2.tool.tip", order = 3, selected = false)
 public class TreeContainerView extends AppPanel implements ApplicationModelListener {
 
 	private static final long serialVersionUID = 8543052142754893011L;

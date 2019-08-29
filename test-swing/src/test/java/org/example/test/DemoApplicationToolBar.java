@@ -1,4 +1,4 @@
-package org.example.test.views.toolbar;
+package org.example.test;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -7,11 +7,11 @@ import org.example.test.views.ApplicationViewConfiguration;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.toolbar.AppToolBar;
 
-public class ApplicationToolBar extends AppToolBar implements ApplicationModelListener {
+public class DemoApplicationToolBar extends AppToolBar implements ApplicationModelListener {
 
 	private static final long serialVersionUID = -95062186306252920L;
 	
-	public ApplicationToolBar(ApplicationViewConfiguration viewConfiguration) {
+	public DemoApplicationToolBar(ApplicationViewConfiguration viewConfiguration) {
 		super(viewConfiguration);
 	}
 	

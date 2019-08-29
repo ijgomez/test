@@ -21,6 +21,8 @@ public class ContainerViewFactory {
 	
 	private Map<Class<?>, Class<?>> views;
 	
+	private Class<?> defaultContainerView = EmptyContainerPanel.class;
+	
 	private ContainerViewFactory() {
 		this.views = Collections.synchronizedMap(new HashMap<>());
 		
@@ -28,11 +30,15 @@ public class ContainerViewFactory {
 		// TODO Auto-generated catch block
 	}
 	
+	public void setDefaultContainerView(Class<?> classEntity) {
+		this.defaultContainerView = classEntity;
+	}
+	
 	public ApplicationModelListener getContainerView(Class<?> classEntity) throws ApplicationViewException {
 		try {
 			
 			log.trace("Creating container view for the entity {}...", classEntity);
-			return (ApplicationModelListener) this.views.getOrDefault(classEntity, EmptyContainerPanel.class).newInstance();
+			return (ApplicationModelListener) this.views.getOrDefault(classEntity, this.defaultContainerView).newInstance();
 			
 		} catch (InstantiationException | IllegalAccessException e) {
 			throw new ApplicationViewException("Failed to create container view.", e);

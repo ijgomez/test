@@ -14,7 +14,6 @@ import org.example.test.views.components.frames.AppFrame;
 import org.example.test.views.components.menubar.AppMenuBar;
 import org.example.test.views.components.toolbar.AppToolBar;
 import org.example.test.views.menu.ApplicationMenuBar;
-import org.example.test.views.toolbar.ApplicationToolBar;
 
 @ApplicationViewScan(packages = {"org.example.test.demo"})
 public class DemoApplicationFrame extends AppFrame implements ApplicationModelListener {
@@ -35,7 +34,7 @@ public class DemoApplicationFrame extends AppFrame implements ApplicationModelLi
 	}
 	
 	protected AppToolBar buildToolBar() {
-		return new ApplicationToolBar(getViewConfiguration());
+		return new DemoApplicationToolBar(getViewConfiguration());
 	}
 	
 	protected ApplicationStatus buildStatusBar() {
