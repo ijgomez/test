@@ -21,11 +21,10 @@ public class DefaultApplicationToolBar extends AppToolBar implements Application
 	}
 	
 	@Override
-	public void updateView() {
+	protected void handlerUpdateView() {
 		// TODO Auto-generated method stub
 		
 	}
-
 	
 	
 }

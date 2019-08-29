@@ -19,9 +19,6 @@ import org.example.test.views.components.events.ApplicationEvent;
 import org.example.test.views.components.events.ChangeViewEvent;
 import org.example.test.views.components.helpers.LocaleHelper;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public abstract class AppToolBar extends JToolBar implements ApplicationModelListener {
 
 	private static final long serialVersionUID = 1460066304433101806L;
@@ -33,6 +30,9 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 	private ApplicationViewConfiguration viewConfiguration;
 	
 	private Map<Class<?>, Consumer<ApplicationEvent>> handlers = new HashMap<Class<?>, Consumer<ApplicationEvent>>();
+	
+	
+	private JButton selectedButton;
 	
 	public AppToolBar(ApplicationViewConfiguration viewConfiguration) {
 		this.viewConfiguration = viewConfiguration;
@@ -48,6 +48,9 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 						AppButton button;
 						button = new ChangeViewButton<>(c.getTitleTextKey(), c.getToolTipTextKey(), c.getClassContainer());
 						button.setSelected(c.isSelected());
+						if (c.isSelected()) {
+							selectedButton = button;
+						}
 						super.add(button);		
 					} else if (c.getClassElement().equals(Separator.class)) {
 						super.add(new Separator());
@@ -87,7 +90,12 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 	}
 	
 	@Override
-	public abstract void updateView();
+	public void updateView() {
+		selectedButton.requestFocusInWindow();
+		this.handlerUpdateView();
+	};
+	
+	protected abstract void handlerUpdateView();
 	
 	@Override
 	public void listener(ApplicationEvent event) { 
@@ -105,14 +113,17 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 	}
 	
 	private void selectedButtonAction(ChangeViewEvent e) {
-		Stream.of(super.getComponents()).forEach((c) -> {
-			if (c instanceof ChangeViewButton) {
-				ChangeViewButton<?> changeViewButton = (ChangeViewButton<?>) c;
-				if (changeViewButton.getClassView().equals(e.getClassEntity())) {
-					changeViewButton.setEnabled(true);
-					log.trace("enable {}", changeViewButton);
-				}
-			}
-		});
+//		Stream.of(super.getComponents()).forEach((c) -> {
+//			if (c instanceof ChangeViewButton) {
+//				ChangeViewButton<?> changeViewButton = (ChangeViewButton<?>) c;
+//				if (changeViewButton.getClassView().equals(e.getClassEntity())) {
+//					
+//					this.getRootPane().setDefaultButton(changeViewButton);
+//					
+//					//changeViewButton.setSelected(true);
+//					log.trace("enable {}", changeViewButton);
+//				}
+//			}
+//		});
 	}
 }

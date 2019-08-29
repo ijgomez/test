@@ -40,7 +40,7 @@ public class DemoApplicationToolBar extends AppToolBar implements ApplicationMod
 	}
 	
 	@Override
-	public void updateView() {
+	protected void handlerUpdateView() {
 		// TODO Auto-generated method stub
 		
 	}
