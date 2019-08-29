@@ -1,4 +1,4 @@
-package org.example.test.views.toolbar;
+package org.example.test.views.defaults;
 
 import org.example.test.views.ApplicationViewConfiguration;
 import org.example.test.views.components.ApplicationModelListener;

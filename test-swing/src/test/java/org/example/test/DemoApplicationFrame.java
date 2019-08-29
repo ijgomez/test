@@ -15,7 +15,10 @@ import org.example.test.views.components.menubar.AppMenuBar;
 import org.example.test.views.components.toolbar.AppToolBar;
 import org.example.test.views.menu.ApplicationMenuBar;
 
-@ApplicationViewScan(packages = {"org.example.test.demo"})
+@ApplicationViewScan(
+		packages = {"org.example.test.demo"},
+		resources = {"demoMessages"}
+	)
 public class DemoApplicationFrame extends AppFrame implements ApplicationModelListener {
 
 	private static final long serialVersionUID = 4661793292792888017L;

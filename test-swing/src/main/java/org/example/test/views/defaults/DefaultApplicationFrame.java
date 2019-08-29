@@ -1,8 +1,11 @@
-package org.example.test.views;
+package org.example.test.views.defaults;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
+import org.example.test.views.ApplicationInitializationDialog;
+import org.example.test.views.ApplicationStatus;
+import org.example.test.views.ApplicationViewConfiguration;
 import org.example.test.views.annotations.ApplicationViewScan;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.events.OpenFileEvent;
@@ -11,7 +14,6 @@ import org.example.test.views.components.frames.AppFrame;
 import org.example.test.views.components.menubar.AppMenuBar;
 import org.example.test.views.components.toolbar.AppToolBar;
 import org.example.test.views.menu.ApplicationMenuBar;
-import org.example.test.views.toolbar.DefaultApplicationToolBar;
 
 @ApplicationViewScan(packages = {"org.example.test.demo"})
 public class DefaultApplicationFrame extends AppFrame implements ApplicationModelListener {
