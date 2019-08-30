@@ -42,7 +42,7 @@ public class Application {
 				viewConfiguration = new ApplicationViewConfiguration();
 				viewConfiguration.load(packages);
 				
-				ResourcesFactory.getFactory().load(resources);
+				ResourcesFactory.getFactory().load(resources, null);
 				
 				constructor = className.getConstructor(ApplicationViewConfiguration.class, String[].class);
 				
