@@ -1,8 +1,6 @@
-package org.example.test.views;
+package org.example.test.views.components.dialog.init;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -11,28 +9,28 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import org.apache.commons.lang3.SystemUtils;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelImpl;
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.components.helpers.SleepHelper;
+import org.example.test.views.helpers.SleepHelper;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class ApplicationInitializationDialog extends JDialog {
+public abstract class ApplicationInitializationDialog extends JDialog {
 
 	private static final long serialVersionUID = -3495759555845880204L;
 	
 	private String[] arguments;
 	
 	private ApplicationModel model;
+	
+	private ApplicationInitializationDialogPanel initializationDialogPanel;
 
 	public ApplicationInitializationDialog(JFrame owner, String... args) {
 		super(owner);
@@ -62,13 +60,10 @@ public class ApplicationInitializationDialog extends JDialog {
 		});
 	}
 
-	private Component getInitialDialogPanel() {
-		JPanel panel;
+	private ApplicationInitializationDialogPanel getInitialDialogPanel() {
+		this.initializationDialogPanel = new ApplicationInitializationDialogPanel();
 		
-		panel = new JPanel();
-		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true));
-		// TODO Auto-generated method stub
-		return panel;
+		return this.initializationDialogPanel;
 	}
 	
 	private void executeInitializationApplication() {
@@ -98,9 +93,11 @@ public class ApplicationInitializationDialog extends JDialog {
 		SleepHelper.sleep(1000L);
 		
 		// TOOD Initialization Logical Business.
+		handlerExecuteInitializationApplication();
+		SleepHelper.sleep(1000L);
 		
 		// Configuration Shutdown Hook.
-		Runtime.getRuntime().addShutdownHook(new Thread(() -> executeShutdownHook()));
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> executeShutdownApplication()));
 		SleepHelper.sleep(1000L);
 		
 		log.info("...application loaded.");
@@ -108,10 +105,15 @@ public class ApplicationInitializationDialog extends JDialog {
 		getOwner().repaint();
 		dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 	}
+	
+	protected abstract void handlerExecuteInitializationApplication();
 
-	private void executeShutdownHook() {
+	private void executeShutdownApplication() {
 		log.trace("Executing Shutdown Hook...");
-		// TODO Configuration Shutdown Hook.
+		this.handlerExecuteShutdownApplication();
 	}
+	
+	protected abstract void handlerExecuteShutdownApplication();
+
 	
 }

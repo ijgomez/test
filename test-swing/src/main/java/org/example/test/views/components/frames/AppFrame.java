@@ -12,12 +12,12 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
-import org.example.test.views.ApplicationInitializationDialog;
 import org.example.test.views.ApplicationStatus;
 import org.example.test.views.ApplicationViewConfiguration;
 import org.example.test.views.components.ApplicationConstants;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
+import org.example.test.views.components.dialog.init.ApplicationInitializationDialog;
 import org.example.test.views.components.events.ApplicationEvent;
 import org.example.test.views.components.events.ChangeViewEvent;
 import org.example.test.views.components.events.CloseApplicationEvent;
@@ -173,35 +173,24 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 	}
 	
 	private void changeView(Class<?> classEntity) {
-		log.trace("{}", classEntity);
-		// TODO Auto-generated method stub
-		try {
-			((ApplicationModelListener) this.container).setModel(null);
-			super.remove(this.scrollPane);
-			this.container = (JComponent) classEntity.newInstance();
-			((ApplicationModelListener) this.container).setModel(this.model);
-			
-			scrollPane.setViewportView(this.container);
-			super.add(this.scrollPane, BorderLayout.CENTER);
-			super.revalidate();
-			super.repaint();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-//		((ConsoleModelListener) this.containerView).setModel(null);
-//		this.mainPanel.remove(this.scrollPane);
-//		this.containerView = this.handlerSelectionChanged(object);
-//		((ConsoleModelListener) this.containerView).setModel(this.consoleModel);
-//		
-//		this.containerView.setPreferredSize(CONTAINER_DEFAULT_DIMENSION);
-//		this.scrollPane.setViewportView(this.containerView);
-//		
-//		this.mainPanel.add(this.scrollPane, BorderLayout.CENTER);
-//		this.mainPanel.revalidate();
-//		this.mainPanel.repaint();
-		
+		ModalDialogFactory.showProgressDialog(this, () -> {
+			log.trace("{}", classEntity);
+			try {
+				((ApplicationModelListener) this.container).setModel(null);
+				super.remove(this.scrollPane);
+				this.container = (JComponent) classEntity.newInstance();
+				((ApplicationModelListener) this.container).setModel(this.model);
+				
+				scrollPane.setViewportView(this.container);
+				super.add(this.scrollPane, BorderLayout.CENTER);
+				super.revalidate();
+				super.repaint();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+
 	}
 	
 	public ApplicationViewConfiguration getViewConfiguration() {

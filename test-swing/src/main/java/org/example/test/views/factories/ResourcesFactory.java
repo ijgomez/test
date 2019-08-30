@@ -3,7 +3,7 @@ package org.example.test.views.factories;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
 
-import org.example.test.views.components.helpers.EnumHelper;
+import org.example.test.views.helpers.EnumHelper;
 import org.example.test.views.resources.ImagesResources;
 import org.example.test.views.resources.TextResources;
 

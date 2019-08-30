@@ -3,11 +3,11 @@ package org.example.test;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
-import org.example.test.views.ApplicationInitializationDialog;
 import org.example.test.views.ApplicationStatus;
 import org.example.test.views.ApplicationViewConfiguration;
 import org.example.test.views.annotations.ApplicationViewScan;
 import org.example.test.views.components.ApplicationModelListener;
+import org.example.test.views.components.dialog.init.ApplicationInitializationDialog;
 import org.example.test.views.components.events.OpenFileEvent;
 import org.example.test.views.components.events.SaveFileEvent;
 import org.example.test.views.components.frames.AppFrame;
@@ -45,7 +45,23 @@ public class DemoApplicationFrame extends AppFrame implements ApplicationModelLi
 	}
 	
 	protected ApplicationInitializationDialog buildInitializationAction() {
-		return new ApplicationInitializationDialog(this, arguments);
+		return new ApplicationInitializationDialog(this, arguments){
+
+			private static final long serialVersionUID = -8783535924054686171L;
+
+			@Override
+			protected void handlerExecuteInitializationApplication() {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			protected void handlerExecuteShutdownApplication() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		};
 	}
 
 	@Override

@@ -1,13 +1,40 @@
 package org.example.test.views.factories;
 
 import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Rectangle;
+import java.lang.Thread.UncaughtExceptionHandler;
 
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 
+import org.example.test.views.components.dialog.InformationDialogPanel;
+import org.example.test.views.components.dialog.ProgressDialogPanel;
+import org.example.test.views.components.dialog.WarningDialogPanel;
 import org.example.test.views.resources.TextResources;
 
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * Class that generates the modal windows or dialogs common to the application.
+ * 
+ * @author ijgomez
+ *
+ */
+@Slf4j
 public class ModalDialogFactory {
-	
+
+	/**
+	 * Displays the dialog to confirm the exit of the application.
+	 * 
+	 * @param parentComponent Top component or parent.
+	 * @return Result of the confirmation dialogue.
+	 */
 	public static boolean showConfirmExitDialog(Component parentComponent) {
 		TextResources textResources = ResourcesFactory.getFactory().text();
 		
@@ -15,4 +42,117 @@ public class ModalDialogFactory {
 		
 		return (showConfirmDialog == JOptionPane.YES_OPTION);
 	}
+	
+	/**
+	 * Displays a progress dialog while performing an operation.
+	 * @param frame  Top component or parent.
+	 * @param runnable operation.
+	 */
+	public static void showProgressDialog(JFrame frame, Runnable runnable) {
+		showProgressDialog(frame, runnable, null, null);
+	}
+	
+	public static void showProgressDialog(JFrame frame, Runnable runnable, String text, Integer width) {
+		final JDialog dialog;
+		final JPanel progessDialogPanel;
+		Thread thread;
+		
+		progessDialogPanel = new ProgressDialogPanel(text, width);
+		
+		
+		dialog = new JDialog(frame);
+		dialog.setBounds(new Rectangle(frame.getLocation().x + (frame.getBounds().width / 2) - 221, frame.getLocation().y + (frame.getBounds().height / 2) - 75, 442, 150));
+		dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		dialog.add(progessDialogPanel);
+		dialog.setResizable(false);
+		dialog.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		dialog.setUndecorated(true);
+		dialog.setModal(true);
+		
+		thread = new Thread(runnable, "PROGRESS_THREAD"){
+			@Override
+			public void run() {
+				super.run();
+				dialog.setVisible(false);
+				dialog.dispose();
+			}
+		};
+		thread.setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+			
+			public void uncaughtException(Thread t, Throwable th) {
+				log.error("Fail in operation:", th);
+				dialog.setVisible(false);
+				dialog.dispose();
+				ModalDialogFactory.showErrorDialog(frame, th);
+			}
+		});
+		thread.start();
+		dialog.setVisible(true);
+	}
+	
+	public static void showErrorDialog(JFrame frame, Throwable th) {
+		// TODO Auto-generated catch block
+		try {
+			showWarningDialog(frame, th.getCause().getMessage());
+		} catch (Exception e) {
+			showWarningDialog(frame, "Fail in application");
+		} 
+		
+	}
+	
+	public static void showWarningDialog(JComponent component, String menssage) {
+		showWarningDialog((JFrame) SwingUtilities.getRoot(component), menssage);
+	}
+	
+	public static void showInformationDialog(JComponent component, String menssage) {
+		showInformationDialog((JFrame) SwingUtilities.getRoot(component), menssage);
+	}
+	
+	public static void showWarningDialog(JFrame frame, String menssage) {
+		final JDialog dialog;
+		
+		dialog = new JDialog(frame);
+		dialog.setSize(450, 200);
+		dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		dialog.add(new WarningDialogPanel(menssage){
+			private static final long serialVersionUID = -1309782158613454668L;
+			@Override
+			public void handlerConfirmMessageAction() {
+				dialog.setVisible(false);
+				dialog.dispose();
+			}
+		});
+		dialog.setResizable(false);
+		dialog.setUndecorated(true);
+		dialog.setModal(true);
+		dialog.setLocationRelativeTo(frame);
+		
+		dialog.setVisible(true);
+	}
+	
+	public static void showInformationDialog(JFrame frame, String menssage) {
+		final JDialog dialog;
+		
+		dialog = new JDialog(frame);
+		dialog.setSize(450, 200);
+		dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		dialog.add(new InformationDialogPanel(menssage) {
+
+			private static final long serialVersionUID = -3190135355156187022L;
+
+			@Override
+			public void handlerConfirmMessageAction() {
+				dialog.setVisible(false);
+				dialog.dispose();
+			}
+		});
+		dialog.setResizable(false);
+		dialog.setUndecorated(true);
+		dialog.setModal(true);
+		dialog.setLocationRelativeTo(frame);
+		
+		dialog.setVisible(true);
+	}
+		
+		
 }

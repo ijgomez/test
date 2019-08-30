@@ -26,7 +26,7 @@ public class Application {
 			ApplicationViewConfiguration viewConfiguration;
 			Constructor<?> constructor;
 			String[] packages = null;
-			String[] resources = null;
+			String[] textResources = null;
 			
 			try {
 				setLookAndFeelApplication();
@@ -37,12 +37,12 @@ public class Application {
 						.orElseThrow(() -> new RuntimeException("Class not valid. Class not annotated!"));//TODO Change to Exception
 				
 				packages = ((ApplicationViewScan) annotation).packages();
-				resources = ((ApplicationViewScan) annotation).textResources();
+				textResources = ((ApplicationViewScan) annotation).textResources();
 				
 				viewConfiguration = new ApplicationViewConfiguration();
 				viewConfiguration.load(packages);
 				
-				ResourcesFactory.getFactory().load(resources, null);
+				ResourcesFactory.getFactory().load(textResources, null);
 				
 				constructor = className.getConstructor(ApplicationViewConfiguration.class, String[].class);
 				
