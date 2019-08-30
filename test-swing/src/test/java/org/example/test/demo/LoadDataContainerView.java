@@ -6,7 +6,7 @@ import org.example.test.views.annotations.ApplicationContainerViewConfig;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.panels.AppPanel;
 
-@ApplicationContainerViewConfig(titleTextKey = "toolbar.button.demo.3.text", toolTipTextKey = "toolbar.button.demo.3.tool.tip", order = 1, selected = false)
+@ApplicationContainerViewConfig(titleTextKey = "toolbar.button.container.upload.text", toolTipTextKey = "toolbar.button.container.upload.tool.tip", order = 1, selected = false)
 public class LoadDataContainerView extends AppPanel implements ApplicationModelListener {
 
 	private static final long serialVersionUID = 8543052142754893011L;
