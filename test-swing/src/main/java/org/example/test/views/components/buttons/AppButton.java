@@ -1,19 +1,19 @@
 package org.example.test.views.components.buttons;
 
 import java.awt.Cursor;
-import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.components.helpers.LocaleHelper;
+import org.example.test.views.factories.ResourcesFactory;
+import org.example.test.views.resources.TextResources;
 
 public abstract class AppButton extends JButton implements ApplicationModelListener {
 
 	private static final long serialVersionUID = 4106812624638240974L;
 	
-	private ResourceBundle messagesResources = LocaleHelper.getMessagesResources();
+	private TextResources textResources = ResourcesFactory.getFactory().text();
 	
 	protected ApplicationModel model;
 	
@@ -28,9 +28,9 @@ public abstract class AppButton extends JButton implements ApplicationModelListe
 	}
 	
 	private void initializateGUI() {
-		super.setText(messagesResources.getString(titleTextKey));
+		super.setText(textResources.getString(titleTextKey));
 		if (toolTipTextKey != null) {
-			super.setToolTipText(messagesResources.getString(toolTipTextKey));
+			super.setToolTipText(textResources.getString(toolTipTextKey));
 		}
 		super.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.handlerInitializateGUI();

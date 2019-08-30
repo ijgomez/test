@@ -12,8 +12,8 @@ public class CloseMenuItem extends AppMenuItem implements ApplicationModelListen
 	private static final long serialVersionUID = 5756386904187105201L;
 	
 	protected void initializateGUI() {
-		super.setText(messagesResources.getString("menu.button.close.text"));
-		super.setToolTipText(messagesResources.getString("menu.button.close.tool.tip"));
+		super.setText(textResources.getString("menu.button.close.text"));
+		super.setToolTipText(textResources.getString("menu.button.close.tool.tip"));
 		super.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		super.addActionListener((e) -> model.notify(new CloseApplicationEvent()));
 	}

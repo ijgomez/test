@@ -6,7 +6,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
 import javax.swing.JComponent;
@@ -22,11 +21,12 @@ import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.events.ApplicationEvent;
 import org.example.test.views.components.events.ChangeViewEvent;
 import org.example.test.views.components.events.CloseApplicationEvent;
-import org.example.test.views.components.helpers.LocaleHelper;
 import org.example.test.views.components.menubar.AppMenuBar;
 import org.example.test.views.components.toolbar.AppToolBar;
 import org.example.test.views.factories.ContainerViewFactory;
 import org.example.test.views.factories.ModalDialogFactory;
+import org.example.test.views.factories.ResourcesFactory;
+import org.example.test.views.resources.TextResources;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,7 +35,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 
 	private static final long serialVersionUID = 5279263641839891108L;
 
-	protected ResourceBundle messagesResources = LocaleHelper.getMessagesResources();
+	protected TextResources textResources = ResourcesFactory.getFactory().text();
 	
 	protected ApplicationModel model;
 	
@@ -78,7 +78,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 		scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(this.container);
 		
-		super.setTitle(messagesResources.getString("application.title"));
+		super.setTitle(textResources.getString("application.title"));
 		if (this.menuBar != null) {
 			super.setJMenuBar(this.menuBar);
 		}

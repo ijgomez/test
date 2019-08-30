@@ -3,7 +3,6 @@ package org.example.test.views.components.toolbar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
@@ -17,13 +16,14 @@ import org.example.test.views.components.buttons.AppButton;
 import org.example.test.views.components.buttons.ChangeViewButton;
 import org.example.test.views.components.events.ApplicationEvent;
 import org.example.test.views.components.events.ChangeViewEvent;
-import org.example.test.views.components.helpers.LocaleHelper;
+import org.example.test.views.factories.ResourcesFactory;
+import org.example.test.views.resources.TextResources;
 
 public abstract class AppToolBar extends JToolBar implements ApplicationModelListener {
 
 	private static final long serialVersionUID = 1460066304433101806L;
 
-	protected ResourceBundle messagesResources = LocaleHelper.getMessagesResources();
+	protected TextResources textResources = ResourcesFactory.getFactory().text();
 	
 	protected ApplicationModel model;
 	

@@ -10,7 +10,7 @@ public class EmptyContainerPanel extends AppContainerView implements Application
 
 	@Override
 	protected void initializateGUI() {
-		super.add(new JLabel(messagesResources.getString("container.empty.text")));
+		super.add(new JLabel(textResources.getString("container.empty.text")));
 	}
 	
 	@Override

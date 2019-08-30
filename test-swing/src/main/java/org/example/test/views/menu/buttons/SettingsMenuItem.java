@@ -12,8 +12,8 @@ public class SettingsMenuItem extends AppMenuItem implements ApplicationModelLis
 	private static final long serialVersionUID = 1266354841616399872L;
 
 	protected void initializateGUI() {
-		super.setText(messagesResources.getString("menu.button.settings.text"));
-		super.setToolTipText(messagesResources.getString("menu.button.settings.tool.tip"));
+		super.setText(textResources.getString("menu.button.settings.text"));
+		super.setToolTipText(textResources.getString("menu.button.settings.tool.tip"));
 		super.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		super.addActionListener((e) -> model.notify(new OpenSettingsDialogEvent()));
 	}

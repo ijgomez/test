@@ -2,7 +2,6 @@ package org.example.test.views.components.panels;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
 import javax.swing.JPanel;
@@ -10,13 +9,14 @@ import javax.swing.JPanel;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.events.ApplicationEvent;
-import org.example.test.views.components.helpers.LocaleHelper;
+import org.example.test.views.factories.ResourcesFactory;
+import org.example.test.views.resources.TextResources;
 
 public abstract class AppPanel extends JPanel implements ApplicationModelListener {
 
 	private static final long serialVersionUID = 1856853307207687798L;
 
-	protected ResourceBundle messagesResources = LocaleHelper.getMessagesResources();
+	protected TextResources textResources = ResourcesFactory.getFactory().text();
 	
 	protected ApplicationModel model;
 	

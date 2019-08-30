@@ -17,11 +17,11 @@ public class TextResources {
 		}
 	}
 	
-	public String getText(String key) {
+	public String getString(String key) {
 		return this.resources.get(key);
 	}
 
-	public String getText(String key, String...parameters) {
+	public String getString(String key, String...parameters) {
 		// TODO Auto-generated constructor stub
 		return null;
 	}

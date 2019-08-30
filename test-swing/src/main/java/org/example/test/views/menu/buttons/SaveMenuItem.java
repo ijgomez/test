@@ -12,8 +12,8 @@ public class SaveMenuItem extends AppMenuItem implements ApplicationModelListene
 	private static final long serialVersionUID = -3411334708945643057L;
 
 	protected void initializateGUI() {
-		super.setText(messagesResources.getString("menu.button.save.text"));
-		super.setToolTipText(messagesResources.getString("menu.button.save.tool.tip"));
+		super.setText(textResources.getString("menu.button.save.text"));
+		super.setToolTipText(textResources.getString("menu.button.save.tool.tip"));
 		super.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		super.addActionListener((e) -> model.notify(new SaveFileEvent()));
 	}

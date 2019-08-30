@@ -11,12 +11,14 @@ import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.events.ApplicationEvent;
 import org.example.test.views.components.helpers.LocaleHelper;
+import org.example.test.views.factories.ResourcesFactory;
+import org.example.test.views.resources.TextResources;
 
 public abstract class AppMenuBar extends JMenuBar implements ApplicationModelListener {
 
 	private static final long serialVersionUID = -5289274357066149266L;
 
-	protected ResourceBundle messagesResources = LocaleHelper.getMessagesResources();
+	protected TextResources textResources = ResourcesFactory.getFactory().text();
 	
 	protected ApplicationModel model;
 

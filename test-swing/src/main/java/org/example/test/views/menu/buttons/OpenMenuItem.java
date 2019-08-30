@@ -12,8 +12,8 @@ public class OpenMenuItem extends AppMenuItem implements ApplicationModelListene
 	private static final long serialVersionUID = -4350920360796110252L;
 
 	protected void initializateGUI() {
-		super.setText(messagesResources.getString("menu.button.open.text"));
-		super.setToolTipText(messagesResources.getString("menu.button.open.tool.tip"));
+		super.setText(textResources.getString("menu.button.open.text"));
+		super.setToolTipText(textResources.getString("menu.button.open.tool.tip"));
 		super.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		super.addActionListener((e) -> model.notify(new OpenFileEvent()));
 	}
