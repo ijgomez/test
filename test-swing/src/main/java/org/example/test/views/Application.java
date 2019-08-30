@@ -12,6 +12,7 @@ import javax.swing.UIManager;
 import org.apache.commons.lang3.SystemUtils;
 import org.example.test.views.annotations.ApplicationViewScan;
 import org.example.test.views.components.frames.AppFrame;
+import org.example.test.views.factories.ResourcesFactory;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,6 +26,7 @@ public class Application {
 			ApplicationViewConfiguration viewConfiguration;
 			Constructor<?> constructor;
 			String[] packages = null;
+			String[] resources = null;
 			
 			try {
 				setLookAndFeelApplication();
@@ -35,9 +37,12 @@ public class Application {
 						.orElseThrow(() -> new RuntimeException("Class not valid. Class not annotated!"));//TODO Change to Exception
 				
 				packages = ((ApplicationViewScan) annotation).packages();
+				resources = ((ApplicationViewScan) annotation).resources();
 				
 				viewConfiguration = new ApplicationViewConfiguration();
 				viewConfiguration.load(packages);
+				
+				ResourcesFactory.getFactory().load(resources);
 				
 				constructor = className.getConstructor(ApplicationViewConfiguration.class, String[].class);
 				
