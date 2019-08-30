@@ -37,7 +37,7 @@ public class Application {
 						.orElseThrow(() -> new RuntimeException("Class not valid. Class not annotated!"));//TODO Change to Exception
 				
 				packages = ((ApplicationViewScan) annotation).packages();
-				resources = ((ApplicationViewScan) annotation).resources();
+				resources = ((ApplicationViewScan) annotation).textResources();
 				
 				viewConfiguration = new ApplicationViewConfiguration();
 				viewConfiguration.load(packages);

@@ -11,6 +11,6 @@ public @interface ApplicationViewScan {
 
 	public String[] packages();
 	
-	public String[] resources() default {};
+	public String[] textResources() default {};
 	
 }

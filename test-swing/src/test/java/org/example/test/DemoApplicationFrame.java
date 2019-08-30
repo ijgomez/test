@@ -17,7 +17,7 @@ import org.example.test.views.menu.ApplicationMenuBar;
 
 @ApplicationViewScan(
 		packages = {"org.example.test.demo"},
-		resources = {"demoMessages"}
+		textResources = {"demoMessages"}
 	)
 public class DemoApplicationFrame extends AppFrame implements ApplicationModelListener {
 
