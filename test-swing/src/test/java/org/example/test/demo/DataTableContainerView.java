@@ -1,5 +1,7 @@
 package org.example.test.demo;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JLabel;
 
 import org.example.test.views.annotations.ApplicationContainerViewConfig;
@@ -14,7 +16,9 @@ public class DataTableContainerView extends AppPanel implements ApplicationModel
 	@Override
 	protected void initializateGUI() {
 		// TODO Auto-generated method stub
-		super.add(new JLabel("Datatable container"));
+		super.setLayout(new BorderLayout());
+		super.add(new JLabel("Datatable container"), BorderLayout.NORTH);
+		super.add(new DemoDataTable(), BorderLayout.CENTER);
 	}
 
 	@Override
