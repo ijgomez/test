@@ -3,15 +3,17 @@ package org.example.test.views.factories;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Rectangle;
-import java.lang.Thread.UncaughtExceptionHandler;
+import java.io.File;
 
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+import javax.swing.filechooser.FileSystemView;
 
 import org.example.test.views.components.dialog.InformationDialogPanel;
 import org.example.test.views.components.dialog.ProgressDialogPanel;
@@ -46,15 +48,26 @@ public class ModalDialogFactory {
 	/**
 	 * Displays a progress dialog while performing an operation.
 	 * @param frame  Top component or parent.
-	 * @param runnable operation.
+	 * @param runnable Operation.
 	 */
 	public static void showProgressDialog(JFrame frame, Runnable runnable) {
-		showProgressDialog(frame, runnable, null, null);
+		TextResources textResources = ResourcesFactory.getFactory().text();
+		
+		
+		showProgressDialog(frame, runnable, textResources.getString("dialog.progress.text"), null);
 	}
 	
+	/**
+	 * Displays a progress dialog while performing an operation.
+	 * @param frame Top component or parent.
+	 * @param runnable Operation.
+	 * @param text Title.
+	 * @param width Width of dialog.
+	 */
 	public static void showProgressDialog(JFrame frame, Runnable runnable, String text, Integer width) {
 		final JDialog dialog;
 		final JPanel progessDialogPanel;
+		TextResources textResources = ResourcesFactory.getFactory().text();
 		Thread thread;
 		
 		progessDialogPanel = new ProgressDialogPanel(text, width);
@@ -66,7 +79,8 @@ public class ModalDialogFactory {
 		dialog.add(progessDialogPanel);
 		dialog.setResizable(false);
 		dialog.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		dialog.setUndecorated(true);
+		dialog.setTitle(textResources.getString("application.title"));
+//		dialog.setUndecorated(true);
 		dialog.setModal(true);
 		
 		thread = new Thread(runnable, "PROGRESS_THREAD"){
@@ -77,14 +91,11 @@ public class ModalDialogFactory {
 				dialog.dispose();
 			}
 		};
-		thread.setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
-			
-			public void uncaughtException(Thread t, Throwable th) {
-				log.error("Fail in operation:", th);
-				dialog.setVisible(false);
-				dialog.dispose();
-				ModalDialogFactory.showErrorDialog(frame, th);
-			}
+		thread.setUncaughtExceptionHandler((Thread t, Throwable th) -> {
+			log.error("Fail in operation:", th);
+			dialog.setVisible(false);
+			dialog.dispose();
+			ModalDialogFactory.showErrorDialog(frame, th);
 		});
 		thread.start();
 		dialog.setVisible(true);
@@ -152,6 +163,34 @@ public class ModalDialogFactory {
 		dialog.setLocationRelativeTo(frame);
 		
 		dialog.setVisible(true);
+	}
+	
+	public static File showOpenFileDialog(Component parent) {
+		JFileChooser jfc;
+		
+		jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+//		jfc.setDialogTitle("Choose a directory to save your file: ");
+//		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		if (jfc.showOpenDialog(parent) == JFileChooser.APPROVE_OPTION) {
+			return jfc.getSelectedFile();
+		} 
+		return null;
+		
+	}
+	
+	public static File showSaveFileDialog(Component parent) {
+		JFileChooser jfc;
+		
+		jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+//		jfc.setDialogTitle("Choose a directory to save your file: ");
+//		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		if (jfc.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION) {
+			return jfc.getSelectedFile();
+		} 
+		return null;
+		
 	}
 		
 		

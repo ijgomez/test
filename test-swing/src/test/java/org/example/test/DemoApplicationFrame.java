@@ -1,7 +1,6 @@
 package org.example.test;
 
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileSystemView;
+import java.io.File;
 
 import org.example.test.views.ApplicationStatus;
 import org.example.test.views.ApplicationViewConfiguration;
@@ -13,12 +12,16 @@ import org.example.test.views.components.events.SaveFileEvent;
 import org.example.test.views.components.frames.AppFrame;
 import org.example.test.views.components.menubar.AppMenuBar;
 import org.example.test.views.components.toolbar.AppToolBar;
+import org.example.test.views.factories.ModalDialogFactory;
 import org.example.test.views.menu.ApplicationMenuBar;
+
+import lombok.extern.slf4j.Slf4j;
 
 @ApplicationViewScan(
 		packages = {"org.example.test.demo"},
 		textResources = {"demoMessages"}
 	)
+@Slf4j
 public class DemoApplicationFrame extends AppFrame implements ApplicationModelListener {
 
 	private static final long serialVersionUID = 4661793292792888017L;
@@ -77,28 +80,22 @@ public class DemoApplicationFrame extends AppFrame implements ApplicationModelLi
 	}
 
 	private void openFileDialog() {
-		JFileChooser jfc;
+		File f;
 		
-		jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-//		jfc.setDialogTitle("Choose a directory to save your file: ");
-//		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-		if (jfc.showOpenDialog(getParent()) == JFileChooser.APPROVE_OPTION) {
-			System.out.println(jfc.getSelectedFile().getAbsolutePath());
+		f = ModalDialogFactory.showOpenFileDialog(getParent());
+		if (f != null) {
+			log.trace("File: {}", f.getAbsolutePath());
 		}
 		// TODO Auto-generated method stub
 		
 	}
 	
 	private void saveFileDialog() {
-		JFileChooser jfc;
+		File f;
 		
-		jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-//		jfc.setDialogTitle("Choose a directory to save your file: ");
-//		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-		if (jfc.showSaveDialog(getParent()) == JFileChooser.APPROVE_OPTION) {
-			System.out.println(jfc.getSelectedFile().getAbsolutePath());
+		f = ModalDialogFactory.showSaveFileDialog(getParent());
+		if (f != null) {
+			log.trace("File: {}", f.getAbsolutePath());
 		}
 		// TODO Auto-generated method stub
 
