@@ -16,9 +16,22 @@ import org.example.test.views.factories.ResourcesFactory;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Class that executes the application, reading the different configuration
+ * options (annotations, parameters, configuration files, ...).
+ * 
+ * @author jizquierdo
+ *
+ */
 @Slf4j
 public class Application {
 
+	/**
+	 * Application execution method.
+	 * 
+	 * @param className Main Class.
+	 * @param args      Application execution method.
+	 */
 	public static void run(Class<?> className, String... args) {
 		
 		SwingUtilities.invokeLater(() -> {
@@ -60,6 +73,9 @@ public class Application {
       
 	}
 
+	/**
+	 * Method that configures the visual styles of the application.
+	 */
 	private static void setLookAndFeelApplication() {
 		try {
 			if (SystemUtils.IS_OS_MAC_OSX) {

@@ -33,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class AppFrame extends JFrame implements ApplicationModelListener, ApplicationConstants {
 
+	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = 5279263641839891108L;
 
 	protected TextResources textResources = ResourcesFactory.getFactory().text();
@@ -64,6 +65,9 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 		this.registerEventListeners();
 	}
 
+	/**
+	 * Method that contains the definition of the visual elements of the component.
+	 */
 	private void initializateGUI() {
 		
 		

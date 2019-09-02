@@ -24,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DemoApplicationFrame extends AppFrame implements ApplicationModelListener {
 
+	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = 4661793292792888017L;
 
 	private String[] arguments;
@@ -50,6 +51,7 @@ public class DemoApplicationFrame extends AppFrame implements ApplicationModelLi
 	protected ApplicationInitializationDialog buildInitializationAction() {
 		return new ApplicationInitializationDialog(this, arguments){
 
+			/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 			private static final long serialVersionUID = -8783535924054686171L;
 
 			@Override

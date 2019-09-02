@@ -126,7 +126,10 @@ public class ModalDialogFactory {
 		dialog.setSize(450, 200);
 		dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		dialog.add(new WarningDialogPanel(menssage){
+
+			/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 			private static final long serialVersionUID = -1309782158613454668L;
+			
 			@Override
 			public void handlerConfirmMessageAction() {
 				dialog.setVisible(false);
@@ -149,6 +152,7 @@ public class ModalDialogFactory {
 		dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		dialog.add(new InformationDialogPanel(menssage) {
 
+			/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 			private static final long serialVersionUID = -3190135355156187022L;
 
 			@Override

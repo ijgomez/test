@@ -8,6 +8,7 @@ import org.example.test.views.resources.TextResources;
 
 public class DialogPanel extends JPanel {
 
+	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = -6738536289459473508L;
 	
 	private TextResources textResources = ResourcesFactory.getFactory().text();
@@ -22,7 +23,10 @@ public class DialogPanel extends JPanel {
 		// TODO Auto-generated constructor stub
 		this.initializateGUI(text);
 	}
-	
+
+	/**
+	 * Method that contains the definition of the visual elements of the component.
+	 */
 	private void initializateGUI(String name) {
 		
 		this.iconStatus = new JLabel();

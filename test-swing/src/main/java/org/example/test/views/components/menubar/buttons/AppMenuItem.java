@@ -9,6 +9,7 @@ import org.example.test.views.resources.TextResources;
 
 public abstract class AppMenuItem extends JMenuItem implements ApplicationModelListener {
 
+	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = 7730448020444982488L;
 	
 	protected TextResources textResources = ResourcesFactory.getFactory().text();
@@ -19,6 +20,9 @@ public abstract class AppMenuItem extends JMenuItem implements ApplicationModelL
 		this.initializateGUI();
 	}
 
+	/**
+	 * Method that contains the definition of the visual elements of the component.
+	 */
 	protected abstract void initializateGUI();
 	
 	@Override

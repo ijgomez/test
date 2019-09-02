@@ -16,17 +16,33 @@ import org.example.test.views.factories.ContainerViewFactory;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Class that models the information that the application needs to configure the
+ * different windows and user interface options.
+ * 
+ * @author jizquierdo
+ *
+ */
 @Slf4j
 public class ApplicationViewConfiguration {
 
+	/** List of configurations of the different main views of the application. */
 	private List<ContainerViewConfiguration> containerViewConfigurations;
 	
+	/**
+	 * New Instance.
+	 */
 	public ApplicationViewConfiguration() {
-		this.containerViewConfigurations = new ArrayList<ContainerViewConfiguration>();
-		// TODO Auto-generated constructor stub
+		this.containerViewConfigurations = new ArrayList<>();
 	}
 	
-	public void load(String[] packages) {
+	/**
+	 * Method that scans the different class packages, in search of the annotations
+	 * with the configuration of the views.
+	 * 
+	 * @param packages Packages.
+	 */
+	public void load(String... packages) {
 		log.debug("Loading view configuration from annotated class...");
 		log.debug("Scan packages: " + Arrays.toString(packages));
 		try {
