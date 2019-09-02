@@ -26,6 +26,7 @@ import org.example.test.views.components.toolbar.AppToolBar;
 import org.example.test.views.factories.ContainerViewFactory;
 import org.example.test.views.factories.ModalDialogFactory;
 import org.example.test.views.factories.ResourcesFactory;
+import org.example.test.views.helpers.SleepHelper;
 import org.example.test.views.resources.TextResources;
 
 import lombok.extern.slf4j.Slf4j;
@@ -187,6 +188,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 				
 				scrollPane.setViewportView(this.container);
 				super.add(this.scrollPane, BorderLayout.CENTER);
+				SleepHelper.sleep(1000);
 				super.revalidate();
 				super.repaint();
 			} catch (Exception e) {

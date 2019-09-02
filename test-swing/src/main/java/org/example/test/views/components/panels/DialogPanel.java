@@ -1,5 +1,9 @@
 package org.example.test.views.components.panels;
 
+import java.awt.Color;
+import java.awt.Rectangle;
+
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -18,10 +22,16 @@ public class DialogPanel extends JPanel {
 	private JLabel nameStatus;
 	
 	private JLabel textStatus;
+	
+	private Integer width = 400;
 
 	public DialogPanel(String text, Integer width) {
-		// TODO Auto-generated constructor stub
+		this.width = width;
 		this.initializateGUI(text);
+	}
+	
+	public DialogPanel(String text) {
+		this(text, 400);
 	}
 
 	/**
@@ -30,9 +40,24 @@ public class DialogPanel extends JPanel {
 	private void initializateGUI(String name) {
 		
 		this.iconStatus = new JLabel();
-		this.nameStatus = new JLabel(name);
-		this.textStatus = new JLabel();
+		this.iconStatus.setBounds(new Rectangle(0,0,92,78));
+		this.iconStatus.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
+		this.nameStatus = new JLabel(name);	
+		this.nameStatus.setBounds(new Rectangle(93, 15, (this.width-120), 20));
+		this.nameStatus.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		this.textStatus = new JLabel();
+		this.textStatus.setBounds(new Rectangle(93, 32, (this.width-120), 20));
+		this.textStatus.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		
+		
+//		this.iconStatus = new JLabel();
+//		this.nameStatus = new JLabel(name);
+//		this.textStatus = new JLabel();
+		
+//		super.setLayout(null);
 		super.add(iconStatus);
 		super.add(nameStatus);
 		super.add(textStatus);
