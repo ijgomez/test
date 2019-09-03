@@ -1,13 +1,12 @@
 package org.example.test.views.components.panels;
 
-import java.awt.Color;
 import java.awt.Rectangle;
 
-import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.example.test.views.factories.ResourcesFactory;
+import org.example.test.views.resources.ImagesResources;
 import org.example.test.views.resources.TextResources;
 
 public class DialogPanel extends JPanel {
@@ -17,11 +16,13 @@ public class DialogPanel extends JPanel {
 	
 	private TextResources textResources = ResourcesFactory.getFactory().text();
 	
-	private JLabel iconStatus;
+	private ImagesResources imagesResources = ResourcesFactory.getFactory().images();
 	
-	private JLabel nameStatus;
+	private JLabel iconStatusLabel;
 	
-	private JLabel textStatus;
+	private JLabel nameStatusLabel;
+	
+	private JLabel textStatusLabel;
 	
 	private Integer width = 400;
 
@@ -39,36 +40,49 @@ public class DialogPanel extends JPanel {
 	 */
 	private void initializateGUI(String name) {
 		
-		this.iconStatus = new JLabel();
-		this.iconStatus.setBounds(new Rectangle(0,0,92,78));
-		this.iconStatus.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.iconStatusLabel = new JLabel();
+		this.iconStatusLabel.setBounds(new Rectangle(0, 0, 92, 78));
+
+		this.nameStatusLabel = new JLabel(name);
+		this.nameStatusLabel.setBounds(new Rectangle(93, 15, (this.width - 120), 20));
+
+		this.textStatusLabel = new JLabel();
+		this.textStatusLabel.setBounds(new Rectangle(93, 32, (this.width - 120), 20));
 		
-		this.nameStatus = new JLabel(name);	
-		this.nameStatus.setBounds(new Rectangle(93, 15, (this.width-120), 20));
-		this.nameStatus.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		
-		this.textStatus = new JLabel();
-		this.textStatus.setBounds(new Rectangle(93, 32, (this.width-120), 20));
-		this.textStatus.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		
-		
-		
-//		this.iconStatus = new JLabel();
-//		this.nameStatus = new JLabel(name);
-//		this.textStatus = new JLabel();
-		
-//		super.setLayout(null);
-		super.add(iconStatus);
-		super.add(nameStatus);
-		super.add(textStatus);
+		super.setLayout(null);
+		super.add(this.iconStatusLabel);
+		super.add(this.nameStatusLabel);
+		super.add(this.textStatusLabel);
 		
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void setLoadingView() {
 
-	public void setInProgressView() {
-		
-		this.textStatus.setText(textResources.getString("dialog.progress.status.progress.text"));
-		// TODO Auto-generated method stub
+//		this.iconStatusLabel.setIcon(ResourcesFactory.getImageIcon(ImagePathFactory.Components.Dialog.Process.LOADING));		
+		this.textStatusLabel.setText("En espera");
 		
 	}
+
+	public void setInProgressView() {
+		this.iconStatusLabel.setIcon(imagesResources.getImageIcon("dialog.progress.status.process.icon"));		
+		this.textStatusLabel.setText(textResources.getString("dialog.progress.status.process.text"));
+	}
+	
+	public void setErrorView(Throwable th) {
+
+//		this.iconStatusLabel.setIcon(ResourcesFactory.getImageIcon(ImagePathFactory.Components.Dialog.Process.IN_PROCESS));
+			this.textStatusLabel.setText(th.getMessage());
+			
+
+	}
+	
+	public void setCompleteView() {
+		
+//		this.iconStatusLabel.setIcon(ResourcesFactory.getImageIcon(ImagePathFactory.Components.Dialog.Process.COMPLETED));
+		this.textStatusLabel.setText("Completado");
+		
+
+	}
+
 }

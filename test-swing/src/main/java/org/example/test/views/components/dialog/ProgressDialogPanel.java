@@ -1,5 +1,7 @@
 package org.example.test.views.components.dialog;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 
 import org.example.test.views.components.panels.DialogPanel;
@@ -24,6 +26,7 @@ public class ProgressDialogPanel extends JPanel {
 		dialogPanel = new DialogPanel(text);
 		dialogPanel.setInProgressView();
 		
-		super.add(dialogPanel);
+		super.setLayout(new BorderLayout());
+		super.add(dialogPanel, BorderLayout.CENTER);
 	}
 }
