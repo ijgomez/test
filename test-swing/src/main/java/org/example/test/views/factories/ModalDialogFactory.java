@@ -2,6 +2,7 @@ package org.example.test.views.factories;
 
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.io.File;
 
@@ -30,6 +31,8 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class ModalDialogFactory {
+	
+	private static final Dimension DEFAULT_DIALOG_SIZE = new Dimension(450, 200);
 
 	/**
 	 * Displays the dialog to confirm the exit of the application.
@@ -123,7 +126,7 @@ public class ModalDialogFactory {
 		final JDialog dialog;
 		
 		dialog = new JDialog(frame);
-		dialog.setSize(450, 200);
+		dialog.setSize(DEFAULT_DIALOG_SIZE);
 		dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		dialog.add(new WarningDialogPanel(menssage){
 
@@ -148,7 +151,7 @@ public class ModalDialogFactory {
 		final JDialog dialog;
 		
 		dialog = new JDialog(frame);
-		dialog.setSize(450, 200);
+		dialog.setSize(DEFAULT_DIALOG_SIZE);
 		dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		dialog.add(new InformationDialogPanel(menssage) {
 
