@@ -13,6 +13,12 @@ public class ProgressDialogPanel extends JPanel {
 	
 	private DialogPanel dialogPanel;
 
+	/**
+	 * New Instance.
+	 * 
+	 * @param text  Text of dialog.
+	 * @param width Width of dialog.
+	 */
 	public ProgressDialogPanel(String text, Integer width) {
 		this.initializateGUI(text, width);
 	}
@@ -23,7 +29,7 @@ public class ProgressDialogPanel extends JPanel {
 	private void initializateGUI(String text, Integer width) {
 		// TODO Auto-generated constructor stub
 
-		dialogPanel = new DialogPanel(text);
+		dialogPanel = new DialogPanel(text, width);
 		dialogPanel.setInProgressView();
 		
 		super.setLayout(new BorderLayout());

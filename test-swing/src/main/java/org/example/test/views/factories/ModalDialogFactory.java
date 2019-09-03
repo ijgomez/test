@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Class that generates the modal windows or dialogs common to the application.
  * 
- * @author ijgomez
+ * @author jizquierdo
  *
  */
 @Slf4j
@@ -50,7 +50,8 @@ public class ModalDialogFactory {
 	
 	/**
 	 * Displays a progress dialog while performing an operation.
-	 * @param frame  Top component or parent.
+	 * 
+	 * @param frame    Top component or parent.
 	 * @param runnable Operation.
 	 */
 	public static void showProgressDialog(JFrame frame, Runnable runnable) {
@@ -62,10 +63,11 @@ public class ModalDialogFactory {
 	
 	/**
 	 * Displays a progress dialog while performing an operation.
-	 * @param frame Top component or parent.
+	 * 
+	 * @param frame    Top component or parent.
 	 * @param runnable Operation.
-	 * @param text Title.
-	 * @param width Width of dialog.
+	 * @param text     Title.
+	 * @param width    Width of dialog.
 	 */
 	public static void showProgressDialog(JFrame frame, Runnable runnable, String text, Integer width) {
 		final JDialog dialog;
