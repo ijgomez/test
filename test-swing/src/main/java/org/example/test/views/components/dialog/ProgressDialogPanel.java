@@ -2,6 +2,7 @@ package org.example.test.views.components.dialog;
 
 import java.awt.BorderLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import org.example.test.views.components.panels.DialogPanel;
@@ -12,27 +13,29 @@ public class ProgressDialogPanel extends JPanel {
 	private static final long serialVersionUID = -1795521026661566935L;
 	
 	private DialogPanel dialogPanel;
+	
+	private String title;
+
 
 	/**
 	 * New Instance.
 	 * 
-	 * @param text  Text of dialog.
-	 * @param width Width of dialog.
+	 * @param title  Title of dialog.
 	 */
-	public ProgressDialogPanel(String text, Integer width) {
-		this.initializateGUI(text, width);
+	public ProgressDialogPanel(String title) {
+		this.title = title;
+		this.initializateGUI();
 	}
 
 	/**
 	 * Method that contains the definition of the visual elements of the component.
 	 */
-	private void initializateGUI(String text, Integer width) {
-		// TODO Auto-generated constructor stub
-
-		dialogPanel = new DialogPanel(text, width);
+	private void initializateGUI() {
+		dialogPanel = new DialogPanel(this.title);
 		dialogPanel.setInProgressView();
-		
+
 		super.setLayout(new BorderLayout());
+		super.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		super.add(dialogPanel, BorderLayout.CENTER);
 	}
 }

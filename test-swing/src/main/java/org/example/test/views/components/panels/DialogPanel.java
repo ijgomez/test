@@ -1,7 +1,9 @@
 package org.example.test.views.components.panels;
 
-import java.awt.Rectangle;
+import java.awt.BorderLayout;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -24,37 +26,35 @@ public class DialogPanel extends JPanel {
 	
 	private JLabel textStatusLabel;
 	
-	private Integer width = 400;
+	private String title;
 
-	public DialogPanel(String text, Integer width) {
-		this.width = width;
-		this.initializateGUI(text);
-	}
-	
-	public DialogPanel(String text) {
-		this(text, 400);
+	public DialogPanel(String title) {
+		this.title = title;
+		this.initializateGUI();
 	}
 
 	/**
 	 * Method that contains the definition of the visual elements of the component.
 	 */
-	private void initializateGUI(String name) {
+	private void initializateGUI() {
 		
 		this.iconStatusLabel = new JLabel();
-		this.iconStatusLabel.setBounds(new Rectangle(0, 0, 92, 78));
-
-		this.nameStatusLabel = new JLabel(name);
-		this.nameStatusLabel.setBounds(new Rectangle(93, 15, (this.width - 120), 20));
-
+		
+		this.nameStatusLabel = new JLabel(this.title);
+		this.nameStatusLabel.setFont(this.nameStatusLabel.getFont().deriveFont((float) (this.nameStatusLabel.getFont().getSize()*1.5)));
+		
 		this.textStatusLabel = new JLabel();
-		this.textStatusLabel.setBounds(new Rectangle(93, 32, (this.width - 120), 20));
 		
-		super.setLayout(null);
-		super.add(this.iconStatusLabel);
-		super.add(this.nameStatusLabel);
-		super.add(this.textStatusLabel);
-		
-		// TODO Auto-generated constructor stub
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.add(Box.createVerticalGlue());
+		panel.add(nameStatusLabel);
+		panel.add(textStatusLabel);
+		panel.add(Box.createVerticalGlue());
+
+		super.setLayout(new BorderLayout(10, 10));
+		super.add(this.iconStatusLabel, BorderLayout.WEST);
+		super.add(panel, BorderLayout.CENTER);
 	}
 	
 	public void setLoadingView() {

@@ -58,7 +58,7 @@ public class ModalDialogFactory {
 		TextResources textResources = ResourcesFactory.getFactory().text();
 		
 		
-		showProgressDialog(frame, runnable, textResources.getString("dialog.progress.text"), null);
+		showProgressDialog(frame, runnable, textResources.getString("dialog.progress.text"), 400, 150);
 	}
 	
 	/**
@@ -66,20 +66,20 @@ public class ModalDialogFactory {
 	 * 
 	 * @param frame    Top component or parent.
 	 * @param runnable Operation.
-	 * @param text     Title.
+	 * @param title    Title.
 	 * @param width    Width of dialog.
 	 */
-	public static void showProgressDialog(JFrame frame, Runnable runnable, String text, Integer width) {
+	public static void showProgressDialog(JFrame frame, Runnable runnable, String title, Integer width, Integer height) {
 		final JDialog dialog;
 		final JPanel progessDialogPanel;
 		TextResources textResources = ResourcesFactory.getFactory().text();
 		Thread thread;
 		
-		progessDialogPanel = new ProgressDialogPanel(text, width);
+		progessDialogPanel = new ProgressDialogPanel(title);
 		
 		
 		dialog = new JDialog(frame);
-		dialog.setBounds(new Rectangle(frame.getLocation().x + (frame.getBounds().width / 2) - 221, frame.getLocation().y + (frame.getBounds().height / 2) - 75, 442, 150));
+		dialog.setBounds(new Rectangle(frame.getLocation().x + (frame.getBounds().width / 2) - (width/2), frame.getLocation().y + (frame.getBounds().height / 2) - (height/2), width, height));
 		dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		dialog.add(progessDialogPanel);
 		dialog.setResizable(false);
