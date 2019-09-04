@@ -17,7 +17,6 @@ import org.apache.commons.lang3.SystemUtils;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelImpl;
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.helpers.SleepHelper;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,6 +39,8 @@ public abstract class ApplicationInitializationDialog extends JDialog {
 	}
 
 	private void initializeGUI() {
+		this.initializationDialogPanel = this.getInitialDialogPanel();
+
 		super.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		super.setSize(442, 530);
 		super.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -62,9 +63,7 @@ public abstract class ApplicationInitializationDialog extends JDialog {
 	}
 
 	private ApplicationInitializationDialogPanel getInitialDialogPanel() {
-		this.initializationDialogPanel = new ApplicationInitializationDialogPanel();
-		
-		return this.initializationDialogPanel;
+		return new ApplicationInitializationDialogPanel();
 	}
 	
 	private void executeInitializationApplication() {
@@ -87,19 +86,19 @@ public abstract class ApplicationInitializationDialog extends JDialog {
 		
 		// Initialization Application Model.
 		model = new ApplicationModelImpl();
-		SleepHelper.sleep(1000L);
+		this.initializationDialogPanel.setStatusCompleteTask("model");
 		
 		// Initialization Application Listeners.
 		((ApplicationModelListener) getParent()).setModel(model);
-		SleepHelper.sleep(1000L);
+		this.initializationDialogPanel.setStatusCompleteTask("listeners");
 		
-		// TOOD Initialization Logical Business.
+		// TODO Initialization Logical Business.
 		handlerExecuteInitializationApplication();
-		SleepHelper.sleep(1000L);
+		this.initializationDialogPanel.setStatusCompleteTask("business");
 		
 		// Configuration Shutdown Hook.
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> executeShutdownApplication()));
-		SleepHelper.sleep(1000L);
+		this.initializationDialogPanel.setStatusCompleteTask("hook");
 		
 		log.info("...application loaded.");
 
