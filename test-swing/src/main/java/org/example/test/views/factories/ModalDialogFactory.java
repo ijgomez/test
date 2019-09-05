@@ -58,7 +58,7 @@ public class ModalDialogFactory {
 		TextResources textResources = ResourcesFactory.getFactory().text();
 		
 		
-		showProgressDialog(frame, runnable, textResources.getString("dialog.progress.text"), 400, 150);
+		showProgressDialog(frame, runnable, textResources.getString("dialog.status.inprocess.title"), 400, 150);
 	}
 	
 	/**

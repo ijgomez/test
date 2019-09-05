@@ -43,11 +43,13 @@ public class ApplicationInitializationDialogPanel extends JPanel {
 		JPanel taskPanel, buttonPanel;
 		
 		titleLabel = new JLabel(textResources.getString("application.title"), SwingConstants.CENTER);
-		titleLabel.setFont(titleLabel.getFont().deriveFont((float) (titleLabel.getFont().getSize()*2)));
+		titleLabel.setFont(titleLabel.getFont().deriveFont((float) (titleLabel.getFont().getSize() * 2)));
 		titleLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		
 		taskPanel = new JPanel();
+		taskPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 		taskPanel.setLayout(new GridLayout(4, 1));
+		taskPanel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		
 		this.dialogPanels = new ArrayList<>();
 		this.dialogPanels.add(0, new DialogPanel("Model"));
@@ -96,8 +98,6 @@ public class ApplicationInitializationDialogPanel extends JPanel {
 		this.dialogPanels.get(indexTask).setErrorView(error);
 	}
 	
-	
-
 	public void enableButtons() {
 		super.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		this.cancelButton.setVisible(false);

@@ -1,9 +1,7 @@
 package org.example.test.views.components.panels;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -39,7 +37,6 @@ public class DialogPanel extends JPanel {
 	 * Method that contains the definition of the visual elements of the component.
 	 */
 	private void initializateGUI() {
-		
 		this.iconStatusLabel = new JLabel();
 		
 		this.nameStatusLabel = new JLabel(this.title);
@@ -58,30 +55,37 @@ public class DialogPanel extends JPanel {
 		super.add(this.iconStatusLabel, BorderLayout.WEST);
 		super.add(panel, BorderLayout.CENTER);
 	}
-	
-	public void setLoadingView() {
 
+	public void setLoadingView() {	
 //		this.iconStatusLabel.setIcon(ResourcesFactory.getImageIcon(ImagePathFactory.Components.Dialog.Process.LOADING));		
-		this.textStatusLabel.setText("En espera");
-		
+//		this.textStatusLabel.setText("En espera");
+		this.textStatusLabel.setText(textResources.getString("dialog.status.waiting.text"));
+		this.revalidate();
+		this.repaint();
 	}
 
 	public void setInProgressView() {
-		this.iconStatusLabel.setIcon(imagesResources.getImageIcon("dialog.progress.status.process.icon"));		
-		this.textStatusLabel.setText(textResources.getString("dialog.progress.status.process.text"));
+		this.iconStatusLabel.setIcon(imagesResources.getImageIcon("dialog.status.inprocess.icon"));		
+		this.textStatusLabel.setText(textResources.getString("dialog.status.loading.text"));
+		
+		this.revalidate();
+		this.repaint();
 	}
 	
 	public void setErrorView(Throwable th) {
-
 //		this.iconStatusLabel.setIcon(ResourcesFactory.getImageIcon(ImagePathFactory.Components.Dialog.Process.IN_PROCESS));
-			this.textStatusLabel.setText(th.getMessage());
+		this.textStatusLabel.setText(th.getMessage());
 			
-
+		this.revalidate();
+		this.repaint();
 	}
 	
 	public void setCompleteView() {
 //		this.iconStatusLabel.setIcon(ResourcesFactory.getImageIcon(ImagePathFactory.Components.Dialog.Process.COMPLETED));
-		this.textStatusLabel.setText("Completado");
+		this.textStatusLabel.setText(textResources.getString("dialog.status.completed.text"));
+		
+		this.revalidate();
+		this.repaint();
 	}
 
 }

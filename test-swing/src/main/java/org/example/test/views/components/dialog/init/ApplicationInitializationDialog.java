@@ -1,7 +1,6 @@
 package org.example.test.views.components.dialog.init;
 
 import java.awt.BorderLayout;
-import java.awt.Cursor;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.lang.management.ManagementFactory;
@@ -46,14 +45,13 @@ public abstract class ApplicationInitializationDialog extends JDialog {
 
 		super.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		super.setSize(400, 530);
-		super.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		//super.setLocationRelativeTo(super.getParent());
 		super.setLocationRelativeTo(null);
 		super.setResizable(false);
 		super.setUndecorated(true);
 		super.setModal(true);
 		super.setLayout(new BorderLayout());
-		super.add(this.getInitialDialogPanel(), BorderLayout.CENTER);
+		super.add(this.initializationDialogPanel, BorderLayout.CENTER);
 		super.addWindowListener(new WindowAdapter() {
 			
 			
@@ -99,7 +97,7 @@ public abstract class ApplicationInitializationDialog extends JDialog {
 		model = new ApplicationModelImpl();
 		this.currentTask = 0;
 		this.initializationDialogPanel.setStatusCompleteTask(this.currentTask);
-		SleepHelper.sleep(10000);
+		SleepHelper.sleep(1000);
 		
 		// Initialization Application Listeners.
 		((ApplicationModelListener) getParent()).setModel(model);
@@ -117,7 +115,7 @@ public abstract class ApplicationInitializationDialog extends JDialog {
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> executeShutdownApplication()));
 		this.currentTask = 3;
 		this.initializationDialogPanel.setStatusCompleteTask(this.currentTask);
-		SleepHelper.sleep(10000);
+		SleepHelper.sleep(1000);
 		
 		log.info("...application loaded.");
 
