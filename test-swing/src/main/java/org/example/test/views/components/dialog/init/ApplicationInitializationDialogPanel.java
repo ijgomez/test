@@ -52,10 +52,10 @@ public class ApplicationInitializationDialogPanel extends JPanel {
 		taskPanel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		
 		this.dialogPanels = new ArrayList<>();
-		this.dialogPanels.add(0, new DialogPanel("Model"));
-		this.dialogPanels.add(1, new DialogPanel("Listeners"));
-		this.dialogPanels.add(2, new DialogPanel("Business"));
-		this.dialogPanels.add(3, new DialogPanel("Hook"));
+		this.dialogPanels.add(0, new DialogPanel(textResources.getString("dialog.init.task.1.title")));
+		this.dialogPanels.add(1, new DialogPanel(textResources.getString("dialog.init.task.2.title")));
+		this.dialogPanels.add(2, new DialogPanel(textResources.getString("dialog.init.task.3.title")));
+		this.dialogPanels.add(3, new DialogPanel(textResources.getString("dialog.init.task.4.title")));
 		
 		// TODO Auto-generated method stub
 		for (DialogPanel dialogPanel : dialogPanels) {

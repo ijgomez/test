@@ -13,6 +13,7 @@ import org.example.test.views.components.frames.AppFrame;
 import org.example.test.views.components.menubar.AppMenuBar;
 import org.example.test.views.components.toolbar.AppToolBar;
 import org.example.test.views.factories.ModalDialogFactory;
+import org.example.test.views.helpers.SleepHelper;
 import org.example.test.views.menu.ApplicationMenuBar;
 
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +58,7 @@ public class DemoApplicationFrame extends AppFrame implements ApplicationModelLi
 			@Override
 			protected void handlerExecuteInitializationApplication() {
 				// TODO Auto-generated method stub
-				
+				SleepHelper.sleep(10000);
 			}
 
 			@Override

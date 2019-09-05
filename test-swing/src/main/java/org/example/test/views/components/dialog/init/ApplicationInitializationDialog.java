@@ -94,26 +94,30 @@ public abstract class ApplicationInitializationDialog extends JDialog {
 		log.info("Arguments: {}", Arrays.toString(arguments));
 		
 		// Initialization Application Model.
-		model = new ApplicationModelImpl();
 		this.currentTask = 0;
+		this.initializationDialogPanel.setStatusInProcessTask(this.currentTask);
+		model = new ApplicationModelImpl();
 		this.initializationDialogPanel.setStatusCompleteTask(this.currentTask);
 		SleepHelper.sleep(1000);
 		
 		// Initialization Application Listeners.
-		((ApplicationModelListener) getParent()).setModel(model);
 		this.currentTask = 1;
+		this.initializationDialogPanel.setStatusInProcessTask(this.currentTask);
+		((ApplicationModelListener) getParent()).setModel(model);
 		this.initializationDialogPanel.setStatusCompleteTask(this.currentTask);
 		SleepHelper.sleep(1000);
 		
-		// TODO Initialization Logical Business.
-		handlerExecuteInitializationApplication();
+		// Initialization Logical Business.
 		this.currentTask = 2;
+		this.initializationDialogPanel.setStatusInProcessTask(this.currentTask);
+		handlerExecuteInitializationApplication();
 		this.initializationDialogPanel.setStatusCompleteTask(this.currentTask);
-		SleepHelper.sleep(1000);
+		
 		
 		// Configuration Shutdown Hook.
-		Runtime.getRuntime().addShutdownHook(new Thread(() -> executeShutdownApplication()));
 		this.currentTask = 3;
+		this.initializationDialogPanel.setStatusInProcessTask(this.currentTask);
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> executeShutdownApplication()));
 		this.initializationDialogPanel.setStatusCompleteTask(this.currentTask);
 		SleepHelper.sleep(1000);
 		

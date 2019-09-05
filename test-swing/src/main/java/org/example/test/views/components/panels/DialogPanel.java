@@ -57,9 +57,9 @@ public class DialogPanel extends JPanel {
 	}
 
 	public void setLoadingView() {	
-//		this.iconStatusLabel.setIcon(ResourcesFactory.getImageIcon(ImagePathFactory.Components.Dialog.Process.LOADING));		
-//		this.textStatusLabel.setText("En espera");
+//		this.iconStatusLabel.setIcon(ResourcesFactory.getImageIcon(ImagePathFactory.Components.Dialog.Process.LOADING));
 		this.textStatusLabel.setText(textResources.getString("dialog.status.waiting.text"));
+		
 		this.revalidate();
 		this.repaint();
 	}
