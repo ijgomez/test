@@ -17,6 +17,7 @@ import org.apache.commons.lang3.SystemUtils;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelImpl;
 import org.example.test.views.components.ApplicationModelListener;
+import org.example.test.views.helpers.SleepHelper;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,6 +32,8 @@ public abstract class ApplicationInitializationDialog extends JDialog {
 	private ApplicationModel model;
 	
 	private ApplicationInitializationDialogPanel initializationDialogPanel;
+	
+	private int currentTask;
 
 	public ApplicationInitializationDialog(JFrame owner, String... args) {
 		super(owner);
@@ -42,7 +45,7 @@ public abstract class ApplicationInitializationDialog extends JDialog {
 		this.initializationDialogPanel = this.getInitialDialogPanel();
 
 		super.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		super.setSize(442, 530);
+		super.setSize(400, 530);
 		super.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		//super.setLocationRelativeTo(super.getParent());
 		super.setLocationRelativeTo(null);
@@ -53,10 +56,18 @@ public abstract class ApplicationInitializationDialog extends JDialog {
 		super.add(this.getInitialDialogPanel(), BorderLayout.CENTER);
 		super.addWindowListener(new WindowAdapter() {
 			
+			
+
 			@Override
 			public void windowOpened(WindowEvent e) {
 				log.debug("Start initialization application process...");
-				new Thread(() -> executeInitializationApplication(), "initThread").start();
+				Thread thread = new Thread(() -> executeInitializationApplication(), "initThread");
+				thread.setUncaughtExceptionHandler((Thread t, Throwable th) -> {
+					log.error("Fallo al inicializar la consola: ", th);
+					initializationDialogPanel.setStatusErrorTask(currentTask, th);
+					initializationDialogPanel.enableButtons();
+				});
+				thread.start();
 			}
 			
 		});
@@ -86,19 +97,27 @@ public abstract class ApplicationInitializationDialog extends JDialog {
 		
 		// Initialization Application Model.
 		model = new ApplicationModelImpl();
-		this.initializationDialogPanel.setStatusCompleteTask("model");
+		this.currentTask = 0;
+		this.initializationDialogPanel.setStatusCompleteTask(this.currentTask);
+		SleepHelper.sleep(10000);
 		
 		// Initialization Application Listeners.
 		((ApplicationModelListener) getParent()).setModel(model);
-		this.initializationDialogPanel.setStatusCompleteTask("listeners");
+		this.currentTask = 1;
+		this.initializationDialogPanel.setStatusCompleteTask(this.currentTask);
+		SleepHelper.sleep(1000);
 		
 		// TODO Initialization Logical Business.
 		handlerExecuteInitializationApplication();
-		this.initializationDialogPanel.setStatusCompleteTask("business");
+		this.currentTask = 2;
+		this.initializationDialogPanel.setStatusCompleteTask(this.currentTask);
+		SleepHelper.sleep(1000);
 		
 		// Configuration Shutdown Hook.
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> executeShutdownApplication()));
-		this.initializationDialogPanel.setStatusCompleteTask("hook");
+		this.currentTask = 3;
+		this.initializationDialogPanel.setStatusCompleteTask(this.currentTask);
+		SleepHelper.sleep(10000);
 		
 		log.info("...application loaded.");
 

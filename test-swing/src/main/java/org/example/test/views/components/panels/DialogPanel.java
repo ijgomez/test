@@ -1,7 +1,9 @@
 package org.example.test.views.components.panels;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -78,11 +80,8 @@ public class DialogPanel extends JPanel {
 	}
 	
 	public void setCompleteView() {
-		
 //		this.iconStatusLabel.setIcon(ResourcesFactory.getImageIcon(ImagePathFactory.Components.Dialog.Process.COMPLETED));
 		this.textStatusLabel.setText("Completado");
-		
-
 	}
 
 }
