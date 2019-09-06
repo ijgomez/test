@@ -3,6 +3,7 @@ package org.example.test.views.resources;
 import java.awt.Image;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.swing.ImageIcon;
 
@@ -25,18 +26,18 @@ public class ImagesResources {
 		}
 	}
 	
-	public ImageIcon getImageIcon(String key) {
+	public Optional<ImageIcon> getImageIcon(String key) {
 		try {
-			return ImageHelper.loadImageIcon(resources.get(key));
+			return Optional.of(ImageHelper.loadImageIcon(resources.get(key)));
 		} catch (Exception e) {
 			log.error("Invalid key {} for icon: {}", key, e);
 			return null;
 		}
 	}
 	
-	public Image getImage(String key) {
+	public Optional<Image> getImage(String key) {
 		try {
-			return ImageHelper.loadImage(resources.get(key));
+			return Optional.of(ImageHelper.loadImage(resources.get(key)));
 		
 		} catch (Exception e) {
 			log.error("Invalid key {} for images: {}", key, e);

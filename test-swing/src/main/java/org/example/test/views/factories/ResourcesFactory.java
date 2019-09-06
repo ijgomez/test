@@ -1,7 +1,11 @@
 package org.example.test.views.factories;
 
+import java.awt.Image;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
+
+import javax.swing.ImageIcon;
 
 import org.example.test.views.helpers.EnumHelper;
 import org.example.test.views.resources.ImagesResources;
@@ -15,13 +19,21 @@ public class ResourcesFactory {
 
 	private static final ResourcesFactory FACTORY = new ResourcesFactory();
 	
-	private TextResources textResources;
-	
-	private ImagesResources imagesResources;
-	
 	public static ResourcesFactory getFactory() {
 		return FACTORY;
 	}
+	
+	public static Optional<ImageIcon> getImageIcon(String key) {
+		return getFactory().images().getImageIcon(key);
+	}
+	
+	public static Optional<Image> getImage(String key) {
+		return getFactory().images().getImage(key);
+	}
+	
+	private TextResources textResources;
+	
+	private ImagesResources imagesResources;
 	
 	public void load(String[] textFileNames, String[] imagesFileNames) {
 		this.loadTextResources(textFileNames);
@@ -72,4 +84,5 @@ public class ResourcesFactory {
 	public ImagesResources images() {
 		return this.imagesResources;
 	}
+
 }
