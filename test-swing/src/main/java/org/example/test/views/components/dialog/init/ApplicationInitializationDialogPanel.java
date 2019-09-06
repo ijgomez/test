@@ -8,11 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import org.example.test.views.components.buttons.CancelButton;
+import org.example.test.views.components.buttons.ExitButton;
 import org.example.test.views.components.panels.DialogPanel;
 import org.example.test.views.factories.ResourcesFactory;
 import org.example.test.views.resources.TextResources;
@@ -27,9 +28,9 @@ public class ApplicationInitializationDialogPanel extends JPanel {
 	private List<DialogPanel> dialogPanels;
 	
 	
-	private JButton cancelButton;
+	private CancelButton cancelButton;
 	
-	private JButton exitButton;
+	private ExitButton exitButton;
 
 	public ApplicationInitializationDialogPanel() {
 		this.initializateGUI();
@@ -56,18 +57,18 @@ public class ApplicationInitializationDialogPanel extends JPanel {
 		this.dialogPanels.add(1, new DialogPanel(textResources.getString("dialog.init.task.2.title")));
 		this.dialogPanels.add(2, new DialogPanel(textResources.getString("dialog.init.task.3.title")));
 		this.dialogPanels.add(3, new DialogPanel(textResources.getString("dialog.init.task.4.title")));
-		
-		// TODO Auto-generated method stub
+
 		for (DialogPanel dialogPanel : dialogPanels) {
 			dialogPanel.setLoadingView();
 			
 			taskPanel.add(dialogPanel);
 		}
-		// TODO Auto-generated method stub
+
+		this.cancelButton = new CancelButton();
+		this.cancelButton.addActionListener((e) -> System.exit(0));
 		
-		this.cancelButton = new JButton("Cancel");
-		
-		this.exitButton = new JButton("Exit");
+		this.exitButton = new ExitButton();
+		this.exitButton.addActionListener((e) -> System.exit(0));
 		this.exitButton.setVisible(false);
 		
 		buttonPanel = new JPanel();

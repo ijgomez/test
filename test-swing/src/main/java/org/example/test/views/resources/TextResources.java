@@ -2,6 +2,7 @@ package org.example.test.views.resources;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class TextResources {
 
@@ -18,10 +19,10 @@ public class TextResources {
 	}
 	
 	public String getString(String key) {
-		return this.resources.get(key);
+		return this.resources.getOrDefault(key, key);
 	}
 
-	public String getString(String key, String...parameters) {
+	public Optional<String> getString(String key, String...parameters) {
 		// TODO Auto-generated constructor stub
 		return null;
 	}

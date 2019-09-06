@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.example.test.views.factories.ResourcesFactory;
-import org.example.test.views.resources.ImagesResources;
 import org.example.test.views.resources.TextResources;
 
 /**
@@ -26,8 +25,6 @@ public class DialogPanel extends JPanel {
 	private ResourcesFactory resourcesFactory = ResourcesFactory.getFactory();
 	
 	private TextResources textResources = ResourcesFactory.getFactory().text();
-	
-	private ImagesResources imagesResources = ResourcesFactory.getFactory().images();
 	
 	private JLabel iconStatusLabel;
 	
