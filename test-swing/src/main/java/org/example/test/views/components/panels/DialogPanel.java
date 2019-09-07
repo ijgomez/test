@@ -64,32 +64,40 @@ public class DialogPanel extends JPanel {
 		super.add(messagePanel, BorderLayout.CENTER);
 	}
 
-	public void setLoadingView() {	
-//		this.iconStatusLabel.setIcon(ResourcesFactory.getImageIcon(ImagePathFactory.Components.Dialog.Process.LOADING));
+	public void setWaitingStatusView() {	
+		this.resourcesFactory.images().getImageIcon("dialog.status.waiting.icon").ifPresent((i) -> this.iconStatusLabel.setIcon(i));
 		this.textStatusLabel.setText(textResources.getString("dialog.status.waiting.text"));
 		
 		this.revalidate();
 		this.repaint();
 	}
-
-	public void setInProgressView() {
-		this.resourcesFactory.images().getImageIcon("dialog.status.inprocess.icon").ifPresent((i) -> this.iconStatusLabel.setIcon(i));
+	
+	public void setInLoadingStatusView() {
+		this.resourcesFactory.images().getImageIcon("dialog.status.loading.icon").ifPresent((i) -> this.iconStatusLabel.setIcon(i));
 		this.textStatusLabel.setText(textResources.getString("dialog.status.loading.text"));
+		
+		this.revalidate();
+		this.repaint();
+	}
+
+	public void setInProgressStatusView() {
+		this.resourcesFactory.images().getImageIcon("dialog.status.inprogress.icon").ifPresent((i) -> this.iconStatusLabel.setIcon(i));
+		this.textStatusLabel.setText(textResources.getString("dialog.status.inprogress.text"));
 		
 		this.revalidate();
 		this.repaint();
 	}
 	
 	public void setErrorView(Throwable th) {
-//		this.iconStatusLabel.setIcon(ResourcesFactory.getImageIcon(ImagePathFactory.Components.Dialog.Process.IN_PROCESS));
+		this.resourcesFactory.images().getImageIcon("dialog.status.error.icon").ifPresent((i) -> this.iconStatusLabel.setIcon(i));
 		this.textStatusLabel.setText(th.getMessage());
 			
 		this.revalidate();
 		this.repaint();
 	}
 	
-	public void setCompleteView() {
-//		this.iconStatusLabel.setIcon(ResourcesFactory.getImageIcon(ImagePathFactory.Components.Dialog.Process.COMPLETED));
+	public void setCompleteStatusView() {
+		this.resourcesFactory.images().getImageIcon("dialog.status.completed.icon").ifPresent((i) -> this.iconStatusLabel.setIcon(i));
 		this.textStatusLabel.setText(textResources.getString("dialog.status.completed.text"));
 		
 		this.revalidate();

@@ -32,7 +32,7 @@ public class ProgressDialogPanel extends JPanel {
 	 */
 	private void initializateGUI() {
 		dialogPanel = new DialogPanel(this.title);
-		dialogPanel.setInProgressView();
+		dialogPanel.setInProgressStatusView();
 
 		super.setLayout(new BorderLayout());
 		super.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));

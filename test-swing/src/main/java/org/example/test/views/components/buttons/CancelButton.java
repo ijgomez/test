@@ -6,7 +6,7 @@ public class CancelButton extends BasicButton {
 	private static final long serialVersionUID = 9124367834491909447L;
 
 	public CancelButton() {
-		super("button.cancel.text", "button.cancel.tooltip");
+		super("button.cancel.text", "button.cancel.tool.tip");
 	}
 	
 	@Override

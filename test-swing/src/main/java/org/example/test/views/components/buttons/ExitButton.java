@@ -6,7 +6,7 @@ public class ExitButton extends BasicButton {
 	private static final long serialVersionUID = 9124367834491909447L;
 
 	public ExitButton() {
-		super("button.exit.text", "button.exit.tooltip");
+		super("button.exit.text", "button.exit.tool.tip");
 	}
 	
 	@Override

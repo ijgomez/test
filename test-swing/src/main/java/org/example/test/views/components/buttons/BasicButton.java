@@ -1,6 +1,7 @@
 package org.example.test.views.components.buttons;
 
 import java.awt.Cursor;
+import java.util.Optional;
 
 import javax.swing.JButton;
 
@@ -16,11 +17,11 @@ public abstract class BasicButton extends JButton {
 	
 	private String titleTextKey;
 	
-	private String toolTipTextKey;
+	private Optional<String> toolTipTextKey;
 
 	public BasicButton(String titleTextKey, String toolTipTextKey) {
 		this.titleTextKey = titleTextKey;
-		this.toolTipTextKey = toolTipTextKey;
+		this.toolTipTextKey = Optional.of(toolTipTextKey);
 		this.initializateGUI();
 	}
 
@@ -29,9 +30,7 @@ public abstract class BasicButton extends JButton {
 	 */
 	private void initializateGUI() {
 		super.setText(textResources.getString(titleTextKey));
-		if (toolTipTextKey != null) {
-			super.setToolTipText(textResources.getString(toolTipTextKey));
-		}
+		this.toolTipTextKey.ifPresent((key) -> super.setToolTipText(textResources.getString(key)));
 		super.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.handlerInitializateGUI();
 	}

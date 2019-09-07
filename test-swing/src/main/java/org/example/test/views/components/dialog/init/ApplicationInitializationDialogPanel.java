@@ -17,6 +17,7 @@ import org.example.test.views.components.buttons.ExitButton;
 import org.example.test.views.components.panels.DialogPanel;
 import org.example.test.views.factories.ResourcesFactory;
 import org.example.test.views.resources.TextResources;
+import org.example.test.views.resources.Resources;
 
 public class ApplicationInitializationDialogPanel extends JPanel {
 
@@ -43,7 +44,7 @@ public class ApplicationInitializationDialogPanel extends JPanel {
 		JLabel titleLabel;
 		JPanel taskPanel, buttonPanel;
 		
-		titleLabel = new JLabel(textResources.getString("application.title"), SwingConstants.CENTER);
+		titleLabel = new JLabel(Resources.APPLICATION_TITLE.getText(), SwingConstants.CENTER);
 		titleLabel.setFont(titleLabel.getFont().deriveFont((float) (titleLabel.getFont().getSize() * 2)));
 		titleLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		
@@ -59,7 +60,7 @@ public class ApplicationInitializationDialogPanel extends JPanel {
 		this.dialogPanels.add(3, new DialogPanel(textResources.getString("dialog.init.task.4.title")));
 
 		for (DialogPanel dialogPanel : dialogPanels) {
-			dialogPanel.setLoadingView();
+			dialogPanel.setWaitingStatusView();
 			
 			taskPanel.add(dialogPanel);
 		}
@@ -84,15 +85,15 @@ public class ApplicationInitializationDialogPanel extends JPanel {
 	}
 
 	public void setStatusLoadingTask(int indexTask) {
-		this.dialogPanels.get(indexTask).setLoadingView();
+		this.dialogPanels.get(indexTask).setWaitingStatusView();
 	}
 	
 	public void setStatusInProcessTask(int indexTask) {
-		this.dialogPanels.get(indexTask).setInProgressView();
+		this.dialogPanels.get(indexTask).setInProgressStatusView();
 	}
 	
 	public void setStatusCompleteTask(int indexTask) {
-		this.dialogPanels.get(indexTask).setCompleteView();
+		this.dialogPanels.get(indexTask).setCompleteStatusView();
 	}
 	
 	public void setStatusErrorTask(int indexTask, Throwable error) {
