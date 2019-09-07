@@ -28,21 +28,26 @@ public class ImagesResources {
 	
 	public Optional<ImageIcon> getImageIcon(String key) {
 		try {
-			return Optional.of(ImageHelper.loadImageIcon(resources.get(key)));
+			String value = resources.get(key);
+			if (!value.isEmpty()) {
+				return Optional.of(ImageHelper.loadImageIcon(value));
+			}
 		} catch (Exception e) {
 			log.error("Invalid key {} for icon: {}", key, e);
-			return null;
 		}
+		return Optional.empty();
 	}
 	
 	public Optional<Image> getImage(String key) {
 		try {
-			return Optional.of(ImageHelper.loadImage(resources.get(key)));
-		
+			String value = resources.get(key);
+			if (!value.isEmpty()) {
+				return Optional.of(ImageHelper.loadImage(value));
+			}
 		} catch (Exception e) {
 			log.error("Invalid key {} for images: {}", key, e);
-			return null;
 		}
+		return Optional.empty();
 	}
 	
 }

@@ -47,7 +47,7 @@ public final class ImageHelper {
 	/**
 	 * Method for loading a resource as an icon.
 	 * 
-	 * @param path Path in classpatb of icon.
+	 * @param path Path in classpath of icon.
 	 * @return {@link ImageIcon}
 	 */
 	public static ImageIcon loadImageIcon(String path) {
