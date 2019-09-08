@@ -14,7 +14,7 @@ import org.example.test.views.resources.TextResources;
  * Class that defines the common panel to show the different messages to the
  * user.
  * 
- * @author jizquierdo
+ * @author ijgomez
  *
  */
 public class DialogPanel extends JPanel {

@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Class that contains methods to work with images or icons.
  * 
- * @author jizquierdo
+ * @author ijgomez
  *
  */
 @Slf4j

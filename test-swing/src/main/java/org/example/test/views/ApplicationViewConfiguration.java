@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  * Class that models the information that the application needs to configure the
  * different windows and user interface options.
  * 
- * @author jizquierdo
+ * @author ijgomez
  *
  */
 @Slf4j

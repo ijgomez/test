@@ -6,7 +6,7 @@ import org.example.test.views.components.events.ApplicationEvent;
  * Interface that defines the operations that all java classes subject to
  * receiving application events must comply with.
  * 
- * @author jizquierdo
+ * @author ijgomez
  *
  */
 public interface ApplicationModelListener {

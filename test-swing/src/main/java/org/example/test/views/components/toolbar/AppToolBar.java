@@ -15,10 +15,15 @@ import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.buttons.AppButton;
 import org.example.test.views.components.buttons.ChangeViewButton;
 import org.example.test.views.components.events.ApplicationEvent;
-import org.example.test.views.components.events.ChangeViewEvent;
 import org.example.test.views.factories.ResourcesFactory;
 import org.example.test.views.resources.TextResources;
 
+/**
+ * Class that models the main menu of the application.
+ * 
+ * @author ijgomez
+ *
+ */
 public abstract class AppToolBar extends JToolBar implements ApplicationModelListener {
 
 	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
@@ -88,8 +93,6 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 	}
 	
 	protected void registerEventListeners() {
-		addEventListener(ChangeViewEvent.class, (e) -> selectedButtonAction(((ChangeViewEvent) e)));
-		// TODO Auto-generated method stub
 		this.handlerRegisterEventListeners();
 	}
 	
@@ -115,19 +118,5 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 	public Optional<ApplicationViewConfiguration> getViewConfiguration() {
 		return Optional.ofNullable(viewConfiguration);
 	}
-	
-	private void selectedButtonAction(ChangeViewEvent e) {
-//		Stream.of(super.getComponents()).forEach((c) -> {
-//			if (c instanceof ChangeViewButton) {
-//				ChangeViewButton<?> changeViewButton = (ChangeViewButton<?>) c;
-//				if (changeViewButton.getClassView().equals(e.getClassEntity())) {
-//					
-//					this.getRootPane().setDefaultButton(changeViewButton);
-//					
-//					//changeViewButton.setSelected(true);
-//					log.trace("enable {}", changeViewButton);
-//				}
-//			}
-//		});
-	}
+
 }

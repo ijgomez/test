@@ -1,20 +1,22 @@
 package org.example.test.views.components.datatables;
 
 import java.awt.BorderLayout;
-import java.awt.Cursor;
-import java.awt.Dimension;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import org.example.test.views.components.ApplicationModelListener;
+import org.example.test.views.components.datatables.pagging.PaginationPanel;
 import org.example.test.views.components.panels.AppPanel;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public abstract class AppDataTable extends AppPanel implements ApplicationModelListener {
 
+	
+	
 	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = 6061707010961045115L;
 	
@@ -22,7 +24,7 @@ public abstract class AppDataTable extends AppPanel implements ApplicationModelL
 	
 	private DefaultTableModel tableModel;
 	
-	private JPanel controlPanel;
+	private PaginationPanel paginationPanel;
 
 	@Override
 	protected void initializateGUI() {
@@ -41,31 +43,25 @@ public abstract class AppDataTable extends AppPanel implements ApplicationModelL
 //		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
 		
-		this.controlPanel = new JPanel();
-		this.controlPanel.add(new JLabel("control"));
-		
-		JScrollPane scrollPane = new JScrollPane(table);
+        JScrollPane scrollPane = new JScrollPane(table);
+        
+        this.paginationPanel = new PaginationPanel();
 		
 		
 		super.setLayout(new BorderLayout());
 		super.add(scrollPane, BorderLayout.CENTER);
-		super.add(controlPanel, BorderLayout.SOUTH);
+		super.add(this.paginationPanel, BorderLayout.SOUTH);
 		
 		// TODO Auto-generated method stub
 
+		this.handlerInitializateGUI();
 	}
 	
-	private String[] createColumnNames() {
-		return new String[]{
-				"First Name",
-				"Last Name",
-				"Sport",
-				"# of Years",
-            	"Vegetarian"
-			};
-	}
+	protected abstract void handlerInitializateGUI();
+
+	protected abstract String[] createColumnNames();
 	
-	private Object[][] createDummyData() {
+	protected Object[][] createDummyData() {
 		return new Object[][] {
 			{"Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false)},
 			{"John", "Doe", "Rowing", new Integer(3), new Boolean(true)},
@@ -113,8 +109,16 @@ public abstract class AppDataTable extends AppPanel implements ApplicationModelL
 
 	@Override
 	public void updateView() {
+		AppDataBaseCriteria criteria;
+		
+		log.trace("Update datatable...");
+		
+		criteria = this.buildCriteria();
+	
 		// TODO Auto-generated method stub
 //		this.tableModel.addRow(new Object[]{});
 	}
+
+	protected abstract AppDataBaseCriteria buildCriteria();
 
 }

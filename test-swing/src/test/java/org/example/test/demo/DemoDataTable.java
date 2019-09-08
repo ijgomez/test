@@ -1,6 +1,8 @@
 package org.example.test.demo;
 
+import org.example.test.demo.data.DemoMockDataService;
 import org.example.test.views.components.ApplicationModelListener;
+import org.example.test.views.components.datatables.AppDataBaseCriteria;
 import org.example.test.views.components.datatables.AppDataTable;
 
 public class DemoDataTable extends AppDataTable implements ApplicationModelListener {
@@ -8,4 +10,31 @@ public class DemoDataTable extends AppDataTable implements ApplicationModelListe
 	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = 5190038862045411081L;
 
+	private DemoMockDataService service;
+	
+	@Override
+	protected void handlerInitializateGUI() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	protected String[] createColumnNames() {
+		return new String[]{
+				"First Name",
+				"Last Name",
+				"Sport",
+				"# of Years",
+            	"Vegetarian"
+			};
+	}
+	
+	@Override
+	protected AppDataBaseCriteria buildCriteria() {
+		AppDataBaseCriteria criteria;
+		
+		criteria = new AppDataBaseCriteria();
+		// TODO Auto-generated method stub
+		return criteria;
+	}
 }

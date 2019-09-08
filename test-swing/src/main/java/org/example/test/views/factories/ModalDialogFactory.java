@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Class that generates the modal windows or dialogs common to the application.
  * 
- * @author jizquierdo
+ * @author ijgomez
  *
  */
 @Slf4j

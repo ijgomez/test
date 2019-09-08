@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  * Class that executes the application, reading the different configuration
  * options (annotations, parameters, configuration files, ...).
  * 
- * @author jizquierdo
+ * @author ijgomez
  *
  */
 @Slf4j
