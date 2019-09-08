@@ -14,6 +14,7 @@ public class ApplicationStatus extends AppPanel implements ApplicationModelListe
 
 	private JLabel timeLabel;
 	
+	@Override
 	protected void initializateGUI() {
 		
 		this.timeLabel = new JLabel();

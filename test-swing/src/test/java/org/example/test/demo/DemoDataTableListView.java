@@ -21,6 +21,9 @@ public class DemoDataTableListView  extends AppPanel implements ApplicationModel
 		JToolBar toolbar;
 		
 		toolbar = new JToolBar();
+		toolbar.add(new JButton("Reflesh"));
+		toolbar.add(new JToolBar.Separator());
+		toolbar.add(new JButton("Search"));
 		toolbar.add(new JButton("Add"));
 		
 		this.datatable = new DemoDataTable();

@@ -16,9 +16,11 @@ public class CloseMenuItem extends AppMenuItem implements ApplicationModelListen
 	 * Method that contains the definition of the visual elements of the component.
 	 */
 	protected void initializateGUI() {
-		super.setText(textResources.getString("menu.button.close.text"));
-		super.setToolTipText(textResources.getString("menu.button.close.tool.tip"));
+		this.textResources.getString("menu.button.close.text").ifPresent((t) -> super.setText(t));
+		this.textResources.getString("menu.button.close.tool.tip").ifPresent((t) -> super.setToolTipText(t));
+		
 		super.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
 		super.addActionListener((e) -> model.notify(new CloseApplicationEvent()));
 	}
 	

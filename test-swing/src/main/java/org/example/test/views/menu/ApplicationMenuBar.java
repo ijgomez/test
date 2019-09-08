@@ -39,7 +39,7 @@ public class ApplicationMenuBar extends AppMenuBar implements ApplicationModelLi
         settingsMenuItem = new SettingsMenuItem();
         
         fileMenu = new JMenu();
-        fileMenu.setText(textResources.getString("menu.file.text"));
+        fileMenu.setText(textResources.getStringOrDefault("menu.file.text"));
         fileMenu.setCursor(new Cursor(Cursor.HAND_CURSOR));
         fileMenu.add(openFileMenuItem);
         fileMenu.add(saveMenuItem);
@@ -48,11 +48,11 @@ public class ApplicationMenuBar extends AppMenuBar implements ApplicationModelLi
         
         editMenu = new JMenu();
         editMenu.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        editMenu.setText(textResources.getString("menu.edit.text"));
+        editMenu.setText(textResources.getStringOrDefault("menu.edit.text"));
         
         settingsMenu = new JMenu();
         settingsMenu.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        settingsMenu.setText(textResources.getString("menu.settings.text"));
+        settingsMenu.setText(textResources.getStringOrDefault("menu.settings.text"));
         settingsMenu.add(settingsMenuItem);
 
         super.add(fileMenu);

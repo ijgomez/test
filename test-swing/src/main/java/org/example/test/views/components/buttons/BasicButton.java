@@ -1,11 +1,11 @@
 package org.example.test.views.components.buttons;
 
 import java.awt.Cursor;
-import java.util.Optional;
 
 import javax.swing.JButton;
 
 import org.example.test.views.factories.ResourcesFactory;
+import org.example.test.views.resources.ImagesResources;
 import org.example.test.views.resources.TextResources;
 
 public abstract class BasicButton extends JButton {
@@ -15,13 +15,28 @@ public abstract class BasicButton extends JButton {
 	
 	private TextResources textResources = ResourcesFactory.getFactory().text();
 	
+	private ImagesResources imagesResources = ResourcesFactory.getFactory().images();
+	
+	private String iconKey;
+	
 	private String titleTextKey;
 	
-	private Optional<String> toolTipTextKey;
+	private String toolTipTextKey;
 
+	public BasicButton(String iconKey, String titleTextKey, String toolTipTextKey) {
+		this(titleTextKey, toolTipTextKey);
+		this.iconKey = iconKey;
+		this.initializateGUI();
+	}
+	
 	public BasicButton(String titleTextKey, String toolTipTextKey) {
 		this.titleTextKey = titleTextKey;
-		this.toolTipTextKey = Optional.of(toolTipTextKey);
+		this.toolTipTextKey = toolTipTextKey;
+		this.initializateGUI();
+	}
+	
+	public BasicButton(String iconKey) {
+		this.iconKey = iconKey;
 		this.initializateGUI();
 	}
 
@@ -29,9 +44,12 @@ public abstract class BasicButton extends JButton {
 	 * Method that contains the definition of the visual elements of the component.
 	 */
 	private void initializateGUI() {
-		super.setText(textResources.getString(titleTextKey));
-		this.toolTipTextKey.ifPresent((key) -> super.setToolTipText(textResources.getString(key)));
+		this.imagesResources.getImageIcon(iconKey).ifPresent((i) -> super.setIcon(i));
+		this.textResources.getString(titleTextKey).ifPresent((t) -> super.setText(t));
+		this.textResources.getString(toolTipTextKey).ifPresent((t) -> super.setToolTipText(t));
+
 		super.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
 		this.handlerInitializateGUI();
 	}
 

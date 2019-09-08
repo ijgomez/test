@@ -18,7 +18,11 @@ public class TextResources {
 		}
 	}
 	
-	public String getString(String key) {
+	public Optional<String> getString(String key) {
+		return Optional.of(this.resources.get(key));
+	}
+	
+	public String getStringOrDefault(String key) {
 		return this.resources.getOrDefault(key, key);
 	}
 

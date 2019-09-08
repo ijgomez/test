@@ -13,7 +13,7 @@ public enum Resources {
 	}
 	
 	public String getText() {
-		return ResourcesFactory.getFactory().text().getString(textKey);
+		return ResourcesFactory.getFactory().text().getString(textKey).get();
 	}
 	
 

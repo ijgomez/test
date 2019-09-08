@@ -54,10 +54,10 @@ public class ApplicationInitializationDialogPanel extends JPanel {
 		taskPanel.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		
 		this.dialogPanels = new ArrayList<>();
-		this.dialogPanels.add(0, new DialogPanel(textResources.getString("dialog.init.task.1.title")));
-		this.dialogPanels.add(1, new DialogPanel(textResources.getString("dialog.init.task.2.title")));
-		this.dialogPanels.add(2, new DialogPanel(textResources.getString("dialog.init.task.3.title")));
-		this.dialogPanels.add(3, new DialogPanel(textResources.getString("dialog.init.task.4.title")));
+		this.dialogPanels.add(0, new DialogPanel(textResources.getString("dialog.init.task.1.title").get()));
+		this.dialogPanels.add(1, new DialogPanel(textResources.getString("dialog.init.task.2.title").get()));
+		this.dialogPanels.add(2, new DialogPanel(textResources.getString("dialog.init.task.3.title").get()));
+		this.dialogPanels.add(3, new DialogPanel(textResources.getString("dialog.init.task.4.title").get()));
 
 		for (DialogPanel dialogPanel : dialogPanels) {
 			dialogPanel.setWaitingStatusView();

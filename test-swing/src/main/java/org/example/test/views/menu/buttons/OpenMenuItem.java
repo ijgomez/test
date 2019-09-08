@@ -16,9 +16,11 @@ public class OpenMenuItem extends AppMenuItem implements ApplicationModelListene
 	 * Method that contains the definition of the visual elements of the component.
 	 */
 	protected void initializateGUI() {
-		super.setText(textResources.getString("menu.button.open.text"));
-		super.setToolTipText(textResources.getString("menu.button.open.tool.tip"));
+		this.textResources.getString("menu.button.open.text").ifPresent((t) -> super.setText(t));
+		this.textResources.getString("menu.button.open.tool.tip").ifPresent((t) -> super.setToolTipText(t));
+		
 		super.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
 		super.addActionListener((e) -> model.notify(new OpenFileEvent()));
 	}
 	

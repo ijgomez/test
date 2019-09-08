@@ -83,7 +83,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 		scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(this.container);
 		
-		super.setTitle(textResources.getString("application.title"));
+		super.setTitle(textResources.getString("application.title").get());
 		if (this.menuBar != null) {
 			super.setJMenuBar(this.menuBar);
 		}

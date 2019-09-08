@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.example.test.views.factories.ResourcesFactory;
-import org.example.test.views.resources.TextResources;
 
 /**
  * Class that defines the common panel to show the different messages to the
@@ -23,9 +22,7 @@ public class DialogPanel extends JPanel {
 	private static final long serialVersionUID = -6738536289459473508L;
 	
 	private ResourcesFactory resourcesFactory = ResourcesFactory.getFactory();
-	
-	private TextResources textResources = ResourcesFactory.getFactory().text();
-	
+
 	private JLabel iconStatusLabel;
 	
 	private JLabel nameStatusLabel;
@@ -65,8 +62,8 @@ public class DialogPanel extends JPanel {
 	}
 
 	public void setWaitingStatusView() {	
-		this.resourcesFactory.images().getImageIcon("dialog.status.waiting.icon").ifPresent((i) -> this.iconStatusLabel.setIcon(i));
-		this.textStatusLabel.setText(textResources.getString("dialog.status.waiting.text"));
+		this.resourcesFactory.images().getImageIcon("dialog.status.waiting.icon").ifPresent((i) -> this.iconStatusLabel.setIcon(i));	
+		this.resourcesFactory.text().getString("dialog.status.waiting.text").ifPresent((t) -> this.textStatusLabel.setText(t));
 		
 		this.revalidate();
 		this.repaint();
@@ -74,7 +71,7 @@ public class DialogPanel extends JPanel {
 	
 	public void setInLoadingStatusView() {
 		this.resourcesFactory.images().getImageIcon("dialog.status.loading.icon").ifPresent((i) -> this.iconStatusLabel.setIcon(i));
-		this.textStatusLabel.setText(textResources.getString("dialog.status.loading.text"));
+		this.resourcesFactory.text().getString("dialog.status.loading.text").ifPresent((t) -> this.textStatusLabel.setText(t));
 		
 		this.revalidate();
 		this.repaint();
@@ -82,8 +79,8 @@ public class DialogPanel extends JPanel {
 
 	public void setInProgressStatusView() {
 		this.resourcesFactory.images().getImageIcon("dialog.status.inprogress.icon").ifPresent((i) -> this.iconStatusLabel.setIcon(i));
-		this.textStatusLabel.setText(textResources.getString("dialog.status.inprogress.text"));
-		
+		this.resourcesFactory.text().getString("dialog.status.inprogress.text").ifPresent((t) -> this.textStatusLabel.setText(t));
+
 		this.revalidate();
 		this.repaint();
 	}
@@ -98,8 +95,8 @@ public class DialogPanel extends JPanel {
 	
 	public void setCompleteStatusView() {
 		this.resourcesFactory.images().getImageIcon("dialog.status.completed.icon").ifPresent((i) -> this.iconStatusLabel.setIcon(i));
-		this.textStatusLabel.setText(textResources.getString("dialog.status.completed.text"));
-		
+		this.resourcesFactory.text().getString("dialog.status.completed.text").ifPresent((t) -> this.textStatusLabel.setText(t));
+
 		this.revalidate();
 		this.repaint();
 	}

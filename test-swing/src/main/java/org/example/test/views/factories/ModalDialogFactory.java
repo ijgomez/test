@@ -43,7 +43,7 @@ public class ModalDialogFactory {
 	public static boolean showConfirmExitDialog(Component parentComponent) {
 		TextResources textResources = ResourcesFactory.getFactory().text();
 		
-		int showConfirmDialog = JOptionPane.showConfirmDialog(parentComponent, textResources.getString("dialog.confirm.exit.text"), textResources.getString("dialog.confirm.exit.title"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		int showConfirmDialog = JOptionPane.showConfirmDialog(parentComponent, textResources.getString("dialog.confirm.exit.text").get(), textResources.getString("dialog.confirm.exit.title").get(), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		
 		return (showConfirmDialog == JOptionPane.YES_OPTION);
 	}
@@ -58,7 +58,7 @@ public class ModalDialogFactory {
 		TextResources textResources = ResourcesFactory.getFactory().text();
 		
 		
-		showProgressDialog(frame, runnable, textResources.getString("dialog.status.inprocess.title"), 400, 150);
+		showProgressDialog(frame, runnable, textResources.getString("dialog.status.inprocess.title").get(), 400, 150);
 	}
 	
 	/**
@@ -84,7 +84,7 @@ public class ModalDialogFactory {
 		dialog.add(progessDialogPanel);
 		dialog.setResizable(false);
 		dialog.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		dialog.setTitle(textResources.getString("application.title"));
+		dialog.setTitle(textResources.getString("application.title").get());
 //		dialog.setUndecorated(true);
 		dialog.setModal(true);
 		
