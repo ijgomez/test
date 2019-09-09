@@ -3,12 +3,14 @@ package org.example.test.demo.data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DemoMockDataService {
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class SportmanMockService {
 
 	private List<Sportman> data;
 	
-
-	public DemoMockDataService() {
+	public SportmanMockService() {
 		data = new ArrayList<>();
 		data.add(new Sportman("Kathy", "Smith", "Snowboarding", 5, false));
 		data.add(new Sportman("John", "Doe", "Rowing", 3, true));
@@ -63,5 +65,10 @@ public class DemoMockDataService {
 	
 	public Integer countByCriteria(SportmanCriteria criteria) {
 		return data.size();
+	}
+
+	public void save(Sportman sportman) {
+		log.trace("Save: {}", sportman);
+		data.add(sportman);
 	}
 }

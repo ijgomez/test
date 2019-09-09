@@ -8,6 +8,8 @@ import javax.swing.table.DefaultTableModel;
 
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.datatables.pagging.PaginationPanel;
+import org.example.test.views.components.events.ApplicationEvent;
+import org.example.test.views.components.events.ReloadDataEvent;
 import org.example.test.views.components.panels.AppPanel;
 
 import lombok.extern.slf4j.Slf4j;
@@ -103,6 +105,7 @@ public abstract class AppDataTable extends AppPanel implements ApplicationModelL
 
 	@Override
 	protected void registerEventListeners() {
+		super.addEventListener(ReloadDataEvent.class, (e) -> updateView());
 		// TODO Auto-generated method stub
 
 	}

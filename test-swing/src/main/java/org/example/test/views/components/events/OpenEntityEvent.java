@@ -5,12 +5,18 @@ import lombok.ToString;
 
 @ToString
 @Getter
-public class ChangeViewEvent extends ApplicationEvent {
+public class OpenEntityEvent extends ApplicationEvent {
 
 	private Class<?> classEntity;
 	
-	public ChangeViewEvent(Class<?> entity) {
+	private String statusView;
+	
+	public OpenEntityEvent(Class<?> entity, String statusView) {
 		this.classEntity = entity;
+		this.statusView = statusView;
 	}
+	
+	
+	
 	
 }
