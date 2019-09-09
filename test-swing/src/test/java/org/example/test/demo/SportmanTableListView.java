@@ -37,6 +37,7 @@ public class SportmanTableListView  extends AppPanel implements ApplicationModel
 		addButton = new AddButton<>(Sportman.class);
 		
 		toolbar = new JToolBar();
+		
 		toolbar.add(reloadDataButton);
 		toolbar.add(new JToolBar.Separator());
 		toolbar.add(new JButton("Search"));

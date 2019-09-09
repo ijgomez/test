@@ -50,6 +50,7 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 	 * Method that contains the definition of the visual elements of the component.
 	 */
 	private void initializateGUI() {
+		super.setFloatable(false);
 		this.getViewConfiguration().ifPresent((vc) -> {
 			if (vc != null && vc.getContainerViews() != null) {
 				vc.getContainerViews().forEach((c) -> {

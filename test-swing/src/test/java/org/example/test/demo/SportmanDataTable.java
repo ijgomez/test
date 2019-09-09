@@ -1,7 +1,7 @@
 package org.example.test.demo;
 
-import org.example.test.demo.data.SportmanMockService;
 import org.example.test.demo.data.Sportman;
+import org.example.test.demo.data.SportmanMockService;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.datatables.AppDataBaseCriteria;
 import org.example.test.views.components.datatables.AppDataTable;
@@ -19,7 +19,7 @@ public class SportmanDataTable extends AppDataTable implements ApplicationModelL
 	@Override
 	protected void handlerInitializateGUI() {
 		// TODO Auto-generated method stub
-		
+		this.service = new SportmanMockService();
 	}
 	
 	@Override
