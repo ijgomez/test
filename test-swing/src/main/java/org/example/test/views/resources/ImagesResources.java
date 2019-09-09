@@ -29,7 +29,7 @@ public class ImagesResources {
 	public Optional<ImageIcon> getImageIcon(String key) {
 		try {
 			String value = resources.get(key);
-			if (!value.isEmpty()) {
+			if (value != null && !value.isEmpty()) {
 				return Optional.of(ImageHelper.loadImageIcon(value));
 			}
 		} catch (Exception e) {
