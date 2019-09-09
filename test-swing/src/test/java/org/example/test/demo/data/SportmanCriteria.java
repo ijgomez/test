@@ -1,9 +1,11 @@
 package org.example.test.demo.data;
 
+import org.example.test.views.components.datatables.AppDataBaseCriteria;
+
 import lombok.Data;
 
 @Data
-public class SportmanCriteria {
+public class SportmanCriteria extends AppDataBaseCriteria {
 
 	private String name;
 	

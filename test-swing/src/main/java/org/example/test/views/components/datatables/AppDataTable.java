@@ -1,6 +1,7 @@
 package org.example.test.views.components.datatables;
 
 import java.awt.BorderLayout;
+import java.util.List;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -8,7 +9,6 @@ import javax.swing.table.DefaultTableModel;
 
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.datatables.pagging.PaginationPanel;
-import org.example.test.views.components.events.ApplicationEvent;
 import org.example.test.views.components.events.ReloadDataEvent;
 import org.example.test.views.components.panels.AppPanel;
 
@@ -109,18 +109,41 @@ public abstract class AppDataTable extends AppPanel implements ApplicationModelL
 		// TODO Auto-generated method stub
 
 	}
-
+	
 	@Override
 	public void updateView() {
 		AppDataBaseCriteria criteria;
+		int total;
+		
+		this.cleanData();
 		
 		log.trace("Update datatable...");
 		
 		criteria = this.buildCriteria();
+		
+		total = this.countByCriteria(criteria);
+		
+		log.trace("Count of Registers: {}", total);
+		
+		List<?> data = this.findByCriteria(criteria);
+		
+		log.trace("Number of Registers: {}", data.size());
 	
 		// TODO Auto-generated method stub
 //		this.tableModel.addRow(new Object[]{});
 	}
+
+	private void cleanData() {
+		int rowCount = this.tableModel.getRowCount();
+		
+		log.trace("Model row count: {}", rowCount);
+		// TODO Auto-generated method stub
+		
+	}
+
+	protected abstract List<?> findByCriteria(AppDataBaseCriteria criteria);
+
+	protected abstract Integer countByCriteria(AppDataBaseCriteria criteria);
 
 	protected abstract AppDataBaseCriteria buildCriteria();
 

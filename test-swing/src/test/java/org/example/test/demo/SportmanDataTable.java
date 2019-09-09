@@ -1,6 +1,9 @@
 package org.example.test.demo;
 
+import java.util.List;
+
 import org.example.test.demo.data.Sportman;
+import org.example.test.demo.data.SportmanCriteria;
 import org.example.test.demo.data.SportmanMockService;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.datatables.AppDataBaseCriteria;
@@ -37,7 +40,7 @@ public class SportmanDataTable extends AppDataTable implements ApplicationModelL
 	protected AppDataBaseCriteria buildCriteria() {
 		AppDataBaseCriteria criteria;
 		
-		criteria = new AppDataBaseCriteria();
+		criteria = new SportmanCriteria();
 		// TODO Auto-generated method stub
 		return criteria;
 	}
@@ -46,5 +49,15 @@ public class SportmanDataTable extends AppDataTable implements ApplicationModelL
 		log.trace("New Registry: {}", sportman);
 		service.save(sportman);
 		super.updateView();
+	}
+
+	@Override
+	protected Integer countByCriteria(AppDataBaseCriteria criteria) {
+		return service.countByCriteria((SportmanCriteria)criteria);
+	}
+	
+	@Override
+	protected List<?> findByCriteria(AppDataBaseCriteria criteria) {
+		return service.findByCriteria((SportmanCriteria)criteria);
 	}
 }
