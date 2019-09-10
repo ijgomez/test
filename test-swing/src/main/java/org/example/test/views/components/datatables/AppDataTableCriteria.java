@@ -3,7 +3,7 @@ package org.example.test.views.components.datatables;
 import lombok.Data;
 
 @Data
-public class AppDataBaseCriteria {
+public class AppDataTableCriteria {
 
 	private Integer pageNumber;
 	

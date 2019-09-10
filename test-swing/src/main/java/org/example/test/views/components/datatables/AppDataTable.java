@@ -16,7 +16,7 @@ import org.example.test.views.components.panels.AppPanel;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public abstract class AppDataTable<E, C extends AppDataBaseCriteria> extends AppPanel implements ApplicationModelListener {
+public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends AppPanel implements ApplicationModelListener {
 
 	
 	
