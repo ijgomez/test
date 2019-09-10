@@ -2,6 +2,7 @@ package org.example.test.views.components.datatables;
 
 import java.awt.BorderLayout;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,7 +16,7 @@ import org.example.test.views.components.panels.AppPanel;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public abstract class AppDataTable extends AppPanel implements ApplicationModelListener {
+public abstract class AppDataTable<E, C extends AppDataBaseCriteria> extends AppPanel implements ApplicationModelListener {
 
 	
 	
@@ -30,6 +31,7 @@ public abstract class AppDataTable extends AppPanel implements ApplicationModelL
 
 	@Override
 	protected void initializateGUI() {
+		JScrollPane scrollPane;
 		
 		String[] columnNames = createColumnNames();
 
@@ -42,20 +44,16 @@ public abstract class AppDataTable extends AppPanel implements ApplicationModelL
 		
 		this.table = new JTable(this.tableModel);
 //		this.table.setModel(tableModel);
-//		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
-        table.setFillsViewportHeight(true);
+        this.table.setFillsViewportHeight(true);
 		
-        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane = new JScrollPane(this.table);
         
         this.paginationPanel = new PaginationPanel();
-		
 		
 		super.setLayout(new BorderLayout());
 		super.add(scrollPane, BorderLayout.CENTER);
 		super.add(this.paginationPanel, BorderLayout.SOUTH);
 		
-		// TODO Auto-generated method stub
-
 		this.handlerInitializateGUI();
 	}
 	
@@ -64,55 +62,18 @@ public abstract class AppDataTable extends AppPanel implements ApplicationModelL
 	protected abstract String[] createColumnNames();
 	
 	protected Object[][] createDummyData() {
-		return new Object[][] {
-			{"Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false)},
-			{"John", "Doe", "Rowing", new Integer(3), new Boolean(true)},
-			{"Sue", "Black", "Knitting", new Integer(2), new Boolean(false)},
-			{"Jane", "White", "Speed reading", new Integer(20), new Boolean(true)},
-			{"Joe", "Brown", "Pool", new Integer(10), new Boolean(false)},
-			{"Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false)},
-			{"John", "Doe", "Rowing", new Integer(3), new Boolean(true)},
-			{"Sue", "Black", "Knitting", new Integer(2), new Boolean(false)},
-			{"Jane", "White", "Speed reading", new Integer(20), new Boolean(true)},
-			{"Joe", "Brown", "Pool", new Integer(10), new Boolean(false)},
-			{"Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false)},
-			{"John", "Doe", "Rowing", new Integer(3), new Boolean(true)},
-			{"Sue", "Black", "Knitting", new Integer(2), new Boolean(false)},
-			{"Jane", "White", "Speed reading", new Integer(20), new Boolean(true)},
-			{"Joe", "Brown", "Pool", new Integer(10), new Boolean(false)},
-			{"Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false)},
-			{"John", "Doe", "Rowing", new Integer(3), new Boolean(true)},
-			{"Sue", "Black", "Knitting", new Integer(2), new Boolean(false)},
-			{"Jane", "White", "Speed reading", new Integer(20), new Boolean(true)},
-			{"Joe", "Brown", "Pool", new Integer(10), new Boolean(false)},
-			{"Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false)},
-			{"John", "Doe", "Rowing", new Integer(3), new Boolean(true)},
-			{"Sue", "Black", "Knitting", new Integer(2), new Boolean(false)},
-			{"Jane", "White", "Speed reading", new Integer(20), new Boolean(true)},
-			{"Joe", "Brown", "Pool", new Integer(10), new Boolean(false)},
-			{"Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false)},
-			{"John", "Doe", "Rowing", new Integer(3), new Boolean(true)},
-			{"Sue", "Black", "Knitting", new Integer(2), new Boolean(false)},
-			{"Jane", "White", "Speed reading", new Integer(20), new Boolean(true)},
-			{"Joe", "Brown", "Pool", new Integer(10), new Boolean(false)},
-			{"Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false)},
-			{"John", "Doe", "Rowing", new Integer(3), new Boolean(true)},
-			{"Sue", "Black", "Knitting", new Integer(2), new Boolean(false)},
-			{"Jane", "White", "Speed reading", new Integer(20), new Boolean(true)},
-			{"Joe", "Brown", "Pool", new Integer(10), new Boolean(false)}
-		};
+		return new Object[][] {};
 	}
 
 	@Override
 	protected void registerEventListeners() {
 		super.addEventListener(ReloadDataEvent.class, (e) -> updateView());
-		// TODO Auto-generated method stub
-
 	}
 	
 	@Override
 	public void updateView() {
-		AppDataBaseCriteria criteria;
+		C criteria;
+		List<E> data;
 		int total;
 		
 		this.cleanData();
@@ -120,31 +81,31 @@ public abstract class AppDataTable extends AppPanel implements ApplicationModelL
 		log.trace("Update datatable...");
 		
 		criteria = this.buildCriteria();
-		
 		total = this.countByCriteria(criteria);
 		
 		log.trace("Count of Registers: {}", total);
 		
-		List<?> data = this.findByCriteria(criteria);
+		data = this.findByCriteria(criteria);
 		
 		log.trace("Number of Registers: {}", data.size());
 	
-		// TODO Auto-generated method stub
-//		this.tableModel.addRow(new Object[]{});
+		data.stream().forEach((E) -> tableModel.addRow(toMapper(E)));
 	}
+
+	protected abstract Object[] toMapper(E object);
 
 	private void cleanData() {
 		int rowCount = this.tableModel.getRowCount();
 		
-		log.trace("Model row count: {}", rowCount);
-		// TODO Auto-generated method stub
-		
+		log.trace("Remove {} rows...", rowCount);
+		tableModel.getDataVector().removeAllElements();
+		tableModel.fireTableDataChanged();
 	}
 
-	protected abstract List<?> findByCriteria(AppDataBaseCriteria criteria);
+	protected abstract List<E> findByCriteria(C criteria);
 
-	protected abstract Integer countByCriteria(AppDataBaseCriteria criteria);
+	protected abstract Integer countByCriteria(C criteria);
 
-	protected abstract AppDataBaseCriteria buildCriteria();
+	protected abstract C buildCriteria();
 
 }

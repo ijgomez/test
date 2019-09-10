@@ -6,13 +6,12 @@ import org.example.test.demo.data.Sportman;
 import org.example.test.demo.data.SportmanCriteria;
 import org.example.test.demo.data.SportmanMockService;
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.components.datatables.AppDataBaseCriteria;
 import org.example.test.views.components.datatables.AppDataTable;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class SportmanDataTable extends AppDataTable implements ApplicationModelListener {
+public class SportmanDataTable extends AppDataTable<Sportman, SportmanCriteria> implements ApplicationModelListener {
 
 	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = 5190038862045411081L;
@@ -37,8 +36,8 @@ public class SportmanDataTable extends AppDataTable implements ApplicationModelL
 	}
 	
 	@Override
-	protected AppDataBaseCriteria buildCriteria() {
-		AppDataBaseCriteria criteria;
+	protected SportmanCriteria buildCriteria() {
+		SportmanCriteria criteria;
 		
 		criteria = new SportmanCriteria();
 		// TODO Auto-generated method stub
@@ -50,14 +49,19 @@ public class SportmanDataTable extends AppDataTable implements ApplicationModelL
 		service.save(sportman);
 		super.updateView();
 	}
+	
+	@Override
+	protected Object[] toMapper(Sportman sportman) {
+		return new Object[] {sportman.getName(), sportman.getSurname(), sportman.getSport(), sportman.getYear(), sportman.getVegetarian()};
+	}
 
 	@Override
-	protected Integer countByCriteria(AppDataBaseCriteria criteria) {
-		return service.countByCriteria((SportmanCriteria)criteria);
+	protected Integer countByCriteria(SportmanCriteria criteria) {
+		return service.countByCriteria(criteria);
 	}
 	
 	@Override
-	protected List<?> findByCriteria(AppDataBaseCriteria criteria) {
-		return service.findByCriteria((SportmanCriteria)criteria);
+	protected List<Sportman> findByCriteria(SportmanCriteria criteria) {
+		return service.findByCriteria(criteria);
 	}
 }
