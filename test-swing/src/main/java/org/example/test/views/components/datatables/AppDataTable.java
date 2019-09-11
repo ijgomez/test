@@ -2,11 +2,9 @@ package org.example.test.views.components.datatables;
 
 import java.awt.BorderLayout;
 import java.util.List;
-import java.util.Vector;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.datatables.pagging.PaginationPanel;
@@ -18,14 +16,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends AppPanel implements ApplicationModelListener {
 
-	
-	
 	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = 6061707010961045115L;
 	
 	private JTable table;
 	
-	private DefaultTableModel tableModel;
+	private AppDataTableModel<E> tableModel;
 	
 	private PaginationPanel paginationPanel;
 
@@ -35,12 +31,18 @@ public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends Ap
 		
 		String[] columnNames = createColumnNames();
 
-		Object[][] data = createDummyData();
+		this.tableModel = new AppDataTableModel<E>() {
+
+			/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
+			private static final long serialVersionUID = -8257919131789123073L;
+
+			@Override
+			protected Object getValueAt(E e, int columnIndex) {
+				return handlerGetValueAt(e, columnIndex);
+			}
+		};
+		this.tableModel.setColumnNames(columnNames);
 		
-		this.tableModel = new DefaultTableModel();
-//		this.tableModel.setColumnIdentifiers(columnNames);
-//		this.tableModel.setColumnIdentifiers(new String[] {"COLUMN_1", "COLUMN_2", "COLUMN_3"});
-		this.tableModel.setDataVector(data, columnNames);
 		
 		this.table = new JTable(this.tableModel);
 //		this.table.setModel(tableModel);
@@ -57,6 +59,8 @@ public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends Ap
 		this.handlerInitializateGUI();
 	}
 	
+	protected abstract Object handlerGetValueAt(E e, int columnIndex);
+
 	protected abstract void handlerInitializateGUI();
 
 	protected abstract String[] createColumnNames();
@@ -89,16 +93,16 @@ public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends Ap
 		
 		log.trace("Number of Registers: {}", data.size());
 	
-		data.stream().forEach((E) -> tableModel.addRow(toMapper(E)));
+		data.stream().forEach((e) -> tableModel.addData(e));
 	}
-
-	protected abstract Object[] toMapper(E object);
 
 	private void cleanData() {
 		int rowCount = this.tableModel.getRowCount();
 		
 		log.trace("Remove {} rows...", rowCount);
-		tableModel.getDataVector().removeAllElements();
+		while (tableModel.getData().size() > 0) {
+			tableModel.getData().remove(0);
+		}
 		tableModel.fireTableDataChanged();
 	}
 

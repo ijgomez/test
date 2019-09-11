@@ -36,23 +36,26 @@ public class SportmanDataTable extends AppDataTable<Sportman, SportmanCriteria> 
 	}
 	
 	@Override
+	protected Object handlerGetValueAt(Sportman sportman, int columnIndex) {
+		switch (columnIndex) {
+		case 0: return sportman.getName();
+		case 1: return sportman.getSurname();
+		case 2: return sportman.getSport();
+		case 3: return sportman.getYear();
+		case 4: return sportman.getVegetarian();
+		default:
+			// TODO Auto-generated method stub
+			return null;
+		}
+	}
+	
+	@Override
 	protected SportmanCriteria buildCriteria() {
 		SportmanCriteria criteria;
 		
 		criteria = new SportmanCriteria();
 		// TODO Auto-generated method stub
 		return criteria;
-	}
-
-	public void addRegister(Sportman sportman) {
-		log.trace("New Registry: {}", sportman);
-		service.save(sportman);
-		super.updateView();
-	}
-	
-	@Override
-	protected Object[] toMapper(Sportman sportman) {
-		return new Object[] {sportman.getName(), sportman.getSurname(), sportman.getSport(), sportman.getYear(), sportman.getVegetarian()};
 	}
 
 	@Override
@@ -63,5 +66,11 @@ public class SportmanDataTable extends AppDataTable<Sportman, SportmanCriteria> 
 	@Override
 	protected List<Sportman> findByCriteria(SportmanCriteria criteria) {
 		return service.findByCriteria(criteria);
+	}
+	
+	public void addRegister(Sportman sportman) {
+		log.trace("New Registry: {}", sportman);
+		service.save(sportman);
+		super.updateView();
 	}
 }
