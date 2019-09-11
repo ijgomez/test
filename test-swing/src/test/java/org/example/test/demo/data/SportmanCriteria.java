@@ -5,7 +5,7 @@ import org.example.test.views.components.datatables.AppDataTableCriteria;
 import lombok.Data;
 
 @Data
-public class SportmanCriteria extends AppDataTableCriteria {
+public class SportmanCriteria extends PaginationCriteria implements AppDataTableCriteria {
 
 	private String name;
 	

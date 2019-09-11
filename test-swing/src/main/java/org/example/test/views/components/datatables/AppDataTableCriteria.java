@@ -1,16 +1,21 @@
 package org.example.test.views.components.datatables;
 
-import lombok.Data;
+public interface AppDataTableCriteria {
 
-@Data
-public class AppDataTableCriteria {
+	public Integer getPageNumber();
 
-	private Integer pageNumber;
-	
-	private Integer pageSize;
-	
-	private String sortField;
-	
-	private String sortOrder;
+	public void setPageNumber(Integer pageNumber);
+
+	public Integer getPageSize();
+
+	public void setPageSize(Integer pageSize);
+
+	public String getSortField();
+
+	public void setSortField(String sortField);
+
+	public String getSortOrder();
+
+	public void setSortOrder(String sortOrder);
 	
 }
