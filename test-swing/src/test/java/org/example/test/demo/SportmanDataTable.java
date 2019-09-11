@@ -2,6 +2,11 @@ package org.example.test.demo;
 
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import org.example.test.demo.data.Sportman;
 import org.example.test.demo.data.SportmanCriteria;
 import org.example.test.demo.data.SportmanMockService;
@@ -46,6 +51,19 @@ public class SportmanDataTable extends AppDataTable<Sportman, SportmanCriteria> 
 			// TODO Auto-generated method stub
 			return null;
 		}
+	}
+	
+	@Override
+	protected JPanel createFilterView() {
+		JPanel filterView;
+		
+		filterView = new JPanel();
+		filterView.add(new JLabel("Filter:"));
+		filterView.add(new JTextField());
+		filterView.add(new JButton("Filter"));
+		
+		// TODO Auto-generated method stub
+		return filterView;
 	}
 	
 	@Override

@@ -3,6 +3,7 @@ package org.example.test.views.components.datatables;
 import java.awt.BorderLayout;
 import java.util.List;
 
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -19,6 +20,8 @@ public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends Ap
 	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = 6061707010961045115L;
 	
+	private JPanel filterView;
+	
 	private JTable table;
 	
 	private AppDataTableModel<E> tableModel;
@@ -28,6 +31,8 @@ public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends Ap
 	@Override
 	protected void initializateGUI() {
 		JScrollPane scrollPane;
+		
+		this.filterView = createFilterView();
 		
 		this.tableModel = new AppDataTableModel<E>() {
 
@@ -51,12 +56,17 @@ public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends Ap
         this.paginationPanel = new PaginationPanel();
 		
 		super.setLayout(new BorderLayout());
+		if (this.filterView != null) {
+			super.add(this.filterView, BorderLayout.NORTH);
+		}
 		super.add(scrollPane, BorderLayout.CENTER);
 		super.add(this.paginationPanel, BorderLayout.SOUTH);
 		
 		this.handlerInitializateGUI();
 	}
 	
+	protected abstract JPanel createFilterView();
+
 	protected abstract Object handlerGetValueAt(E e, int columnIndex);
 
 	protected abstract void handlerInitializateGUI();

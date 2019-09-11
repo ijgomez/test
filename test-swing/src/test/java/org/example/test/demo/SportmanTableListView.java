@@ -40,7 +40,6 @@ public class SportmanTableListView  extends AppPanel implements ApplicationModel
 		
 		toolbar.add(reloadDataButton);
 		toolbar.add(new JToolBar.Separator());
-		toolbar.add(new JButton("Search"));
 		toolbar.add(addButton);
 		toolbar.add(new JButton("Export"));
 		
@@ -71,7 +70,7 @@ public class SportmanTableListView  extends AppPanel implements ApplicationModel
 	private void openEntityDialog(ApplicationEvent e) {
 		log.trace("New Registry: {}", e);
 		// TODO Auto-generated method stub
-		this.datatable.addRegister(new Sportman("", "", "", 0, false));
+		this.datatable.addRegister(new Sportman(0L, "", "", "", 0, false));
 	}
 
 	@Override
