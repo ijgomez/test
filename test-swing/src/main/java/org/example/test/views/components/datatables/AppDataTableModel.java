@@ -33,6 +33,14 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel {
 	}
 	
 	@Override
+	public String getColumnName(int column) {
+		if (column > this.columnNames.length) {
+			return super.getColumnName(column);
+		}
+		return this.columnNames[column];
+	}
+	
+	@Override
 	public int getRowCount() {
 		return data.size();
 	}

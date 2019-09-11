@@ -29,8 +29,6 @@ public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends Ap
 	protected void initializateGUI() {
 		JScrollPane scrollPane;
 		
-		String[] columnNames = createColumnNames();
-
 		this.tableModel = new AppDataTableModel<E>() {
 
 			/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
@@ -41,11 +39,11 @@ public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends Ap
 				return handlerGetValueAt(e, columnIndex);
 			}
 		};
-		this.tableModel.setColumnNames(columnNames);
+		this.tableModel.setColumnNames(createColumnNames());
 		
 		
-		this.table = new JTable(this.tableModel);
-//		this.table.setModel(tableModel);
+		this.table = new JTable();
+		this.table.setModel(this.tableModel);
         this.table.setFillsViewportHeight(true);
 		
         scrollPane = new JScrollPane(this.table);
@@ -84,16 +82,18 @@ public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends Ap
 		
 		log.trace("Update datatable...");
 		
+		//this.paginationPanel.getActualRegistry(), 25
 		criteria = this.buildCriteria();
-		total = this.countByCriteria(criteria);
 		
+		total = this.countByCriteria(criteria);
 		log.trace("Count of Registers: {}", total);
+		this.paginationPanel.setTotalRegistry(total);
 		
 		data = this.findByCriteria(criteria);
-		
 		log.trace("Number of Registers: {}", data.size());
 	
 		data.stream().forEach((e) -> tableModel.addData(e));
+		this.paginationPanel.updateView();
 	}
 
 	private void cleanData() {

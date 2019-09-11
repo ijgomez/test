@@ -1,10 +1,12 @@
 package org.example.test.views.components.datatables.pagging;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
 import org.example.test.views.components.ApplicationConstants;
+import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.datatables.AppDataTableListener;
 import org.example.test.views.components.datatables.pagging.buttons.FirstPageButton;
 import org.example.test.views.components.datatables.pagging.buttons.LastPageButton;
@@ -12,8 +14,12 @@ import org.example.test.views.components.datatables.pagging.buttons.NextPageButt
 import org.example.test.views.components.datatables.pagging.buttons.PreviousPageButton;
 import org.example.test.views.components.panels.AppPanel;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+@Getter
+@Setter
 @Slf4j
 public class PaginationPanel extends AppPanel implements AppDataTableListener, ApplicationConstants {
 
@@ -40,7 +46,7 @@ public class PaginationPanel extends AppPanel implements AppDataTableListener, A
         nextPagingButton = new NextPageButton();
         lastPagingButton = new LastPageButton();
         
-        this.pagingCounterPanel = new JLabel("%s - %s, de %s registries");
+        this.pagingCounterPanel = new JLabel();
         
 
 		super.add(firstPagingButton);
@@ -58,13 +64,16 @@ public class PaginationPanel extends AppPanel implements AppDataTableListener, A
 
 	@Override
 	public void updateView() {
+		this.pagingCounterPanel.setText(String.format("%s - %s, de %s registries", (actualRegistry + 1), 25, totalRegistry));
 		// TODO Auto-generated method stub
-		
 	}
+	
 
 	@Override
 	public void firstPageAction(ActionEvent e) {
 		log.trace("Fist page: {}", e);
+		this.actualRegistry = 0;
+		((ApplicationModelListener) getParent()).updateView();
 		// TODO Auto-generated method stub
 		
 	}
@@ -72,6 +81,7 @@ public class PaginationPanel extends AppPanel implements AppDataTableListener, A
 	@Override
 	public void previousPageAction(ActionEvent e) {
 		log.trace("Previous page: {}", e);
+		((ApplicationModelListener) getParent()).updateView();
 		// TODO Auto-generated method stub
 		
 	}
@@ -79,6 +89,7 @@ public class PaginationPanel extends AppPanel implements AppDataTableListener, A
 	@Override
 	public void nextPageAction(ActionEvent e) {
 		log.trace("Next page: {}", e);
+		((ApplicationModelListener) getParent()).updateView();
 		// TODO Auto-generated method stub
 		
 	}
@@ -86,6 +97,7 @@ public class PaginationPanel extends AppPanel implements AppDataTableListener, A
 	@Override
 	public void lastPageAction(ActionEvent e) {
 		log.trace("Last page: {}", e);
+		((ApplicationModelListener) getParent()).updateView();
 		// TODO Auto-generated method stub
 		
 	}
