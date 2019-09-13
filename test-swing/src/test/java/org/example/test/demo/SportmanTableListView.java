@@ -38,9 +38,10 @@ public class SportmanTableListView  extends AppPanel implements ApplicationModel
 		
 		toolbar = new JToolBar();
 		
-		toolbar.add(reloadDataButton);
-		toolbar.add(new JToolBar.Separator());
 		toolbar.add(addButton);
+		
+		toolbar.add(new JToolBar.Separator());
+		toolbar.add(reloadDataButton);
 		toolbar.add(new JButton("Export"));
 		
 		this.datatable = new SportmanDataTable();

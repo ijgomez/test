@@ -13,5 +13,5 @@ public interface ApplicationConstants {
 	public static final Dimension MINIMUM_SIZE = new Dimension(1024, 768);
 	
 	/** Maximum number of records per page of the list. */
-	public static final int MAX_REGISTRY_BY_PAGE = 50;
+	public static final int MAX_REGISTRY_BY_PAGE = 25;
 }

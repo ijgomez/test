@@ -26,8 +26,7 @@ public class TextResources {
 		return this.resources.getOrDefault(key, key);
 	}
 
-	public Optional<String> getString(String key, String...parameters) {
-		// TODO Auto-generated constructor stub
-		return null;
+	public String getString(String key, Object...parameters) {
+		return String.format(this.resources.get(key), parameters);
 	}
 }

@@ -31,6 +31,10 @@ public class ResourcesFactory {
 		return getFactory().images().getImage(key);
 	}
 	
+	public static String getString(String key, Object... parameters) {
+		return getFactory().text().getString(key, parameters);
+	}
+	
 	private TextResources textResources;
 	
 	private ImagesResources imagesResources;

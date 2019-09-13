@@ -1,7 +1,6 @@
 package org.example.test.views.components.datatables.pagging;
 
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
@@ -13,6 +12,7 @@ import org.example.test.views.components.datatables.pagging.buttons.LastPageButt
 import org.example.test.views.components.datatables.pagging.buttons.NextPageButton;
 import org.example.test.views.components.datatables.pagging.buttons.PreviousPageButton;
 import org.example.test.views.components.panels.AppPanel;
+import org.example.test.views.factories.ResourcesFactory;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,23 +32,31 @@ public class PaginationPanel extends AppPanel implements AppDataTableListener, A
 	/** Total number of records contained in the data table. */ 
 	private int totalRegistry = 0;
 	
+	/** Button to go to the first page. */
+	private FirstPageButton firstPagingButton;
+	
+	/** Button to go to the previous page. */
+	private PreviousPageButton prevPagingButton;
+		
 	private JLabel pagingCounterPanel;
+	
+	/** Button to go to the next page. */
+	private NextPageButton nextPagingButton;
+	
+	/** Button to go to the last page. */
+	private LastPageButton lastPagingButton;
 
 	@Override
 	protected void initializateGUI() {
-		FirstPageButton firstPagingButton;
-		PreviousPageButton prevPagingButton;
-		NextPageButton nextPagingButton;
-		LastPageButton lastPagingButton;
 		
-		firstPagingButton = new FirstPageButton();
-        prevPagingButton = new PreviousPageButton();
-        nextPagingButton = new NextPageButton();
-        lastPagingButton = new LastPageButton();
+		this.firstPagingButton = new FirstPageButton();
+		this.prevPagingButton = new PreviousPageButton();
         
-        this.pagingCounterPanel = new JLabel();
+        this.pagingCounterPanel = new JLabel(ResourcesFactory.getString("datatable.pagging.text", 0, 0, 0));
         
-
+        this.nextPagingButton = new NextPageButton();
+        this.lastPagingButton = new LastPageButton();
+        
 		super.add(firstPagingButton);
 		super.add(prevPagingButton);
 		super.add(pagingCounterPanel);
@@ -57,15 +65,25 @@ public class PaginationPanel extends AppPanel implements AppDataTableListener, A
 	}
 
 	@Override
-	protected void registerEventListeners() {
-		// TODO Auto-generated method stub
-		
-	}
+	protected void registerEventListeners() { }
 
 	@Override
 	public void updateView() {
-		this.pagingCounterPanel.setText(String.format("%s - %s, de %s registries", (actualRegistry + 1), 25, totalRegistry));
-		// TODO Auto-generated method stub
+		int fistRegistry = 0, lastRegistry = 0;
+		
+		fistRegistry = (actualRegistry * MAX_REGISTRY_BY_PAGE + 1);
+		lastRegistry = (actualRegistry * MAX_REGISTRY_BY_PAGE + MAX_REGISTRY_BY_PAGE);
+		if (lastRegistry > totalRegistry) {
+			lastRegistry = totalRegistry;
+		}
+		
+		log.trace("actualRegistry={}, fistRegistry={}, lastRegistry={}", actualRegistry, fistRegistry, lastRegistry);
+		
+		this.firstPagingButton.setEnabled(this.actualRegistry != 0);
+		this.prevPagingButton.setEnabled(this.actualRegistry != 0);
+		this.pagingCounterPanel.setText(ResourcesFactory.getString("datatable.pagging.text", fistRegistry, lastRegistry, totalRegistry));
+		this.nextPagingButton.setEnabled(this.actualRegistry != this.totalRegistry / MAX_REGISTRY_BY_PAGE);
+		this.lastPagingButton.setEnabled(this.actualRegistry != this.totalRegistry / MAX_REGISTRY_BY_PAGE);
 	}
 	
 
@@ -74,34 +92,27 @@ public class PaginationPanel extends AppPanel implements AppDataTableListener, A
 		log.trace("Fist page: {}", e);
 		this.actualRegistry = 0;
 		((ApplicationModelListener) getParent()).updateView();
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void previousPageAction(ActionEvent e) {
 		log.trace("Previous page: {}", e);
+		this.actualRegistry--;
 		((ApplicationModelListener) getParent()).updateView();
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void nextPageAction(ActionEvent e) {
 		log.trace("Next page: {}", e);
+		this.actualRegistry++;
 		((ApplicationModelListener) getParent()).updateView();
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void lastPageAction(ActionEvent e) {
 		log.trace("Last page: {}", e);
+		this.actualRegistry = this.totalRegistry / MAX_REGISTRY_BY_PAGE;
 		((ApplicationModelListener) getParent()).updateView();
-		// TODO Auto-generated method stub
-		
 	}
-	
-	
 
 }
