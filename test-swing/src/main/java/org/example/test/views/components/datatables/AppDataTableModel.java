@@ -68,6 +68,14 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel {
 		fireTableRowsInserted(data.size() - 1, data.size() - 1);
 	}
 	
+	public void addData(List<E> dataa) {
+		data.clear();
+		data.addAll(data);
+		fireTableDataChanged();
+		// TODO Auto-generated method stub
+		
+	}
+	
 	public int getRegistryPageMax() {
 		return registryPageMax;
 	}
@@ -75,5 +83,7 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel {
 	public void setRegistryPageMax(int registryPageMax) {
 		this.registryPageMax = registryPageMax;
 	}
+
+	
 
 }

@@ -67,10 +67,24 @@ public class SportmanMockService {
 	}
 	
 	public List<Sportman> findByCriteria(SportmanCriteria criteria) {
-		return data;
+		log.trace("Criteria: pageNumber={}, pageSize={}", criteria.getPageNumber(), criteria.getPageSize());
+		
+		// Filter by criteria
+		
+		int fistRegistry, lastRegistry;
+		fistRegistry = (criteria.getPageNumber() * criteria.getPageSize() + 1);                       
+		lastRegistry = (criteria.getPageNumber() * criteria.getPageSize() + criteria.getPageSize());    
+		if (lastRegistry > data.size()) {
+			lastRegistry = data.size();
+		}
+		
+		return data.subList(fistRegistry -1, lastRegistry- 1);
+		
+//		return data;
 	}
 	
 	public Integer countByCriteria(SportmanCriteria criteria) {
+		// Filter by criteria
 		return data.size();
 	}
 

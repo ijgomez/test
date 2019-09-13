@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import org.example.test.views.components.ApplicationConstants;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.datatables.pagging.PaginationPanel;
 import org.example.test.views.components.events.ReloadDataEvent;
@@ -15,7 +16,7 @@ import org.example.test.views.components.panels.AppPanel;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends AppPanel implements ApplicationModelListener {
+public abstract class AppDataTable<E, C> extends AppPanel implements ApplicationModelListener, ApplicationConstants {
 
 	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = 6061707010961045115L;
@@ -91,9 +92,8 @@ public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends Ap
 		this.cleanData();
 		
 		log.trace("Update datatable...");
-		
-		//this.paginationPanel.getActualRegistry(), 25
-		criteria = this.buildCriteria();
+
+		criteria = this.buildCriteria(this.paginationPanel.getActualRegistry(), MAX_REGISTRY_BY_PAGE);
 		
 		total = this.countByCriteria(criteria);
 		log.trace("Count of Registers: {}", total);
@@ -102,6 +102,7 @@ public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends Ap
 		data = this.findByCriteria(criteria);
 		log.trace("Number of Registers: {}", data.size());
 	
+		//this.tableModel.addData(data);
 		data.stream().forEach((e) -> tableModel.addData(e));
 		this.paginationPanel.updateView();
 	}
@@ -120,6 +121,6 @@ public abstract class AppDataTable<E, C extends AppDataTableCriteria> extends Ap
 
 	protected abstract Integer countByCriteria(C criteria);
 
-	protected abstract C buildCriteria();
+	protected abstract C buildCriteria(int pageNumber, int pageSize);
 
 }
