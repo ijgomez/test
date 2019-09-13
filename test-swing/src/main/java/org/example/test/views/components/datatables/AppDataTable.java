@@ -93,7 +93,7 @@ public abstract class AppDataTable<E, C> extends AppPanel implements Application
 		
 		log.trace("Update datatable...");
 
-		criteria = this.buildCriteria(this.paginationPanel.getActualRegistry(), MAX_REGISTRY_BY_PAGE);
+		criteria = this.buildCriteria(this.paginationPanel.getActualPage(), MAX_REGISTRY_BY_PAGE);
 		
 		total = this.countByCriteria(criteria);
 		log.trace("Count of Registers: {}", total);
@@ -102,8 +102,7 @@ public abstract class AppDataTable<E, C> extends AppPanel implements Application
 		data = this.findByCriteria(criteria);
 		log.trace("Number of Registers: {}", data.size());
 	
-		//this.tableModel.addData(data);
-		data.stream().forEach((e) -> tableModel.addData(e));
+		this.tableModel.addData(data);
 		this.paginationPanel.updateView();
 	}
 

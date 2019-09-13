@@ -27,7 +27,7 @@ public class PaginationPanel extends AppPanel implements AppDataTableListener, A
 	private static final long serialVersionUID = -913388843573832438L;
 	
 	/** Number of the record shown at the top of the page. */
-	private int actualRegistry = 0;
+	private int actualPage = 0;
 	
 	/** Total number of records contained in the data table. */ 
 	private int totalRegistry = 0;
@@ -71,48 +71,66 @@ public class PaginationPanel extends AppPanel implements AppDataTableListener, A
 	public void updateView() {
 		int fistRegistry = 0, lastRegistry = 0;
 		
-		fistRegistry = (actualRegistry * MAX_REGISTRY_BY_PAGE + 1);
-		lastRegistry = (actualRegistry * MAX_REGISTRY_BY_PAGE + MAX_REGISTRY_BY_PAGE);
+		fistRegistry = (actualPage * MAX_REGISTRY_BY_PAGE + 1);
+		lastRegistry = (actualPage * MAX_REGISTRY_BY_PAGE + MAX_REGISTRY_BY_PAGE);
 		if (lastRegistry > totalRegistry) {
 			lastRegistry = totalRegistry;
 		}
 		
-		log.trace("actualRegistry={}, fistRegistry={}, lastRegistry={}", actualRegistry, fistRegistry, lastRegistry);
+		log.trace("actualPage={}, fistRegistry={}, lastRegistry={}, total={}", actualPage, fistRegistry, lastRegistry, totalRegistry);
 		
-		this.firstPagingButton.setEnabled(this.actualRegistry != 0);
-		this.prevPagingButton.setEnabled(this.actualRegistry != 0);
+		this.firstPagingButton.setEnabled(!isFirstPage());
+		this.prevPagingButton.setEnabled(!isFirstPage());
 		this.pagingCounterPanel.setText(ResourcesFactory.getString("datatable.pagging.text", fistRegistry, lastRegistry, totalRegistry));
-		this.nextPagingButton.setEnabled(this.actualRegistry != this.totalRegistry / MAX_REGISTRY_BY_PAGE);
-		this.lastPagingButton.setEnabled(this.actualRegistry != this.totalRegistry / MAX_REGISTRY_BY_PAGE);
+		this.nextPagingButton.setEnabled(!isLastPage());
+		this.lastPagingButton.setEnabled(!isLastPage());
+	}
+
+	private boolean isFirstPage() {
+		return this.actualPage == 0;
+	}
+
+	private boolean isLastPage() {
+		if (this.totalRegistry % MAX_REGISTRY_BY_PAGE !=0) {
+			return this.actualPage == getTotalPages();
+		} else {
+			return (this.actualPage + 1) == getTotalPages();
+		}
+	}
+	
+	private int getTotalPages() {
+		return this.totalRegistry / MAX_REGISTRY_BY_PAGE;
 	}
 	
 
 	@Override
 	public void firstPageAction(ActionEvent e) {
 		log.trace("Fist page: {}", e);
-		this.actualRegistry = 0;
+		this.actualPage = 0;
 		((ApplicationModelListener) getParent()).updateView();
 	}
 
 	@Override
 	public void previousPageAction(ActionEvent e) {
 		log.trace("Previous page: {}", e);
-		this.actualRegistry--;
+		this.actualPage--;
 		((ApplicationModelListener) getParent()).updateView();
 	}
 
 	@Override
 	public void nextPageAction(ActionEvent e) {
 		log.trace("Next page: {}", e);
-		this.actualRegistry++;
+		this.actualPage++;
 		((ApplicationModelListener) getParent()).updateView();
 	}
 
 	@Override
 	public void lastPageAction(ActionEvent e) {
 		log.trace("Last page: {}", e);
-		this.actualRegistry = this.totalRegistry / MAX_REGISTRY_BY_PAGE;
+		this.actualPage = getTotalPages();
 		((ApplicationModelListener) getParent()).updateView();
 	}
+
+	
 
 }

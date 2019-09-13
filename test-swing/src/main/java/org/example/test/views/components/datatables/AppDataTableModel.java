@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-public abstract class AppDataTableModel<E> extends AbstractTableModel {
+import org.example.test.views.components.ApplicationConstants;
+
+public abstract class AppDataTableModel<E> extends AbstractTableModel implements ApplicationConstants {
 
 	private static final long serialVersionUID = 5661446774375595890L;
 
@@ -13,7 +15,7 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel {
 	
 	private List<E> data;
 	
-	private int registryPageMax = 25;
+	private int registryPageMax = MAX_REGISTRY_BY_PAGE;
 
 	/**
 	 * New Instance.
@@ -68,12 +70,10 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel {
 		fireTableRowsInserted(data.size() - 1, data.size() - 1);
 	}
 	
-	public void addData(List<E> dataa) {
+	public void addData(List<E> e) {
 		data.clear();
-		data.addAll(data);
-		fireTableDataChanged();
-		// TODO Auto-generated method stub
-		
+		data.addAll(e);
+		fireTableDataChanged();		
 	}
 	
 	public int getRegistryPageMax() {
