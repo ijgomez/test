@@ -12,6 +12,8 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel {
 	private String[] columnNames;
 	
 	private List<E> data;
+	
+	private int registryPageMax = 25;
 
 	/**
 	 * New Instance.
@@ -42,7 +44,7 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel {
 	
 	@Override
 	public int getRowCount() {
-		return data.size();
+		return (this.registryPageMax == 0)? this.data.size() : this.registryPageMax;
 	}
 
 	@Override
@@ -52,6 +54,9 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel {
 	
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
+		if (this.data == null || this.data.isEmpty() || (rowIndex + 1) > this.data.size()) {
+			return null;
+		}
 		E e = this.data.get(rowIndex);
 		return getValueAt(e, columnIndex);
 	}
@@ -61,6 +66,14 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel {
 	public void addData(E e) {
 		data.add(e);
 		fireTableRowsInserted(data.size() - 1, data.size() - 1);
+	}
+	
+	public int getRegistryPageMax() {
+		return registryPageMax;
+	}
+	
+	public void setRegistryPageMax(int registryPageMax) {
+		this.registryPageMax = registryPageMax;
 	}
 
 }
