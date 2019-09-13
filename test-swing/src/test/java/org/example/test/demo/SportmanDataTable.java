@@ -31,6 +31,7 @@ public class SportmanDataTable extends AppDataTable<Sportman, SportmanCriteria> 
 	@Override
 	protected String[] createColumnNames() {
 		return new String[]{
+				"Id.",
 				"First Name",
 				"Last Name",
 				"Sport",
@@ -42,11 +43,12 @@ public class SportmanDataTable extends AppDataTable<Sportman, SportmanCriteria> 
 	@Override
 	protected Object handlerGetValueAt(Sportman sportman, int columnIndex) {
 		switch (columnIndex) {
-		case 0: return sportman.getName();
-		case 1: return sportman.getSurname();
-		case 2: return sportman.getSport();
-		case 3: return sportman.getYear();
-		case 4: return sportman.getVegetarian();
+		case 0: return sportman.getId();
+		case 1: return sportman.getName();
+		case 2: return sportman.getSurname();
+		case 3: return sportman.getSport();
+		case 4: return sportman.getYear();
+		case 5: return sportman.getVegetarian();
 		default:
 			// TODO Auto-generated method stub
 			return null;
