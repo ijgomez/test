@@ -56,14 +56,20 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel implements
 	
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
+		E e = this.getValueAt(rowIndex);
+		return (e != null) ? getValueAt(e, columnIndex) : null;
+	}
+	
+	/**
+	 * Returns the object for the row at rowIndex.
+	 * 
+	 * @param rowIndex the row whose value is to be queried
+	 * @return the object at the specified row.
+	 */
+	public E getValueAt(int rowIndex) {
 		if (this.data == null || this.data.isEmpty() || (rowIndex + 1) > this.data.size()) {
 			return null;
 		}
-		E e = this.data.get(rowIndex);
-		return getValueAt(e, columnIndex);
-	}
-	
-	public E getValueAt(int rowIndex) {
 		return this.data.get(rowIndex);
 	}
 	
@@ -87,9 +93,5 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel implements
 	public void setRegistryPageMax(int registryPageMax) {
 		this.registryPageMax = registryPageMax;
 	}
-
-	
-
-	
 
 }
