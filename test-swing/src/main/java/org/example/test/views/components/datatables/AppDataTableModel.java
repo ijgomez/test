@@ -63,6 +63,10 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel implements
 		return getValueAt(e, columnIndex);
 	}
 	
+	public E getValueAt(int rowIndex) {
+		return this.data.get(rowIndex);
+	}
+	
 	protected abstract Object getValueAt(E e, int columnIndex);
 
 	public void addData(E e) {
@@ -83,6 +87,8 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel implements
 	public void setRegistryPageMax(int registryPageMax) {
 		this.registryPageMax = registryPageMax;
 	}
+
+	
 
 	
 

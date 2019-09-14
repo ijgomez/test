@@ -6,6 +6,10 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.RowSorterEvent;
+import javax.swing.table.TableRowSorter;
 
 import org.example.test.views.components.ApplicationConstants;
 import org.example.test.views.components.ApplicationModelListener;
@@ -32,6 +36,7 @@ public abstract class AppDataTable<E, C> extends AppPanel implements Application
 	@Override
 	protected void initializateGUI() {
 		JScrollPane scrollPane;
+//		TableRowSorter<AppDataTableModel<E>> tableRowSorter;
 		
 		this.filterView = createFilterView();
 		
@@ -47,10 +52,16 @@ public abstract class AppDataTable<E, C> extends AppPanel implements Application
 		};
 		this.tableModel.setColumnNames(createColumnNames());
 		
+//		tableRowSorter = new TableRowSorter<>(this.tableModel);
+//		tableRowSorter.addRowSorterListener((e) -> sorterChanged(e));
 		
 		this.table = new JTable();
 		this.table.setModel(this.tableModel);
+        //this.table.setAutoCreateRowSorter(true);
+//		this.table.setRowSorter(tableRowSorter);
         this.table.setFillsViewportHeight(true);
+        this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.table.getSelectionModel().addListSelectionListener((e) -> valueSelected(e));
 		
         scrollPane = new JScrollPane(this.table);
         
@@ -66,6 +77,21 @@ public abstract class AppDataTable<E, C> extends AppPanel implements Application
 		this.handlerInitializateGUI();
 	}
 	
+//	private void sorterChanged(RowSorterEvent e) {
+//		log.trace("event: {}", e);
+//		// TODO Auto-generated method stub
+//		
+//	}
+
+	private void valueSelected(ListSelectionEvent event) {
+		if (event.getValueIsAdjusting()) {
+            return;
+        }
+		this.handlerValueSelected(tableModel.getValueAt(table.getSelectedRow()));
+	}
+
+	protected abstract void handlerValueSelected(E valueSelected);
+
 	protected abstract JPanel createFilterView();
 
 	protected abstract Object handlerGetValueAt(E e, int columnIndex);

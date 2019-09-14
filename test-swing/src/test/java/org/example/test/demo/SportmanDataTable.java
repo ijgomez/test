@@ -1,7 +1,9 @@
 package org.example.test.demo;
 
+import java.awt.BorderLayout;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -60,9 +62,11 @@ public class SportmanDataTable extends AppDataTable<Sportman, SportmanCriteria> 
 		JPanel filterView;
 		
 		filterView = new JPanel();
-		filterView.add(new JLabel("Filter:"));
-		filterView.add(new JTextField());
-		filterView.add(new JButton("Filter"));
+		filterView.setLayout(new BorderLayout(5, 5));
+		filterView.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
+		filterView.add(new JLabel("Filter:"), BorderLayout.WEST);
+		filterView.add(new JTextField(), BorderLayout.CENTER);
+		filterView.add(new JButton("Search"), BorderLayout.EAST);
 		
 		// TODO Auto-generated method stub
 		return filterView;
@@ -93,5 +97,11 @@ public class SportmanDataTable extends AppDataTable<Sportman, SportmanCriteria> 
 		log.trace("New Registry: {}", sportman);
 		service.save(sportman);
 		super.updateView();
+	}
+	
+	@Override
+	protected void handlerValueSelected(Sportman valueSelected) {
+		log.trace("Selection: value={}", valueSelected);
+		
 	}
 }
