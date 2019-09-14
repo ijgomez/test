@@ -3,7 +3,7 @@ package org.example.test.views.components.datatables.pagging.buttons;
 import java.awt.event.ActionEvent;
 
 import org.example.test.views.components.buttons.BasicButton;
-import org.example.test.views.components.datatables.AppDataTableListener;
+import org.example.test.views.components.datatables.AppDataTablePaginationListener;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,8 +32,8 @@ public class NextPageButton extends BasicButton {
 	 */
 	private void nextPageAction(ActionEvent e) {
 		log.trace("Next page: {}", e);
-		if (super.getParent() instanceof AppDataTableListener) {
-			((AppDataTableListener) super.getParent()).nextPageAction(e);
+		if (super.getParent() instanceof AppDataTablePaginationListener) {
+			((AppDataTablePaginationListener) super.getParent()).nextPageAction(e);
 		}
 	}
 }

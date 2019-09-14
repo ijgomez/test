@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 
 import org.example.test.views.components.ApplicationConstants;
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.components.datatables.AppDataTableListener;
+import org.example.test.views.components.datatables.AppDataTablePaginationListener;
 import org.example.test.views.components.datatables.pagging.buttons.FirstPageButton;
 import org.example.test.views.components.datatables.pagging.buttons.LastPageButton;
 import org.example.test.views.components.datatables.pagging.buttons.NextPageButton;
@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 @Setter
 @Slf4j
-public class PaginationPanel extends AppPanel implements AppDataTableListener, ApplicationConstants {
+public class PaginationPanel extends AppPanel implements AppDataTablePaginationListener, ApplicationConstants {
 
 	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = -913388843573832438L;

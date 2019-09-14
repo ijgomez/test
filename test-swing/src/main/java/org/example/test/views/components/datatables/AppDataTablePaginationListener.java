@@ -2,7 +2,7 @@ package org.example.test.views.components.datatables;
 
 import java.awt.event.ActionEvent;
 
-public interface AppDataTableListener {
+public interface AppDataTablePaginationListener {
 
 	void firstPageAction(ActionEvent e);
 	

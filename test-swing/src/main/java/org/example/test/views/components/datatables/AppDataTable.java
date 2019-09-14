@@ -8,8 +8,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.RowSorterEvent;
-import javax.swing.table.TableRowSorter;
 
 import org.example.test.views.components.ApplicationConstants;
 import org.example.test.views.components.ApplicationModelListener;
@@ -62,7 +60,8 @@ public abstract class AppDataTable<E, C> extends AppPanel implements Application
         this.table.setFillsViewportHeight(true);
         this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.table.getSelectionModel().addListSelectionListener((e) -> valueSelected(e));
-		
+        this.table.getTableHeader().addMouseListener(new AppDataTableHeaderMouseListener(this.table));
+        
         scrollPane = new JScrollPane(this.table);
         
         this.paginationPanel = new PaginationPanel();

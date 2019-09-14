@@ -3,7 +3,7 @@ package org.example.test.views.components.datatables.pagging.buttons;
 import java.awt.event.ActionEvent;
 
 import org.example.test.views.components.buttons.BasicButton;
-import org.example.test.views.components.datatables.AppDataTableListener;
+import org.example.test.views.components.datatables.AppDataTablePaginationListener;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,8 +32,8 @@ public class LastPageButton extends BasicButton {
 	 */
 	private void lastPageAction(ActionEvent e) {
 		log.trace("Last page: {}", e);
-		if (super.getParent() instanceof AppDataTableListener) {
-			((AppDataTableListener) super.getParent()).lastPageAction(e);
+		if (super.getParent() instanceof AppDataTablePaginationListener) {
+			((AppDataTablePaginationListener) super.getParent()).lastPageAction(e);
 		}
 	}
 }
