@@ -1,4 +1,4 @@
-package org.example.test.demo.data;
+package org.example.test.demo.sportman.data;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.example.test.demo;
+package org.example.test.demo.sportman;
 
 import java.awt.BorderLayout;
 import java.util.List;
@@ -9,9 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.example.test.demo.data.Sportman;
-import org.example.test.demo.data.SportmanCriteria;
-import org.example.test.demo.data.SportmanMockService;
+import org.example.test.demo.sportman.data.Sportman;
+import org.example.test.demo.sportman.data.SportmanCriteria;
+import org.example.test.demo.sportman.data.SportmanMockService;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.datatables.AppDataTable;
 

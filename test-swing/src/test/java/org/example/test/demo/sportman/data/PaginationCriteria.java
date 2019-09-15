@@ -1,4 +1,4 @@
-package org.example.test.demo.data;
+package org.example.test.demo.sportman.data;
 
 import org.example.test.views.components.datatables.AppDataTableCriteria;
 

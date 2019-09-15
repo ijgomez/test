@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.example.test.demo.sportman.SportmanDataTableListView;
 import org.example.test.views.annotations.ApplicationContainerViewConfig;
 import org.example.test.views.components.ApplicationModel;
 import org.example.test.views.components.ApplicationModelListener;
@@ -17,17 +18,17 @@ public class DataTableContainerView extends AppPanel implements ApplicationModel
 	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = 8543052142754893011L;
 	
-	private SportmanTableListView listLeftView;
+	private SportmanDataTableListView listLeftView;
 	
-	private SportmanTableListView listRightView;
+	private SportmanDataTableListView listRightView;
 	
 	@Override
 	protected void initializateGUI() {
 		JPanel panel;
 		
-		listLeftView = new SportmanTableListView();
+		listLeftView = new SportmanDataTableListView();
 		
-		listRightView = new SportmanTableListView();
+		listRightView = new SportmanDataTableListView();
 		
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(1, 2));

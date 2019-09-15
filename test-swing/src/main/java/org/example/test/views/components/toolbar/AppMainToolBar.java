@@ -24,7 +24,7 @@ import org.example.test.views.resources.TextResources;
  * @author ijgomez
  *
  */
-public abstract class AppToolBar extends JToolBar implements ApplicationModelListener {
+public abstract class AppMainToolBar extends JToolBar implements ApplicationModelListener {
 
 	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = 1460066304433101806L;
@@ -40,7 +40,7 @@ public abstract class AppToolBar extends JToolBar implements ApplicationModelLis
 	
 	private JButton selectedButton;
 	
-	public AppToolBar(ApplicationViewConfiguration viewConfiguration) {
+	public AppMainToolBar(ApplicationViewConfiguration viewConfiguration) {
 		this.viewConfiguration = viewConfiguration;
 		this.initializateGUI();
 		this.registerEventListeners();

@@ -22,7 +22,7 @@ import org.example.test.views.components.events.ApplicationEvent;
 import org.example.test.views.components.events.ChangeViewEvent;
 import org.example.test.views.components.events.CloseApplicationEvent;
 import org.example.test.views.components.menubar.AppMenuBar;
-import org.example.test.views.components.toolbar.AppToolBar;
+import org.example.test.views.components.toolbar.AppMainToolBar;
 import org.example.test.views.factories.ContainerViewFactory;
 import org.example.test.views.factories.ModalDialogFactory;
 import org.example.test.views.factories.ResourcesFactory;
@@ -49,7 +49,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 	
 	private AppMenuBar menuBar;
 	
-	private AppToolBar toolBar;
+	private AppMainToolBar toolBar;
 	
 	private JComponent container;
 	
@@ -126,7 +126,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 
 	protected abstract ApplicationStatus buildStatusBar();
 
-	protected abstract AppToolBar buildToolBar();
+	protected abstract AppMainToolBar buildToolBar();
 
 	protected abstract AppMenuBar buildMenuBar();
 

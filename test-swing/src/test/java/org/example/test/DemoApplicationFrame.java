@@ -11,7 +11,7 @@ import org.example.test.views.components.events.OpenFileEvent;
 import org.example.test.views.components.events.SaveFileEvent;
 import org.example.test.views.components.frames.AppFrame;
 import org.example.test.views.components.menubar.AppMenuBar;
-import org.example.test.views.components.toolbar.AppToolBar;
+import org.example.test.views.components.toolbar.AppMainToolBar;
 import org.example.test.views.factories.ModalDialogFactory;
 import org.example.test.views.helpers.SleepHelper;
 import org.example.test.views.menu.ApplicationMenuBar;
@@ -41,7 +41,7 @@ public class DemoApplicationFrame extends AppFrame implements ApplicationModelLi
 		return new ApplicationMenuBar();
 	}
 	
-	protected AppToolBar buildToolBar() {
+	protected AppMainToolBar buildToolBar() {
 		return new DemoApplicationToolBar(getViewConfiguration());
 	}
 	
