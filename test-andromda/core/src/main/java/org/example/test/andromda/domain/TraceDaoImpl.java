@@ -74,7 +74,7 @@ public class TraceDaoImpl extends TraceDaoBase {
 		Criteria cr;
 		Integer count;
 		
-		session = super.getSession(false);
+		session = super.getSessionFactory().getCurrentSession();
 		try {
 			cr = session.createCriteria(Trace.class);
 
@@ -84,7 +84,7 @@ public class TraceDaoImpl extends TraceDaoBase {
 			count = (Integer) cr.uniqueResult();
 			return count.longValue();
 		} catch (HibernateException ex) {
-			throw super.convertHibernateAccessException(ex);
+			throw super.getHibernateTemplate().convertHibernateAccessException(ex);
 		}
 	}
 	
@@ -94,7 +94,7 @@ public class TraceDaoImpl extends TraceDaoBase {
 		Criteria cr;
 		List<?> list;
 		
-		session = super.getSession(false);
+		session = super.getSessionFactory().getCurrentSession();
 		try {
 			cr = session.createCriteria(Trace.class);
 
@@ -104,7 +104,7 @@ public class TraceDaoImpl extends TraceDaoBase {
 			super.transformEntities(transform, list);
 			return list;
 		} catch (HibernateException ex) {
-			throw super.convertHibernateAccessException(ex);
+			throw super.getHibernateTemplate().convertHibernateAccessException(ex);
 		}
 	}
 	

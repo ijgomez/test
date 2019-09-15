@@ -119,15 +119,15 @@ $xmlIndent        return transformEntity(transform, ($entity.fullyQualifiedName)
 #end
     public $entityCollectionType loadAll()
     {
-        return this.loadAll(TRANSFORM_NONE);
+        return ($entityCollectionType) this.loadAll(TRANSFORM_NONE);
     }
 
     /**
      * @see ${entity.fullyQualifiedDaoName}#loadAll(int)
      */
-    public java.util.Collection loadAll(final int transform)
+    public java.util.Collection<?> loadAll(final int transform)
     {
-        final java.util.Collection results = this.getHibernateTemplate().loadAll(${entity.fullyQualifiedEntityImplementationName}.class);
+        final java.util.Collection<?> results = this.getHibernateTemplate().loadAll(${entity.fullyQualifiedEntityImplementationName}.class);
         this.transformEntities(transform, results);
         return results;
     }
@@ -215,13 +215,13 @@ $xmlIndent        return transformEntity(transform, ($entity.fullyQualifiedName)
 #end
     public $entityCollectionType create(final $entityCollectionType entities)
     {
-        return create($entity.daoNoTransformationConstantName, entities);
+        return ($entityCollectionType) create($entity.daoNoTransformationConstantName, entities);
     }
 
     /**
      * @see ${entity.fullyQualifiedDaoName}#create(int, $entityCollectionType)
      */
-    public java.util.Collection create(final int transform, final $entityCollectionType entities)
+    public java.util.Collection<?> create(final int transform, final $entityCollectionType entities)
     {
         if (entities == null)
         {
@@ -229,9 +229,9 @@ $xmlIndent        return transformEntity(transform, ($entity.fullyQualifiedName)
                 "${entity.name}.create - 'entities' can not be null");
         }
         this.getHibernateTemplate().execute(
-            new ${hibernateUtils.springHibernatePackage}.HibernateCallback()
+            new ${hibernateUtils.springHibernatePackage}.HibernateCallback<$entity.fullyQualifiedEntityName>()
             {
-                public java.lang.Object doInHibernate(${hibernateUtils.basePackage}.Session session)
+                public $entity.fullyQualifiedEntityName doInHibernate(${hibernateUtils.basePackage}.Session session)
                     throws ${hibernateUtils.basePackage}.HibernateException
                 {
                     for (java.util.Iterator<$entity.fullyQualifiedEntityName> entityIterator = entities.iterator(); entityIterator.hasNext();)
@@ -360,9 +360,9 @@ $xmlIndent        return transformEntity(transform, ($entity.fullyQualifiedName)
                 "${entity.name}.update - 'entities' can not be null");
         }
         this.getHibernateTemplate().execute(
-            new ${hibernateUtils.springHibernatePackage}.HibernateCallback()
+            new ${hibernateUtils.springHibernatePackage}.HibernateCallback<$entity.fullyQualifiedEntityName>()
             {
-                public java.lang.Object doInHibernate(${hibernateUtils.basePackage}.Session session)
+                public $entity.fullyQualifiedEntityName doInHibernate(${hibernateUtils.basePackage}.Session session)
                     throws ${hibernateUtils.basePackage}.HibernateException
                 {
                     for (java.util.Iterator<$entity.fullyQualifiedEntityName> entityIterator = entities.iterator(); entityIterator.hasNext();)
