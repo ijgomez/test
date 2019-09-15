@@ -43,7 +43,7 @@ public class $className
     /**
      * @see ${hibernateUtils.hibernateUserTypePackage}.UserType#returnedClass()
      */
-    public Class returnedClass()
+    public Class<byte[]> returnedClass()
     {
         return byte[].class;
     }

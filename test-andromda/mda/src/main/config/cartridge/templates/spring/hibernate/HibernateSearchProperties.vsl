@@ -16,13 +16,10 @@ package $springTypesPackage;
  * 
  * @author Chad Brandon
  */
- #if ($enableTemplating)
-@SuppressWarnings({"unchecked"})
-#end
 public class ${criteriaSearchBaseName}Properties
 {
-    private static final java.util.Map embeddedValuesByType = new java.util.HashMap();
-    private static final java.util.Map navigableAssociationEndsByType = new java.util.HashMap();
+    private static final java.util.Map<Class<?>, Object> embeddedValuesByType = new java.util.HashMap<>();
+    private static final java.util.Map<Class<?>, Object> navigableAssociationEndsByType = new java.util.HashMap<>();
     
     static
     {
@@ -70,9 +67,9 @@ public class ${criteriaSearchBaseName}Properties
      * @param type the type of which to retrieve the value.
      * @return the collection of embedded value names.
      */
-    public static java.util.Collection getEmbeddedValues(final Class type)
+    public static java.util.Collection<?> getEmbeddedValues(final Class<?> type)
     {
-        return (java.util.Collection)embeddedValuesByType.get(type);
+        return (java.util.Collection<?>)embeddedValuesByType.get(type);
     }
     
     /**
@@ -83,9 +80,9 @@ public class ${criteriaSearchBaseName}Properties
      * @param name the name of the association end to find.
      * @return the type of the association end.
      */
-    public static Class getNavigableAssociationEndType(final Class ownerType, final String name)
+    public static Class<?> getNavigableAssociationEndType(final Class<?> ownerType, final String name)
     {
-        final java.util.Collection ends = (java.util.Collection)navigableAssociationEndsByType.get(ownerType);
+        final java.util.Collection<?> ends = (java.util.Collection<?>)navigableAssociationEndsByType.get(ownerType);
         final AssociationType type = (AssociationType)org.apache.commons.collections.CollectionUtils.find(
             ends,
             new org.apache.commons.collections.Predicate()
@@ -103,12 +100,12 @@ public class ${criteriaSearchBaseName}Properties
      */    
     protected static final class AssociationType
     {
-        protected AssociationType(final String name, final Class type)
+        protected AssociationType(final String name, final Class<?> type)
         {
             this.name = name;
             this.type = type;
         }
         protected String name;
-        protected Class type;
+        protected Class<?> type;
     }
 }

@@ -31,7 +31,7 @@ public class $className
      * The serial version UID of this class. Needed for serialization.
      */
 ## the value of this field should change whenever the class signature changes
-    private static final long serialVersionUID = 10000L;
+    //private static final long serialVersionUID = 10000L;
 
     /**
      * @see ${hibernateUtils.hibernateUserTypePackage}.UserType#sqlTypes()
@@ -44,7 +44,7 @@ public class $className
     /**
      * @see ${hibernateUtils.hibernateUserTypePackage}.UserType#returnedClass()
      */
-    public Class returnedClass()
+    public Class<String> returnedClass()
     {
         return String.class;
     }

@@ -21,9 +21,14 @@ $enumeration.getDocumentation(" * ")
 public final class $enumeration.enumerationName
     extends $enumeration.name
     implements java.io.Serializable,
-               java.lang.Comparable,
+               java.lang.Comparable<Object>,
                ${hibernateUtils.hibernateUserTypePackage}.EnhancedUserType
 {
+
+	/**
+     * The serial version UID of this class. Needed for serialization.
+     */
+    private static final long serialVersionUID = 10000L;
 
     private static final int[] SQL_TYPES = {Types.VARCHAR};
 
@@ -75,7 +80,7 @@ public final class $enumeration.enumerationName
     /**
      * @see ${hibernateUtils.hibernateUserTypePackage}.UserType#returnedClass()
      */
-    public Class returnedClass()
+    public Class<${enumeration.name}> returnedClass()
     {
         return ${enumeration.name}.class;
     }
