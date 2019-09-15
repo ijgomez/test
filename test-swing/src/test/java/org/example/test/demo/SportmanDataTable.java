@@ -73,13 +73,17 @@ public class SportmanDataTable extends AppDataTable<Sportman, SportmanCriteria> 
 	}
 	
 	@Override
-	protected SportmanCriteria buildCriteria(int pageNumber, int pageSize) {
+	protected SportmanCriteria buildCriteria(int pageNumber, int pageSize, String sortColumn, String sortOrder) {
 		SportmanCriteria criteria;
-		
+
 		criteria = new SportmanCriteria();
+		// TODO Auto-generated method stub
+		
 		criteria.setPageNumber(pageNumber);
 		criteria.setPageSize(pageSize);
-		// TODO Auto-generated method stub
+		criteria.setSortField(sortColumn);
+		criteria.setSortOrder(sortOrder);
+
 		return criteria;
 	}
 

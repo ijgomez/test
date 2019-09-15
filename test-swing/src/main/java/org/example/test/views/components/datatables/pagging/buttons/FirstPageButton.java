@@ -3,7 +3,7 @@ package org.example.test.views.components.datatables.pagging.buttons;
 import java.awt.event.ActionEvent;
 
 import org.example.test.views.components.buttons.BasicButton;
-import org.example.test.views.components.datatables.AppDataTablePaginationListener;
+import org.example.test.views.components.datatables.listeners.AppDataTablePaginationListener;
 
 import lombok.extern.slf4j.Slf4j;
 

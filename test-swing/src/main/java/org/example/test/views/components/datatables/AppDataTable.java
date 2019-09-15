@@ -11,7 +11,9 @@ import javax.swing.event.ListSelectionEvent;
 
 import org.example.test.views.components.ApplicationConstants;
 import org.example.test.views.components.ApplicationModelListener;
+import org.example.test.views.components.datatables.listeners.AppDataTableHeaderMouseListener;
 import org.example.test.views.components.datatables.pagging.PaginationPanel;
+import org.example.test.views.components.datatables.renderer.AppDataTableHeaderRenderer;
 import org.example.test.views.components.events.ReloadDataEvent;
 import org.example.test.views.components.panels.AppPanel;
 
@@ -47,6 +49,9 @@ public abstract class AppDataTable<E, C> extends AppPanel implements Application
 			protected Object getValueAt(E e, int columnIndex) {
 				return handlerGetValueAt(e, columnIndex);
 			}
+			
+			@Override
+			protected void handlerShortAction() { updateView(); }
 		};
 		this.tableModel.setColumnNames(createColumnNames());
 		
@@ -55,11 +60,12 @@ public abstract class AppDataTable<E, C> extends AppPanel implements Application
 		
 		this.table = new JTable();
 		this.table.setModel(this.tableModel);
-        //this.table.setAutoCreateRowSorter(true);
+//      this.table.setAutoCreateRowSorter(true);
 //		this.table.setRowSorter(tableRowSorter);
         this.table.setFillsViewportHeight(true);
         this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.table.getSelectionModel().addListSelectionListener((e) -> valueSelected(e));
+        this.table.getTableHeader().setDefaultRenderer(new AppDataTableHeaderRenderer(this.table.getTableHeader().getDefaultRenderer()));
         this.table.getTableHeader().addMouseListener(new AppDataTableHeaderMouseListener(this.table));
         
         scrollPane = new JScrollPane(this.table);
@@ -118,7 +124,7 @@ public abstract class AppDataTable<E, C> extends AppPanel implements Application
 		
 		log.trace("Update datatable...");
 
-		criteria = this.buildCriteria(this.paginationPanel.getActualPage(), MAX_REGISTRY_BY_PAGE);
+		criteria = this.buildCriteria(this.paginationPanel.getActualPage(), MAX_REGISTRY_BY_PAGE, this.tableModel.getSortColumn(), this.tableModel.getSortOrder());
 		
 		total = this.countByCriteria(criteria);
 		log.trace("Count of Registers: {}", total);
@@ -145,6 +151,6 @@ public abstract class AppDataTable<E, C> extends AppPanel implements Application
 
 	protected abstract Integer countByCriteria(C criteria);
 
-	protected abstract C buildCriteria(int pageNumber, int pageSize);
+	protected abstract C buildCriteria(int pageNumber, int pageSize, String sortColumn, String sortOrder);
 
 }

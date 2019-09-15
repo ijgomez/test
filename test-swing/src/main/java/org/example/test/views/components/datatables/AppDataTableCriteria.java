@@ -2,20 +2,20 @@ package org.example.test.views.components.datatables;
 
 public interface AppDataTableCriteria {
 
-	public Integer getPageNumber();
+	Integer getPageNumber();
 
-	public void setPageNumber(Integer pageNumber);
+	void setPageNumber(Integer pageNumber);
 
-	public Integer getPageSize();
+	Integer getPageSize();
 
-	public void setPageSize(Integer pageSize);
+	void setPageSize(Integer pageSize);
 
-	public String getSortField();
+	String getSortField();
 
-	public void setSortField(String sortField);
+	void setSortField(String sortField);
 
-	public String getSortOrder();
+	String getSortOrder();
 
-	public void setSortOrder(String sortOrder);
+	void setSortOrder(String sortOrder);
 	
 }

@@ -6,9 +6,11 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import org.example.test.views.components.ApplicationConstants;
+import org.example.test.views.components.datatables.listeners.AppDataTableSorterListener;
 
-public abstract class AppDataTableModel<E> extends AbstractTableModel implements ApplicationConstants {
+public abstract class AppDataTableModel<E> extends AbstractTableModel implements AppDataTableSorterListener, ApplicationConstants {
 
+	/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
 	private static final long serialVersionUID = 5661446774375595890L;
 
 	private String[] columnNames;
@@ -93,5 +95,33 @@ public abstract class AppDataTableModel<E> extends AbstractTableModel implements
 	public void setRegistryPageMax(int registryPageMax) {
 		this.registryPageMax = registryPageMax;
 	}
+	
+	private Integer sortColumnIndex;
+	
+	private String sortOrder;
+	
+	@Override
+	public String getSortColumn() {
+		return (sortColumnIndex != null) ? this.getColumnName(sortColumnIndex) : null;
+	}
 
+	@Override
+	public String getSortOrder() {
+		return (sortColumnIndex != null) ? this.sortOrder : null;
+	}
+	
+	@Override
+	public void shortAction(int columnIndex) {
+		if (this.sortColumnIndex == null || this.sortColumnIndex != columnIndex) {
+			this.sortColumnIndex = columnIndex;
+			this.sortOrder = "ASC";
+		} else {
+			this.sortOrder = (this.sortOrder.equals("DESC")) ? "ASC": "DESC";
+		}
+		handlerShortAction();
+	}
+
+	protected abstract void handlerShortAction();
+	
+	
 }

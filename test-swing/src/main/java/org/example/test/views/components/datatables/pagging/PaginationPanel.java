@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 
 import org.example.test.views.components.ApplicationConstants;
 import org.example.test.views.components.ApplicationModelListener;
-import org.example.test.views.components.datatables.AppDataTablePaginationListener;
+import org.example.test.views.components.datatables.listeners.AppDataTablePaginationListener;
 import org.example.test.views.components.datatables.pagging.buttons.FirstPageButton;
 import org.example.test.views.components.datatables.pagging.buttons.LastPageButton;
 import org.example.test.views.components.datatables.pagging.buttons.NextPageButton;

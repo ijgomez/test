@@ -1,4 +1,4 @@
-package org.example.test.views.components.datatables;
+package org.example.test.views.components.datatables.listeners;
 
 import java.awt.event.ActionEvent;
 

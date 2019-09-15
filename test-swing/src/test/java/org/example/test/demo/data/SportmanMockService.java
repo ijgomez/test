@@ -3,9 +3,6 @@ package org.example.test.demo.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -67,7 +64,7 @@ public class SportmanMockService {
 	}
 	
 	public List<Sportman> findByCriteria(SportmanCriteria criteria) {
-		log.trace("Criteria: pageNumber={}, pageSize={}", criteria.getPageNumber(), criteria.getPageSize());
+		log.trace("Criteria: pageNumber={}, pageSize={}, sortField={}, sortOrder={}", criteria.getPageNumber(), criteria.getPageSize(), criteria.getSortField(), criteria.getSortOrder());
 		
 		// Filter by criteria
 		
