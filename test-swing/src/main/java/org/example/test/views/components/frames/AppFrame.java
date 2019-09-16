@@ -24,7 +24,7 @@ import org.example.test.views.components.events.CloseApplicationEvent;
 import org.example.test.views.components.menubar.AppMenuBar;
 import org.example.test.views.components.toolbar.AppMainToolBar;
 import org.example.test.views.factories.ContainerViewFactory;
-import org.example.test.views.factories.ModalDialogFactory;
+import org.example.test.views.factories.DialogFactory;
 import org.example.test.views.factories.ResourcesFactory;
 import org.example.test.views.helpers.SleepHelper;
 import org.example.test.views.resources.TextResources;
@@ -169,7 +169,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 	protected abstract void handlerRegisterEventListeners();
 
 	private void confirmExitAction() {
-		if (ModalDialogFactory.showConfirmExitDialog(this)) {
+		if (DialogFactory.showConfirmExitDialog(this)) {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			dispose();
 		} else {
@@ -178,7 +178,7 @@ public abstract class AppFrame extends JFrame implements ApplicationModelListene
 	}
 	
 	private void changeView(Class<?> classEntity) {
-		ModalDialogFactory.showProgressDialog(this, () -> {
+		DialogFactory.showProgressDialog(this, () -> {
 			log.trace("{}", classEntity);
 			try {
 				((ApplicationModelListener) this.container).setModel(null);

@@ -12,7 +12,7 @@ import org.example.test.views.components.events.SaveFileEvent;
 import org.example.test.views.components.frames.AppFrame;
 import org.example.test.views.components.menubar.AppMenuBar;
 import org.example.test.views.components.toolbar.AppMainToolBar;
-import org.example.test.views.factories.ModalDialogFactory;
+import org.example.test.views.factories.DialogFactory;
 import org.example.test.views.menu.ApplicationMenuBar;
 
 import lombok.extern.slf4j.Slf4j;
@@ -75,7 +75,7 @@ public class DefaultApplicationFrame extends AppFrame implements ApplicationMode
 	private void openFileDialog() {
 		File f;
 		
-		f = ModalDialogFactory.showOpenFileDialog(getParent());
+		f = DialogFactory.showOpenFileDialog(getParent());
 		if (f != null) {
 			log.trace("File: {}", f.getAbsolutePath());
 		}
@@ -86,7 +86,7 @@ public class DefaultApplicationFrame extends AppFrame implements ApplicationMode
 	private void saveFileDialog() {
 		File f;
 		
-		f = ModalDialogFactory.showSaveFileDialog(getParent());
+		f = DialogFactory.showSaveFileDialog(getParent());
 		if (f != null) {
 			log.trace("File: {}", f.getAbsolutePath());
 		}

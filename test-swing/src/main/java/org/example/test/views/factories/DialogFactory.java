@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
 import java.io.File;
 
 import javax.swing.JComponent;
@@ -20,6 +21,7 @@ import org.example.test.views.components.dialog.InformationDialogPanel;
 import org.example.test.views.components.dialog.ProgressDialogPanel;
 import org.example.test.views.components.dialog.WarningDialogPanel;
 import org.example.test.views.resources.TextResources;
+import org.example.test.views.settings.SettingsContainerView;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Slf4j
-public class ModalDialogFactory {
+public class DialogFactory {
 	
 	private static final Dimension DEFAULT_DIALOG_SIZE = new Dimension(450, 200);
 
@@ -100,7 +102,7 @@ public class ModalDialogFactory {
 			log.error("Fail in operation:", th);
 			dialog.setVisible(false);
 			dialog.dispose();
-			ModalDialogFactory.showErrorDialog(frame, th);
+			DialogFactory.showErrorDialog(frame, th);
 		});
 		thread.start();
 		dialog.setVisible(true);
@@ -168,6 +170,29 @@ public class ModalDialogFactory {
 		});
 		dialog.setResizable(false);
 		dialog.setUndecorated(true);
+		dialog.setModal(true);
+		dialog.setLocationRelativeTo(frame);
+		
+		dialog.setVisible(true);
+	}
+	
+	public static void showSettingsDialog(JFrame frame) {
+		final JDialog dialog;
+		
+		dialog = new JDialog(frame);
+		dialog.setSize(new Dimension((int)(frame.getSize().width /1.5), (int)(frame.getSize().height /1.5)));
+		dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		dialog.add(new SettingsContainerView() {
+
+			/** Value that it is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization. */
+			private static final long serialVersionUID = 2811941159640966887L;
+
+			@Override
+			protected void closeDialogAction(ActionEvent e) {
+				dialog.setVisible(false);
+				dialog.dispose();
+			}
+		});
 		dialog.setModal(true);
 		dialog.setLocationRelativeTo(frame);
 		

@@ -8,11 +8,12 @@ import org.example.test.views.annotations.ApplicationViewScan;
 import org.example.test.views.components.ApplicationModelListener;
 import org.example.test.views.components.dialog.init.ApplicationInitializationDialog;
 import org.example.test.views.components.events.OpenFileEvent;
+import org.example.test.views.components.events.OpenSettingsDialogEvent;
 import org.example.test.views.components.events.SaveFileEvent;
 import org.example.test.views.components.frames.AppFrame;
 import org.example.test.views.components.menubar.AppMenuBar;
 import org.example.test.views.components.toolbar.AppMainToolBar;
-import org.example.test.views.factories.ModalDialogFactory;
+import org.example.test.views.factories.DialogFactory;
 import org.example.test.views.helpers.SleepHelper;
 import org.example.test.views.menu.ApplicationMenuBar;
 
@@ -74,8 +75,11 @@ public class DemoApplicationFrame extends AppFrame implements ApplicationModelLi
 	protected void handlerRegisterEventListeners() {
 		super.register(OpenFileEvent.class, (e) -> openFileDialog());
 		super.register(SaveFileEvent.class, (e) -> saveFileDialog());
+		super.register(OpenSettingsDialogEvent.class, (e) -> openSettingsDialog());
 	}
 	
+	
+
 	@Override
 	public void updateView() {
 		// TODO Auto-generated method stub
@@ -85,7 +89,7 @@ public class DemoApplicationFrame extends AppFrame implements ApplicationModelLi
 	private void openFileDialog() {
 		File f;
 		
-		f = ModalDialogFactory.showOpenFileDialog(getParent());
+		f = DialogFactory.showOpenFileDialog(getParent());
 		if (f != null) {
 			log.trace("File: {}", f.getAbsolutePath());
 		}
@@ -96,12 +100,17 @@ public class DemoApplicationFrame extends AppFrame implements ApplicationModelLi
 	private void saveFileDialog() {
 		File f;
 		
-		f = ModalDialogFactory.showSaveFileDialog(getParent());
+		f = DialogFactory.showSaveFileDialog(getParent());
 		if (f != null) {
 			log.trace("File: {}", f.getAbsolutePath());
 		}
 		// TODO Auto-generated method stub
 
+	}
+	
+	private void openSettingsDialog() {
+		DialogFactory.showSettingsDialog(this);
+		// TODO Auto-generated method stub
 	}
 
 }
