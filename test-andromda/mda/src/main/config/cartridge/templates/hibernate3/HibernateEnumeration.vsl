@@ -28,7 +28,7 @@ public final class $enumeration.enumerationName
 	/**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = ${class.serialVersionUID}L;
+    private static final long serialVersionUID = ${enumeration.serialVersionUID}L;
 
     private static final int[] SQL_TYPES = {Types.VARCHAR};
 
