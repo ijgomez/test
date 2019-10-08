@@ -16,7 +16,7 @@ import com.unboundid.ldap.sdk.SearchResultEntry;
 import com.unboundid.ldap.sdk.SearchScope;
 
 
-public class TestLdap2 {
+public class TestLdap {
 	
 	public static final String DOMAIN_DSN = "dc=example,dc=com";
 	
