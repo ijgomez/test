@@ -8,14 +8,12 @@ package org.example.test;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 import javax.management.AttributeChangeNotification;
 import javax.management.JMX;
 import javax.management.MBeanServerConnection;
 import javax.management.Notification;
-import javax.management.NotificationEmitter;
 import javax.management.NotificationListener;
 import javax.management.ObjectName;
 import javax.management.remote.JMXConnector;

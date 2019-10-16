@@ -7,9 +7,7 @@ import java.util.ArrayList;
 
 import javax.management.AttributeNotFoundException;
 import javax.management.InstanceNotFoundException;
-import javax.management.IntrospectionException;
 import javax.management.MBeanException;
-import javax.management.MBeanInfo;
 import javax.management.MBeanServer;
 import javax.management.MBeanServerFactory;
 import javax.management.MalformedObjectNameException;

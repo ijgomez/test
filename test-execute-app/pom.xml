@@ -5,25 +5,17 @@
 	<artifactId>test-execute-app</artifactId>
 	<version>1.0</version>
 	<properties>
-		<jvm.version>1.8</jvm.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	  	<maven.compiler.source>1.8</maven.compiler.source>
+	    <maven.compiler.target>1.8</maven.compiler.target>
+		
 		<executable.class>org.example.test.Main</executable.class>
 	</properties>
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>${jvm.version}</source>
-					<target>${jvm.version}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.4</version>
 				<configuration>
 					<archive>
 						<manifest>
@@ -41,7 +33,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<version>3.0.0</version>
 				<configuration>
 					<filters>
 						<filter>src/main/filters/local.properties</filter>
