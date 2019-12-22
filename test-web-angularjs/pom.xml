@@ -13,7 +13,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 
 		<!-- Frameworks -->
-		<org.springframework.version>5.1.7.RELEASE</org.springframework.version>
+		<org.springframework.version>5.2.2.RELEASE</org.springframework.version>
 		<org.slf4j.version>1.7.7</org.slf4j.version>
 		<org.hibernate.version>5.2.9.Final</org.hibernate.version>
 		<com.fasterxml.jackson.core.version>2.9.10.1</com.fasterxml.jackson.core.version>
@@ -37,7 +37,7 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>2.1.8.RELEASE</version>
+			<version>2.2.3.RELEASE</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.slf4j</groupId>
