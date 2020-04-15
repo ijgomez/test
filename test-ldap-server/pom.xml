@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.example.test.ldap</groupId>
+	<artifactId>test-ldap-server</artifactId>
+	<version>1.0</version>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <maven.test.skip>true</maven.test.skip>
+	    
+	    <!-- framework versions -->
+	    <org.apache.directory.server.version>2.0.0.AM26</org.apache.directory.server.version>
+	    <org.apache.directory.api.version>2.0.1</org.apache.directory.api.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.directory.server</groupId>
+			<artifactId>apacheds-core-annotations</artifactId>
+			<version>${org.apache.directory.server.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.directory.server</groupId>
+			<artifactId>apacheds-core-api</artifactId>
+			<version>${org.apache.directory.server.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.directory.server</groupId>
+			<artifactId>apacheds-service-builder</artifactId>
+			<version>${org.apache.directory.server.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.directory.api</groupId>
+			<artifactId>api-ldap-codec-standalone</artifactId>
+			<version>${org.apache.directory.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.directory.api</groupId>
+			<artifactId>api-ldap-model</artifactId>
+			<version>${org.apache.directory.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.directory.api</groupId>
+			<artifactId>api-ldap-schema-data</artifactId>
+			<version>${org.apache.directory.api.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.directory.api</groupId>
+		    <artifactId>api-ldap-extras-codec</artifactId>
+			<version>${org.apache.directory.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.directory.api</groupId>
+			<artifactId>api-util</artifactId>
+			<version>${org.apache.directory.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+
+		<!-- Testing -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		
+		
+	</dependencies>
+</project>
