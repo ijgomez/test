@@ -13,7 +13,8 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.Arrays;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Class with methods with common security operations.
@@ -23,7 +24,7 @@ import org.apache.log4j.Logger;
  */
 public final class SecurityHelper {
 
-	private static final Logger LOGGER = Logger.getLogger(SecurityHelper.class);
+	private static final Logger LOGGER = LogManager.getLogger(SecurityHelper.class);
 
 	/**
 	 * Method that reads a file that contains a certificate in x509 format, and prints the certificate information in the log.
