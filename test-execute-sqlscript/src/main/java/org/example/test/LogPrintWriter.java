@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+
 
 public class LogPrintWriter extends PrintWriter {
 

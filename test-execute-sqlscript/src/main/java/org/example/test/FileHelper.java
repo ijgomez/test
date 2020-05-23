@@ -7,11 +7,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import org.apache.ibatis.jdbc.ScriptRunner;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class FileHelper {
 	
-	private static final Logger LOGGER = Logger.getLogger(FileHelper.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(FileHelper.class);
 
 	public static void executeScriptSQL(Connection connection, String fileName) throws ClassNotFoundException, SQLException {
 
