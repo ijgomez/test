@@ -13,13 +13,13 @@ import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.apache.log4j.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HTTPHelper {
 
 	/** Atributo que define el log donde escribe la clase. */
-	private static Logger LOGGER = Logger.getLogger(HTTPHelper.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(HTTPHelper.class);
 
 	/**
 	 * Metodo que obtiene la respuesta de un servidor web a una peticion.

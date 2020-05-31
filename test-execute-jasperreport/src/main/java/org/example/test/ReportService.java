@@ -4,7 +4,8 @@ import java.io.File;
 import java.sql.Connection;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRParameter;
@@ -19,7 +20,7 @@ import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 
 public class ReportService {
 
-	private static final Logger LOGGER = Logger.getLogger(ReportService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReportService.class);
 	
 	public void execute(Connection connection, String reportTemplate, Map<String, Object> parameters) throws JRException {
 		

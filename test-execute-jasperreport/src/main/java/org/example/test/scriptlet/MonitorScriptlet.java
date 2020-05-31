@@ -1,13 +1,14 @@
 package org.example.test.scriptlet;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.jasperreports.engine.JRAbstractScriptlet;
 import net.sf.jasperreports.engine.JRScriptletException;
 
-import org.apache.log4j.Logger;
-
 public class MonitorScriptlet extends JRAbstractScriptlet {
 
-	private static final Logger LOGGER = Logger.getLogger(MonitorScriptlet.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(MonitorScriptlet.class);
 	
 	@Override
 	public void beforeReportInit() throws JRScriptletException {
