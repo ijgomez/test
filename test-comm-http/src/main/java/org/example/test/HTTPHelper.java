@@ -12,6 +12,7 @@ import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Base64;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +48,7 @@ public class HTTPHelper {
 			if (usuario != null && password != null) {
 				LOGGER.debug("Estableciendo proxy autentificacion...");
 				String authString = usuario + ":" + password;
-	            String auth = "Basic " + new sun.misc.BASE64Encoder().encode(authString.getBytes());
+	            String auth = "Basic " + Base64.getEncoder().encode(authString.getBytes());
 				conn.setRequestProperty("Proxy-Authorization", auth);
 			}
 			
