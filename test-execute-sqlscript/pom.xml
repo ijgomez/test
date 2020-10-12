@@ -1,15 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.example.test</groupId>
+	<parent>
+		<groupId>org.example.test</groupId>
+		<artifactId>test-parent</artifactId>
+		<version>1.0</version>
+	</parent>
 	<artifactId>test-execute-sqlscript</artifactId>
-	<version>1.0</version>
-	<name>test-execute-sqlscript</name>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>12</maven.compiler.source>
-		<maven.compiler.target>12</maven.compiler.target>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -17,15 +15,14 @@
 			<version>3.2.7</version>
 		</dependency>
 		<dependency>
-		   <groupId>org.apache.logging.log4j</groupId>
-		   <artifactId>log4j-slf4j-impl</artifactId>
-		   <version>2.13.3</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>2.13.3</version>
 		</dependency>
+		<!-- Testing Dependecies -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.hsqldb</groupId>
