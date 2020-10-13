@@ -1,20 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.example.test</groupId>
+	<parent>
+		<groupId>org.example.test</groupId>
+		<artifactId>test-parent</artifactId>
+		<version>1.0</version>
+	</parent>
 	<artifactId>test-web-ds</artifactId>
-	<version>1.0</version>
 	<packaging>war</packaging>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.test.skip>true</maven.test.skip>
 		
 		<org.springframework.version>4.0.6.RELEASE</org.springframework.version>
 		<org.springframework.security.version>3.1.4.RELEASE</org.springframework.security.version>
 		<org.aspectj.version>1.7.1</org.aspectj.version>
-		<junit.version>4.10</junit.version>
 	</properties>
 	<dependencies>
 
@@ -114,8 +113,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
 		</dependency>
 
 		<!-- j2ee - Servlet 3.0 -->
