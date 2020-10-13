@@ -1,21 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.example.test</groupId>
+	<parent>
+		<groupId>org.example.test</groupId>
+		<artifactId>test-parent</artifactId>
+		<version>1.0</version>
+	</parent>
 	<artifactId>test-web-spring-view-files</artifactId>
-	<version>1.0</version>
 	<packaging>war</packaging>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.test.skip>true</maven.test.skip>
 
 		<!-- frameworks version -->
 		<org.springframework.version>4.0.6.RELEASE</org.springframework.version>
 		<org.codehaus.jackson.version>1.9.13</org.codehaus.jackson.version>
 		<org.apache.poi.version>3.10-FINAL</org.apache.poi.version>
-		<junit.version>4.11</junit.version>
 	</properties>
 	<build>
 		<plugins>
@@ -97,8 +96,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
