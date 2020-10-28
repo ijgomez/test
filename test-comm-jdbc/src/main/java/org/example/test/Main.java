@@ -14,18 +14,21 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			if (args == null || args.length != 1) {
-				System.err.println("Falta argumento: [ORACLE, POSTGESQL, SQLSERVER]");
+				System.err.println("Falta argumento: [ORACLE, POSTGESQL, SQLSERVER, MYSQL]");
 			} else {
 				
 				if (args[0].equals("ORACLE")) testOracle();
 				if (args[0].equals("POSTGRESQL")) testPostgreSQL();
 				if (args[0].equals("SQLSERVER")) testSQLServer();
+				if (args[0].equals("MYSQL")) testMySQL();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	
+
 	private void execute(String driver, String url, String username, String password, Work work) throws SQLException {
 		Connection connection = null;
 		long t = System.currentTimeMillis();
@@ -237,5 +240,45 @@ public class Main {
 				}
 			}
 		});
+	}
+	
+	private static void testMySQL() throws SQLException {
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String url = "jdbc:mysql://localhost:3306/company";
+		String username = "USUARIO";
+		String password = "P@ssw0rd";
+		
+		//TODO Operacion 1
+		(new Main()).execute(driver, url, username , password, new Work() {
+
+			private static final String SQL = "SELECT COUNT(*) FROM employees";
+		
+			public void execute(Connection connection) throws SQLException {
+				Statement statement = null;
+				ResultSet rs = null;
+				
+				try {
+					System.out.println(String.format("Query SQL: %s", SQL));
+					
+					statement = connection.createStatement();
+					rs = statement.executeQuery(SQL);
+					
+					while (rs.next()) {
+						System.out.println(String.format("Result: %s", rs.getString(1)));
+					}
+				
+				} finally {
+					if (rs != null) {
+						rs.close();
+					}
+					if (statement != null) {
+						statement.close();
+					}
+				}
+				
+			}
+		});
+		
+		
 	}
 }
