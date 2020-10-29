@@ -12,13 +12,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class HibernateDaoBase<E, K extends Serializable> {
+import lombok.extern.slf4j.Slf4j;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(HibernateDaoBase.class);
+@Slf4j
+public abstract class HibernateDaoBase<E, K extends Serializable> {
 
 	private SessionFactory sessionFactory;
 
@@ -61,7 +60,7 @@ public abstract class HibernateDaoBase<E, K extends Serializable> {
 			count++;
 			
 			if ( count % 1000 == 0 ) { //2000, same as the JDBC batch size flush a batch of inserts and release memory:
-				LOGGER.trace("flush a batch of inserts (1000) and release memory.");
+				log.trace("flush a batch of inserts (1000) and release memory.");
 		        session.flush();
 		        session.clear();
 		    }
