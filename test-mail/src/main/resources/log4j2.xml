@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<!-- console log -->
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<filters>
+				<ThresholdFilter level="INFO" onMatch="ACCEPT" />
+			</filters>
+			<PatternLayout pattern="%d %t %-5p %m%n" />
+		</Console>
+
+		<!-- application -->
+		<RollingFile name="APP" fileName="application.log" filePattern="application.log.%i">
+			<PatternLayout pattern="%d %t %-5p %m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="5" />
+		</RollingFile>
+		
+	</Appenders>
+	<Loggers>
+		<Logger name="org.example.test" level="INFO" />
+		
+		<!-- main logger -->
+		<Root level="INFO">
+			<AppenderRef ref="CONSOLE" />
+			<AppenderRef ref="APP" />
+		</Root>
+	</Loggers>
+</Configuration>
