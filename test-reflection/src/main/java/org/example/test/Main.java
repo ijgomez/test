@@ -85,7 +85,7 @@ public class Main {
 			    FileOutputStream fileOut = new FileOutputStream("target/workbook.xls");
 			    wb.write(fileOut);
 			    fileOut.close();
-
+			    wb.close();
 				System.out.println("MSeg: " + (System.currentTimeMillis() - l));
 
 			} catch (SecurityException e) {

@@ -22,7 +22,7 @@ public class Worker implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Do some work....
+		// TODO Do some work...
 		outputScraper.add("Counted down");
 		countDownLatch.countDown();
 	}

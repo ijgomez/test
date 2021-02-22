@@ -35,8 +35,8 @@ public class ExcelView extends AbstractExcelView {
 		//Style for header cell
 		CellStyle style = workbook.createCellStyle();
 		style.setFillForegroundColor(IndexedColors.GREY_40_PERCENT.index);
-		style.setFillPattern(CellStyle.SOLID_FOREGROUND);
-		style.setAlignment(CellStyle.ALIGN_CENTER);
+//		style.setFillPattern(CellStyle.SOLID_FOREGROUND);
+//		style.setAlignment(CellStyle.ALIGN_CENTER);
 		
 		//Create header cells
 		row = sheet.createRow(r++);
