@@ -2,6 +2,11 @@ package org.example.test;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ * 
+ * @author 
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {
